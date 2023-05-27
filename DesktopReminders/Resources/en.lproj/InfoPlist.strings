@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  DesktopReminders
+
+  Created by Dominik Pich on 8/9/20.
+  
+*/
+
+"CFBundleName" = "DesktopReminders";
+"CFBundleDisplayName" = "DesktopReminders";

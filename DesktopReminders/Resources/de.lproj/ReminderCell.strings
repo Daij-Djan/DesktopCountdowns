@@ -1,0 +1,12 @@
+
+/* Class = "NSTextFieldCell"; title = "DAYS"; ObjectID = "BM9-Fa-fcv"; */
+"BM9-Fa-fcv.title" = "TAGE";
+
+/* Class = "NSTextFieldCell"; title = "title_of_reminder"; ObjectID = "b0Z-Qr-lei"; */
+"b0Z-Qr-lei.title" = "title_of_reminder";
+
+/* Class = "NSTextFieldCell"; title = "-123"; ObjectID = "cn7-AI-HEq"; */
+"cn7-AI-HEq.title" = "-123";
+
+/* Class = "NSTextFieldCell"; title = "duedate_of_reminder"; ObjectID = "syq-Vt-M8S"; */
+"syq-Vt-M8S.title" = "duedate_of_reminder";
