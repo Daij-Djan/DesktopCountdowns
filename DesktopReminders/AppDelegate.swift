@@ -43,8 +43,8 @@ class AppDelegate: NSObject {
     // apply dock icon
     #if DEBUG
     var dockIcon = appOptions.dockIcon
-    if DebuggerUtils.isDebuggerAttached() {
-      print("Always showing dockIcon when a debugger is attached")
+    if appOptions.debugAlwaysShowsDock && DebuggerUtils.isDebuggerAttached() {
+      print("Always showing dockIcon when a debugger is attached.")
       dockIcon = true
     }
     #else

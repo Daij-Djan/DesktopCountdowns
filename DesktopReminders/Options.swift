@@ -15,6 +15,9 @@ struct FetchOptions {
   let orderByDueDate: Bool
 
   let onlyIncomplete = true
+  #if DEBUG
+  let debugUsesSamleData = true
+  #endif
 }
 extension FetchOptions {
   static var `default` = FetchOptions(
@@ -42,6 +45,10 @@ struct ViewOptions {
   let cellCornerRadius = 10.0
   let statusBarIconSize = NSSize(width: 22, height: 22)
   let statusBarFont = NSFont.systemFont(ofSize: 13)
+  
+  #if DEBUG
+  let debugKeepsWindowMode = true
+  #endif
 }
 extension ViewOptions {
   static var `default` = ViewOptions(
@@ -69,6 +76,10 @@ struct AppOptions {
   let dockIcon: Bool
   let statusBarItem: Bool
   let openAtLogin: Bool
+  
+  #if DEBUG
+  let debugAlwaysShowsDock = true
+  #endif
 }
 extension AppOptions {
   static var `default` = AppOptions(

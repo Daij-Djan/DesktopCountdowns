@@ -37,7 +37,7 @@ struct DesktopWindowController {
         window.collectionBehavior = [.stationary, .canJoinAllSpaces]
         window.level = .init(rawValue: NSWindow.Level.normal.rawValue - 1)
         #if DEBUG
-        if DebuggerUtils.isDebuggerAttached() {
+        if viewOptions.debugKeepsWindowMode && DebuggerUtils.isDebuggerAttached() {
           print("keep window normal for easier debugging")
           window.level = .normal
         }
