@@ -16,6 +16,7 @@ class AppDelegate: NSObject {
   private lazy var reminderStore = ReminderStore.shared
   
   private var notificationTokens = [NSObjectProtocol]()
+  private var wasCalledBefore = false
   
   @IBOutlet private var prefsWindow: NSWindow!
   
@@ -50,8 +51,11 @@ class AppDelegate: NSObject {
     #else
     let dockIcon = appOptions.dockIcon
     #endif
-    NSApp.setActivationPolicy(dockIcon ? .regular : .accessory)
-    NSApp.activate(ignoringOtherApps: true)
+    let newActivationPolicy: NSApplication.ActivationPolicy = dockIcon ? .regular : .accessory
+    if !wasCalledBefore || NSApp.activationPolicy() != newActivationPolicy {
+      NSApp.setActivationPolicy(newActivationPolicy)
+      NSApp.activate(ignoringOtherApps: true)
+    }
     
     // manage Start at Login
     let shouldOpenAtLogin = appOptions.openAtLogin
@@ -69,6 +73,8 @@ class AppDelegate: NSObject {
       self.desktopWindowController.reminders = reminders
       self.desktopWindowController.viewOptions = viewOptions
     }
+    
+    wasCalledBefore = true
   }
 }
 
