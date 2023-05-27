@@ -8,31 +8,29 @@
 import Cocoa
 
 struct DesktopWindowController {
-  private var window : NSWindow?;
+  private var window: NSWindow?
 
-  var currentRemindersViewController : RemindersViewController? {
-    return window?.contentViewController as? RemindersViewController
+  private var currentRemindersViewController: RemindersViewController? {
+    window?.contentViewController as? RemindersViewController
   }
 
-  // MARK: public
-  
   var reminders: [Reminder] = [] {
     didSet {
       currentRemindersViewController?.reminders = reminders
     }
   }
 
-  var viewOptions: ViewOptions = ViewOptions.default {
+  var viewOptions = ViewOptions.default {
     didSet {
       currentRemindersViewController?.viewOptions = viewOptions
     }
   }
 
-  var enabled: Bool = false {
+  var enabled = false {
     didSet {
       if enabled {
-        let rect = NSScreen.main!.visibleFrame.insetBy(dx: viewOptions.screenFrameInset, dy: viewOptions.screenFrameInset)
-        
+        let rect = NSScreen.main?.visibleFrame.insetBy(dx: viewOptions.screenFrameInset, dy: viewOptions.screenFrameInset) ?? CGRect.zero
+
         let window = NSWindow(contentRect: rect, styleMask: [.borderless], backing: .buffered, defer: false)
         window.ignoresMouseEvents = true
         window.backgroundColor = .clear
@@ -45,12 +43,12 @@ struct DesktopWindowController {
         }
         #endif
 
-        let vc = RemindersViewController()
-        vc.reminders = reminders
-        vc.viewOptions = viewOptions
-        vc.view.frame = window.contentLayoutRect
-        window.contentViewController = vc
-        
+        let listViewController = RemindersViewController()
+        listViewController.reminders = reminders
+        listViewController.viewOptions = viewOptions
+        listViewController.view.frame = window.contentLayoutRect
+        window.contentViewController = listViewController
+
         self.window = window
         window.orderFrontRegardless()
       } else {

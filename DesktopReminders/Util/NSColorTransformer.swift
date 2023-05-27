@@ -9,7 +9,7 @@ import Cocoa
 
 class NSColorTransformer: NSSecureUnarchiveFromDataTransformer {
   override class var allowedTopLevelClasses: [AnyClass] {
-    return [NSColor.self]
+    [NSColor.self]
   }
 }
 

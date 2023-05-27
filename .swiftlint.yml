@@ -1,0 +1,51 @@
+disabled_rules:
+- anyobject_protocol
+- inert_defer
+- unused_capture_list
+- required_deinit
+- file_name
+- trailing_whitespace
+- explicit_acl
+- explicit_top_level_acl
+- explicit_type_interface
+- prohibited_interface_builder
+- no_grouping_extension
+- convenience_type
+- implicit_return
+- nslocalizedstring_require_bundle
+- private_action
+
+opt_in_rules:
+- all
+
+excluded:
+- Carthage
+- Pods
+- SwiftLint/Common/3rdPartyLib
+
+line_length:
+    warning: 250
+    error: 300
+    ignores_function_declarations: true
+    ignores_comments: true
+    ignores_urls: true
+function_body_length:
+    warning: 300
+    error: 500
+function_parameter_count:
+    warning: 6
+    error: 8
+type_body_length:
+    warning: 300
+    error: 500
+file_length:
+    warning: 1000
+    error: 1500
+    ignore_comment_only_lines: true
+cyclomatic_complexity:
+    warning: 15
+    error: 25
+indentation_width:
+    indentation_width: 2
+
+reporter: "xcode"

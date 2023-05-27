@@ -9,7 +9,10 @@ import Foundation
 import ServiceManagement
 
 struct LaunchAtLogin {
-  fileprivate static let launcherIdentifier = "\(Bundle.main.bundleIdentifier!)-launcher"
+  // swiftlint:disable force_unwrapping
+  // if the main bundle identifier is nil, we are screwed so force cating wont hurt
+  private static let launcherIdentifier = "\(Bundle.main.bundleIdentifier!)-launcher"
+  // swiftlint:enable force_unwrapping
 
   static var isEnabled: Bool {
     get {

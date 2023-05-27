@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -81,6 +81,8 @@
 		B389D2D724E08ED700C80520 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B389D2D924E08EE200C80520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B38A239224AC5A30009B41F5 /* StatusBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
+		B39CC1BF2A21D2B1000EE323 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B39CC1C02A21D2B1000EE323 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B3BCAB1B2A1EA33900B62D57 /* ReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStore.swift; sourceTree = "<group>"; };
 		B3BCAB202A1EA41200B62D57 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		B3BCAB2C2A1EDC6200B62D57 /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
@@ -134,11 +136,13 @@
 		B381A44824A82E08002B86C0 = {
 			isa = PBXGroup;
 			children = (
+				B39CC1C02A21D2B1000EE323 /* .swiftlint.yml */,
 				B381A45324A82E08002B86C0 /* DesktopReminders */,
 				B34DDA5224ADA9F000EC70E9 /* DesktopReminders-launcher */,
+				B39CC1BF2A21D2B1000EE323 /* LICENSE */,
+				B381A45224A82E08002B86C0 /* Products */,
 				B313F68B24E07C6D00B7C4C3 /* README-Files */,
 				B313F68A24E07C6D00B7C4C3 /* README.md */,
-				B381A45224A82E08002B86C0 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,6 +251,7 @@
 				B381A44E24A82E08002B86C0 /* Frameworks */,
 				B381A44F24A82E08002B86C0 /* Resources */,
 				B34DDA6324ADAA9900EC70E9 /* CopyFiles */,
+				B39CC1BE2A21AE99000EE323 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -317,6 +322,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B39CC1BE2A21AE99000EE323 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nif which swiftlint >/dev/null; then\nswiftlint --config \"$SRCROOT/.swiftlint.yml\"\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B34DDA4D24ADA9F000EC70E9 /* Sources */ = {

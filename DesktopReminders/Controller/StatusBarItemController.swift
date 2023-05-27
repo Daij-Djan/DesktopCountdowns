@@ -7,56 +7,65 @@
 
 import Cocoa
 
-
 struct StatusBarItemController {
-  fileprivate struct Defaults {
-    static let statusBarIconSize = NSSize(width: 22, height: 22)
-  }
-  
   private var statusBarItem: NSStatusItem?
-    
+
   private var title: String {
-    return String(format: NSLocalizedString("%d Reminders", comment: "number of open reminders"), reminders.count)
+    String(format: NSLocalizedString("%d Reminders", comment: "number of open reminders"), reminders.count)
   }
-  
+
   private var image: NSImage? {
-    let image = NSImage(named: "StatusBarIcon")
-    image?.size = Defaults.statusBarIconSize
-    return image
+    // swiftlint:disable object_literal
+    // using #imageLiteral here makes it harder to read
+    return NSImage(named: "StatusBarIcon")
+    // swiftlint:enable object_literal
   }
-  
-  //MARK: public
-  
+
   var menu: NSMenu? {
     didSet {
       statusBarItem?.menu = menu
-    }
-  }
-  
-  var reminders: [Reminder] = [] {
-    didSet {
-      statusBarItem?.button?.title = self.title
-      //TODO update menu
+      addRemindersToMenu()
     }
   }
 
-  var enabled: Bool = false {
+  var reminders: [Reminder] = [] {
+    didSet {
+      statusBarItem?.button?.title = title
+      addRemindersToMenu()
+    }
+  }
+
+  var viewOptions = ViewOptions.default {
+    didSet {
+      statusBarItem?.button?.image?.size = viewOptions.statusBarIconSize
+      statusBarItem?.button?.font = viewOptions.statusBarFont
+    }
+  }
+  
+  var enabled = false {
     didSet {
       if enabled {
         let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusBarItem.menu = menu
-
-        let button = statusBarItem.button!
-        button.title = title
-        button.font = NSFont.systemFont(ofSize: 13)
-        button.image = image
-        button.imagePosition = .imageLeading
-        button.imageHugsTitle = true
+        addRemindersToMenu()
+        
+        if let button = statusBarItem.button {
+          button.title = title
+          button.font = viewOptions.statusBarFont
+          button.image = image
+          button.image?.size = viewOptions.statusBarIconSize
+          button.imagePosition = .imageLeading
+          button.imageHugsTitle = true
+        }
         
         self.statusBarItem = statusBarItem
       } else {
         statusBarItem = nil
       }
     }
+  }
+  
+  private func addRemindersToMenu() {
+    // TODO
   }
 }

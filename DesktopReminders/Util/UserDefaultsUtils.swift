@@ -8,7 +8,7 @@
 import AppKit
 
 extension UserDefaults {
-  fileprivate struct Key {
+  private struct Key {
     static let firstRun = "firstRun"
 
     static let onlyWithDueDate = "onlyWithDueDate"
@@ -27,70 +27,78 @@ extension UserDefaults {
     static let openAtLogin = "openAtLogin"
     static let enabledLauncherId = "enabledLauncher"
 
-    //yes enum would be nice
-    static let all = [firstRun,
-                      onlyWithDueDate,
-                      orderByDueDate,
-                      opacity,
-                      direction,
-                      darkenColorsByDueDate,
-                      highpriColor,
-                      midpriColor,
-                      lowpriColor,
-                      defaultColor,
-                      dockIcon,
-                      statusBarItem,
-                      openAtLogin,
-                      enabledLauncherId]
+    // yes enum would be nice
+    static let all = [
+      firstRun,
+      onlyWithDueDate,
+      orderByDueDate,
+      opacity,
+      direction,
+      darkenColorsByDueDate,
+      highpriColor,
+      midpriColor,
+      lowpriColor,
+      defaultColor,
+      dockIcon,
+      statusBarItem,
+      openAtLogin,
+      enabledLauncherId
+    ]
   }
 
   var firstRun: Bool {
     get {
-      return bool(forKey: Key.firstRun)
+      bool(forKey: Key.firstRun)
     }
     set {
       setValue(newValue, forKey: Key.firstRun)
     }
   }
-  
+
   var onlyWithDueDate: Bool {
-    return bool(forKey: Key.onlyWithDueDate)
+    bool(forKey: Key.onlyWithDueDate)
   }
-  
+
   var orderByDueDate: Bool {
-    return bool(forKey: Key.orderByDueDate)
+    bool(forKey: Key.orderByDueDate)
   }
-  
+
   var opacity: Float {
-    return float(forKey: Key.opacity) / 100.0
+    // swiftlint:disable no_magic_numbers
+    // interface builder uses 0-100 for slider, CALayer uses 0-1 for opacity
+    float(forKey: Key.opacity) / 100.0
+    // swiftlint:enable no_magic_numbers
   }
 
   var direction: RemindersViewController.FlowDirection {
-    return RemindersViewController.FlowDirection(rawValue: integer(forKey: Key.direction))!
+    // swiftlint:disable force_unwrapping
+    // we control the enum and the integer, the raw value cant be anything but a valid enum
+    RemindersViewController.FlowDirection(rawValue: integer(forKey: Key.direction))!
+    // swiftlint:enable force_unwrapping
   }
-  
+
   var darkenColorsByDueDate: Bool {
-    return bool(forKey: Key.darkenColorsByDueDate)
+    bool(forKey: Key.darkenColorsByDueDate)
   }
- 
+
   var highpriColor: NSColor {
-    return color(forKey: Key.highpriColor) ?? ViewOptions.default.highpriColor
+    color(forKey: Key.highpriColor) ?? ViewOptions.default.highpriColor
   }
-  
+
   var midpriColor: NSColor {
-    return color(forKey: Key.midpriColor) ?? ViewOptions.default.midpriColor
+    color(forKey: Key.midpriColor) ?? ViewOptions.default.midpriColor
   }
-  
+
   var lowpriColor: NSColor {
-    return color(forKey: Key.lowpriColor) ?? ViewOptions.default.lowpriColor
+    color(forKey: Key.lowpriColor) ?? ViewOptions.default.lowpriColor
   }
-  
+
   var defaultColor: NSColor {
-    return color(forKey: Key.defaultColor) ?? ViewOptions.default.defaultColor
+    color(forKey: Key.defaultColor) ?? ViewOptions.default.defaultColor
   }
 
   var dockIcon: Bool {
-    return bool(forKey: Key.dockIcon)
+    bool(forKey: Key.dockIcon)
   }
 
   var statusBarItem: Bool {
@@ -99,14 +107,14 @@ extension UserDefaults {
     }
     return bool(forKey: Key.statusBarItem)
   }
-  
+
   var openAtLogin: Bool {
-    return bool(forKey: Key.openAtLogin)
+    bool(forKey: Key.openAtLogin)
   }
 
   var enabledLauncherId: String? {
     get {
-      return string(forKey: Key.enabledLauncherId)
+      string(forKey: Key.enabledLauncherId)
     }
     set {
       if newValue != nil {
@@ -124,7 +132,10 @@ extension UserDefaults {
       Key.orderByDueDate: FetchOptions.default.orderByDueDate,
       Key.onlyWithDueDate: FetchOptions.default.onlyWithDueDate,
 
+      // swiftlint:disable no_magic_numbers
+      // interface builder uses 0-100 for slider, CALayer uses 0-1 for opacity
       Key.opacity: ViewOptions.default.opacity * 100,
+      // swiftlint:enable no_magic_numbers
       Key.direction: ViewOptions.default.direction.rawValue,
       Key.darkenColorsByDueDate: ViewOptions.default.darkenColorsByDueDate,
       Key.highpriColor: data(forColor: ViewOptions.default.highpriColor),
@@ -132,38 +143,44 @@ extension UserDefaults {
       Key.lowpriColor: data(forColor: ViewOptions.default.lowpriColor),
       Key.defaultColor: data(forColor: ViewOptions.default.defaultColor),
 
-      Key.dockIcon : AppOptions.default.dockIcon,
-      Key.statusBarItem : AppOptions.default.statusBarItem,
-      Key.openAtLogin : AppOptions.default.openAtLogin,
-      //Key.enabledLauncherId = nil
+      Key.dockIcon: AppOptions.default.dockIcon,
+      Key.statusBarItem: AppOptions.default.statusBarItem,
+      Key.openAtLogin: AppOptions.default.openAtLogin
+      // Key.enabledLauncherId = nil
     ])
   }
 }
 
 extension UserDefaults {
+  // swiftlint:disable block_based_kvo
+  // swiftlint:disable override_in_extension
+  // swiftlint:disable discouraged_optional_collection
   typealias ChangeHandler = (_ keyPath: String?) -> Void
-  
-  fileprivate static var storages = [UnsafeMutablePointer<ChangeHandler>]()
 
-  func addKeysObserver(handler: @escaping ChangeHandler) -> Void {
+  private static var storages = [UnsafeMutablePointer<ChangeHandler>]()
+
+  func addKeysObserver(handler: @escaping ChangeHandler) {
     let storage = UnsafeMutablePointer<ChangeHandler>.allocate(capacity: 1)
     storage.initialize(to: handler)
-    
+
     UserDefaults.storages.append(storage)
-    
+
     for key in Key.all {
       self.addObserver(self, forKeyPath: key, options: [.initial, .new], context: storage)
     }
   }
   
-  open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+  override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
     let handler = context.unsafelyUnwrapped.assumingMemoryBound(to: ChangeHandler.self).pointee
     handler(keyPath)
   }
+  // swiftlint:enable discouraged_optional_collection
+  // swiftlint:enable override_in_extension
+  // swiftlint:enable block_based_kvo
 }
 
-fileprivate extension UserDefaults {
-  func color(forKey key: String) -> NSColor? {
+extension UserDefaults {
+  private func color(forKey key: String) -> NSColor? {
     guard let data = data(forKey: key) else {
       return nil
     }
@@ -173,8 +190,11 @@ fileprivate extension UserDefaults {
       return nil
     }
   }
-  
-  func data(forColor color: NSColor) -> Data {
+
+  private func data(forColor color: NSColor) -> Data {
+    // swiftlint:disable force_try
+    // - we archive data only from 4 fixed NSColor instances when building our defaults
     return try! NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
+    // swiftlint:enable force_try
   }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct DebuggerUtils {
   static func isDebuggerAttached() -> Bool {
     var info = kinfo_proc()
-    var mib : [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
+    var mib: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
     var size = MemoryLayout<kinfo_proc>.stride
     let junk = sysctl(&mib, UInt32(mib.count), &info, &size, nil, 0)
     guard junk == 0 else {
