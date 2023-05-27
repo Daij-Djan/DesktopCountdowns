@@ -30,43 +30,14 @@ class ReminderCell: NSCollectionViewItem {
       return viewOptions.defaultColor
     }
   }
-  
-  private static func adjustBackgroundColorForDueDateDaysBetween(_ backgroundColor: NSColor, _ daysBetween: Int) -> NSColor {
-    switch daysBetween {
-    case 16...:
-      return backgroundColor.darker(by: 50)
-      
-    case 8..<16:
-      return backgroundColor.darker(by: 30)
-      
-    case 4..<8:
-      return backgroundColor.darker(by: 20)
-      
-    case 2..<4:
-      return backgroundColor.darker(by: 15)
-      
-    default:
-      return backgroundColor
-    }
-  }
-  
+    
   private static func adjustOpacityForDueDateDaysBetween(_ opacity: Float, _ daysBetween: Int) -> Float {
-    switch daysBetween {
-    case 16...:
-      return opacity * 20 / 100.0
-      
-    case 8..<16:
-      return opacity * 40 / 100.0
-      
-    case 4..<8:
-      return opacity * 60 / 100.0
-      
-    case 2..<4:
-      return opacity * 80 / 100.0
-      
-    default:
-      return opacity
-    }
+    let maxOpacity = Double(opacity * 100)
+    let minOpacity = Double(maxOpacity / 100 * 20)
+    let daysForCalculation = Double(daysBetween)
+    let newOpacity = max(min(maxOpacity - pow(daysForCalculation, 1.1), maxOpacity), minOpacity)
+
+    return Float(newOpacity / 100)
   }
   // swiftlint:enable no_magic_numbers
   
@@ -79,10 +50,6 @@ class ReminderCell: NSCollectionViewItem {
   }
   
   func update(reminder: Reminder, viewOptions: ViewOptions) {
-    titleLabel.stringValue = reminder.title
-    dueDateLabel.isHidden = reminder.dueDate == nil
-    
-    var backgroundColor = Self.backgroundColorForPriority(reminder.priority, viewOptions: viewOptions)
     var opacity = viewOptions.opacity
     
     if let dueDate = reminder.dueDate {
@@ -90,16 +57,18 @@ class ReminderCell: NSCollectionViewItem {
       daysCounterLabel.stringValue = "\(daysBetween)"
       dueDateLabel.stringValue = dueDate.stringForCurrentLocale(includingTime: reminder.dueDateHasTime)
       
-      if viewOptions.darkenColorsByDueDate {
-        backgroundColor = Self.adjustBackgroundColorForDueDateDaysBetween(backgroundColor, daysBetween)
+      if viewOptions.fadeColorByDueDate {
         opacity = Self.adjustOpacityForDueDateDaysBetween(opacity, daysBetween)
       }
     } else {
       daysCounterLabel.stringValue = "-"
     }
     
+    titleLabel.stringValue = reminder.title
+    dueDateLabel.isHidden = reminder.dueDate == nil
+    
     view.layer?.cornerRadius = viewOptions.cellCornerRadius
-    view.layer?.backgroundColor = backgroundColor.cgColor
+    view.layer?.backgroundColor = Self.backgroundColorForPriority(reminder.priority, viewOptions: viewOptions).cgColor
     view.layer?.opacity = opacity
   }  
 }

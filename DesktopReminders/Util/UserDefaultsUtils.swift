@@ -16,7 +16,7 @@ extension UserDefaults {
 
     static let opacity = "opacity"
     static let direction = "direction"
-    static let darkenColorsByDueDate = "darkenColorsByDueDate"
+    static let fadeColorByDueDate = "fadeColorByDueDate"
     static let highpriColor = "highpriColor"
     static let midpriColor = "midpriColor"
     static let lowpriColor = "lowpriColor"
@@ -34,7 +34,7 @@ extension UserDefaults {
       orderByDueDate,
       opacity,
       direction,
-      darkenColorsByDueDate,
+      fadeColorByDueDate,
       highpriColor,
       midpriColor,
       lowpriColor,
@@ -77,8 +77,8 @@ extension UserDefaults {
     // swiftlint:enable force_unwrapping
   }
 
-  var darkenColorsByDueDate: Bool {
-    bool(forKey: Key.darkenColorsByDueDate)
+  var fadeColorByDueDate: Bool {
+    bool(forKey: Key.fadeColorByDueDate)
   }
 
   var highpriColor: NSColor {
@@ -137,7 +137,7 @@ extension UserDefaults {
       Key.opacity: ViewOptions.default.opacity * 100,
       // swiftlint:enable no_magic_numbers
       Key.direction: ViewOptions.default.direction.rawValue,
-      Key.darkenColorsByDueDate: ViewOptions.default.darkenColorsByDueDate,
+      Key.fadeColorByDueDate: ViewOptions.default.fadeColorByDueDate,
       Key.highpriColor: data(forColor: ViewOptions.default.highpriColor),
       Key.midpriColor: data(forColor: ViewOptions.default.midpriColor),
       Key.lowpriColor: data(forColor: ViewOptions.default.lowpriColor),

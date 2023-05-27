@@ -58,7 +58,7 @@
                     </textField>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZqQ-AW-nJm">
                         <rect key="frame" x="202" y="327" width="176" height="28"/>
-                        <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="100" doubleValue="70" tickMarkPosition="above" numberOfTickMarks="10" sliderType="linear" id="r6h-al-uvf"/>
+                        <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="100" doubleValue="90" tickMarkPosition="above" numberOfTickMarks="10" sliderType="linear" id="r6h-al-uvf"/>
                         <connections>
                             <binding destination="zX6-4Q-WqJ" name="value" keyPath="values.opacity" id="YzC-E1-eWK">
                                 <dictionary key="options">
@@ -333,12 +333,12 @@
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgw-Ij-JmI">
                         <rect key="frame" x="18" y="218" width="366" height="18"/>
-                        <buttonCell key="cell" type="check" title="Fade-out &amp; Darken reminders the later they are due" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="D1c-b7-CIg">
+                        <buttonCell key="cell" type="check" title="Fade-out reminders more the later they are due" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="D1c-b7-CIg">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <binding destination="zX6-4Q-WqJ" name="value" keyPath="values.darkenColorsByDueDate" id="gVl-LN-dz4">
+                            <binding destination="zX6-4Q-WqJ" name="value" keyPath="values.fadeColorByDueDate" id="wkX-4d-gaW">
                                 <dictionary key="options">
                                     <integer key="NSNullPlaceholder" value="1"/>
                                 </dictionary>
@@ -419,7 +419,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="g8S-lo-Qb3"/>
                         </constraints>
-                        <color key="color" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
+                        <color key="color" red="0.32549020649999999" green="0.32549020649999999" blue="0.32549020649999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <connections>
                             <binding destination="zX6-4Q-WqJ" name="value" keyPath="values.defaultColor" id="yqm-nc-mlc">
                                 <dictionary key="options">

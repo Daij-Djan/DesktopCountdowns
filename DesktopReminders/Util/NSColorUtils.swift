@@ -7,10 +7,10 @@
 
 import AppKit
 
-// swiftlint:disable no_magic_numbers
-
 extension NSColor {
   convenience init(hex: String) {
+    // swiftlint:disable no_magic_numbers
+
     let trimHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
     let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
     let hexString = trimHex.starts(with: "#") ? dropHash : trimHex
@@ -33,30 +33,7 @@ extension NSColor {
       )
     }
     self.init(red: components.R, green: components.G, blue: components.B, alpha: components.a)
+
+    // swiftlint:enable no_magic_numbers
   }
 }
-
-extension NSColor {
-  func lighter(by percentage: CGFloat = 30.0) -> NSColor {
-    self.adjust(by: abs(percentage) )
-  }
-
-  func darker(by percentage: CGFloat = 30.0) -> NSColor {
-    self.adjust(by: -1 * abs(percentage) )
-  }
-
-  func adjust(by percentage: CGFloat = 30.0) -> NSColor {
-    // swiftlint:disable force_unwrapping
-    var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-    self.usingColorSpace(.sRGB)!.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-    return NSColor(
-      red: min(red + percentage / 100, 1.0),
-      green: min(green + percentage / 100, 1.0),
-      blue: min(blue + percentage / 100, 1.0),
-      alpha: alpha
-    )
-    // swiftlint:enable force_unwrapping
-  }
-}
-
-// swiftlint:enable no_magic_numbers
