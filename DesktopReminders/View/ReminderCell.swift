@@ -31,6 +31,14 @@ class ReminderCell: NSCollectionViewItem {
     }
   }
     
+  private static func adjustBackgroundColorForDueDateDaysBetween(_ backgroundColor: NSColor, _ daysBetween: Int) -> NSColor {
+    let maxDarkening = Double(50)
+    let daysForCalculation = Double(daysBetween)
+    let newDarkening = min(daysForCalculation / 1.6, maxDarkening)
+
+    return backgroundColor.darker(by: newDarkening)
+  }
+  
   private static func adjustOpacityForDueDateDaysBetween(_ opacity: Float, _ daysBetween: Int) -> Float {
     let maxOpacity = Double(opacity * 100)
     let minOpacity = Double(maxOpacity / 100 * 20)
@@ -51,12 +59,17 @@ class ReminderCell: NSCollectionViewItem {
   
   func update(reminder: Reminder, viewOptions: ViewOptions) {
     var opacity = viewOptions.opacity
+    var backgroundColor = Self.backgroundColorForPriority(reminder.priority, viewOptions: viewOptions)
     
     if let dueDate = reminder.dueDate {
       let daysBetween = dueDate.daysBetween(Date())
       daysCounterLabel.stringValue = "\(daysBetween)"
       dueDateLabel.stringValue = dueDate.stringForCurrentLocale(includingTime: reminder.dueDateHasTime)
       
+      if viewOptions.darkenColorByDueDate {
+        backgroundColor = Self.adjustBackgroundColorForDueDateDaysBetween(backgroundColor, daysBetween)
+      }
+
       if viewOptions.fadeColorByDueDate {
         opacity = Self.adjustOpacityForDueDateDaysBetween(opacity, daysBetween)
       }
@@ -68,7 +81,7 @@ class ReminderCell: NSCollectionViewItem {
     dueDateLabel.isHidden = reminder.dueDate == nil
     
     view.layer?.cornerRadius = viewOptions.cellCornerRadius
-    view.layer?.backgroundColor = Self.backgroundColorForPriority(reminder.priority, viewOptions: viewOptions).cgColor
+    view.layer?.backgroundColor = backgroundColor.cgColor
     view.layer?.opacity = opacity
   }  
 }

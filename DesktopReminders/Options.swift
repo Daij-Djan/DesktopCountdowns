@@ -34,6 +34,7 @@ extension FetchOptions {
 struct ViewOptions {
   let opacity: Float
   let direction: RemindersViewController.FlowDirection
+  let darkenColorByDueDate: Bool
   let fadeColorByDueDate: Bool
   let highpriColor: NSColor
   let midpriColor: NSColor
@@ -54,6 +55,7 @@ extension ViewOptions {
   static var `default` = ViewOptions(
     opacity: 0.9,
     direction: .flowVertically,
+    darkenColorByDueDate: true,
     fadeColorByDueDate: true,
     highpriColor: NSColor(hex: "e53428"),
     midpriColor: NSColor(hex: "efc000"),
@@ -64,6 +66,7 @@ extension ViewOptions {
   init(from defaults: UserDefaults) {
     opacity = defaults.opacity
     direction = defaults.direction
+    darkenColorByDueDate = defaults.darkenColorByDueDate
     fadeColorByDueDate = defaults.fadeColorByDueDate
     highpriColor = defaults.highpriColor
     midpriColor = defaults.midpriColor

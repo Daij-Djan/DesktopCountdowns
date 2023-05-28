@@ -16,6 +16,7 @@ extension UserDefaults {
 
     static let opacity = "opacity"
     static let direction = "direction"
+    static let darkenColorByDueDate = "darkenColorByDueDate"
     static let fadeColorByDueDate = "fadeColorByDueDate"
     static let highpriColor = "highpriColor"
     static let midpriColor = "midpriColor"
@@ -34,6 +35,7 @@ extension UserDefaults {
       orderByDueDate,
       opacity,
       direction,
+      darkenColorByDueDate,
       fadeColorByDueDate,
       highpriColor,
       midpriColor,
@@ -75,6 +77,10 @@ extension UserDefaults {
     // we control the enum and the integer, the raw value cant be anything but a valid enum
     RemindersViewController.FlowDirection(rawValue: integer(forKey: Key.direction))!
     // swiftlint:enable force_unwrapping
+  }
+
+  var darkenColorByDueDate: Bool {
+    bool(forKey: Key.darkenColorByDueDate)
   }
 
   var fadeColorByDueDate: Bool {
@@ -137,6 +143,7 @@ extension UserDefaults {
       Key.opacity: ViewOptions.default.opacity * 100,
       // swiftlint:enable no_magic_numbers
       Key.direction: ViewOptions.default.direction.rawValue,
+      Key.darkenColorByDueDate: ViewOptions.default.darkenColorByDueDate,
       Key.fadeColorByDueDate: ViewOptions.default.fadeColorByDueDate,
       Key.highpriColor: data(forColor: ViewOptions.default.highpriColor),
       Key.midpriColor: data(forColor: ViewOptions.default.midpriColor),
