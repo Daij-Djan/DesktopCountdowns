@@ -6,4 +6,17 @@
   
 */
 
+/* statusbar icon with number of open reminders */
 "%d Reminders" = "%d";
+
+/* menu item for reminders group */
+"REMINDERS" = "REMINDERS";
+
+/* menu item for opening reminders app */
+"Manage..." = "Manage...";
+
+/* menu item for reminder with duedate */
+"%@ (%d)..." = "%@ (%d)...";
+
+/* menu item for reminder without duedate */
+"%@..." = "%@...";

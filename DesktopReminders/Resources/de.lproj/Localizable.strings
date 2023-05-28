@@ -6,4 +6,18 @@
   
 */
 
+/* statusbar icon with number of open reminders */
 "%d Reminders" = "%d";
+
+/* menu item for reminders group */
+"REMINDERS" = "TODOs";
+
+/* menu item for opening reminders app */
+"Manage..." = "Bearbeiten...";
+
+/* menu item for reminder with duedate */
+"%@ (%d)..." = "%@ (%d)...";
+
+/* menu item for reminder without duedate */
+"%@..." = "%@...";
+

@@ -54,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B311837E2A23096D000376C0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		B313F68A24E07C6D00B7C4C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B313F68D24E07C6D00B7C4C3 /* screenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot.jpg; sourceTree = "<group>"; };
 		B329ACAF2A20763C0097C22F /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
@@ -399,6 +400,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B32C542C2A1EEB8F00DEDAFD /* Base */,
+				B311837E2A23096D000376C0 /* de */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

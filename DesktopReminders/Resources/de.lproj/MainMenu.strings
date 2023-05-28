@@ -1,0 +1,69 @@
+
+/* Class = "NSTextFieldCell"; title = "Layout Flow Direction:"; ObjectID = "12N-hg-gmd"; */
+"12N-hg-gmd.title" = "Ausrichtung:";
+
+/* Class = "NSMenuItem"; title = "DesktopReminders"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "DesktopReminders";
+
+/* Class = "NSMenuItem"; title = "Quit DesktopReminders"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "DesktopReminders Beenden";
+
+/* Class = "NSButtonCell"; title = "App Should Show Dock Icon"; ObjectID = "9DQ-g6-xpG"; */
+"9DQ-g6-xpG.title" = "Anwendung im Dock zeigen";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Hauptmenü";
+
+/* Class = "NSTextFieldCell"; title = "Reminder Color By Priority:"; ObjectID = "Aog-7u-cIl"; */
+"Aog-7u-cIl.title" = "Farbe nach Priorität:";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Einstellungen…";
+
+/* Class = "NSButtonCell"; title = "Darken reminders' background color the later they are due"; ObjectID = "D1c-b7-CIg"; */
+"D1c-b7-CIg.title" = "Hintergrundfarbe anhand des TODO-Datums abdunkeln";
+
+/* Class = "NSButtonCell"; title = "App Should Show Menubar Icon"; ObjectID = "DmC-nH-WrN"; */
+"DmC-nH-WrN.title" = "Anwendung in der Menüleiste";
+
+/* Class = "NSTextFieldCell"; title = "Opacity Of Reminders:"; ObjectID = "JRG-A3-LEN"; */
+"JRG-A3-LEN.title" = "Transparenz der TODOs";
+
+/* Class = "NSButtonCell"; title = "App Should Show Menubar Icon"; ObjectID = "KMg-VS-W4d"; */
+"KMg-VS-W4d.title" = "Anwendung in der Menüleiste";
+
+/* Class = "NSButtonCell"; title = "Show Only Reminders With Due Date"; ObjectID = "Q6D-as-1mB"; */
+"Q6D-as-1mB.title" = "Nur TODO Einträge mit Datum anzeigen";
+
+/* Class = "NSWindow"; title = "DesktopReminders"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "DesktopReminders";
+
+/* Class = "NSButtonCell"; title = "App Should Open At Login"; ObjectID = "c1S-dC-V5g"; */
+"c1S-dC-V5g.title" = "Anwedung beim Login starten";
+
+/* Class = "NSButtonCell"; title = "Reduce reminders' opacity the later they are due"; ObjectID = "eVI-TA-vvY"; */
+"eVI-TA-vvY.title" = "Transparenz von TODOs anhand des Datums erhöhen.";
+
+/* Class = "NSButtonCell"; title = "Show Reminders Ordered By Due Date"; ObjectID = "fzM-Wv-LlU"; */
+"fzM-Wv-LlU.title" = "TODOs nach Fälligkeitsdatum sortieren";
+
+/* Class = "NSTextFieldCell"; title = "Default"; ObjectID = "h7q-Tg-kPz"; */
+"h7q-Tg-kPz.title" = "Standard";
+
+/* Class = "NSTextFieldCell"; title = "LowPri"; ObjectID = "iKC-4i-MCi"; */
+"iKC-4i-MCi.title" = "Niedrig";
+
+/* Class = "NSTextFieldCell"; title = "MidPri"; ObjectID = "msQ-l1-XB0"; */
+"msQ-l1-XB0.title" = "Mittel";
+
+/* Class = "NSTextFieldCell"; title = "HighPri"; ObjectID = "u4i-7m-kGS"; */
+"u4i-7m-kGS.title" = "Hoch";
+
+/* Class = "NSMenu"; title = "DesktopReminders"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "DesktopReminders";
+
+/* Class = "NSSegmentedCell"; z4u-en-r5J.ibShadowedLabels[0] = "Horizontal"; ObjectID = "z4u-en-r5J"; */
+"z4u-en-r5J.ibShadowedLabels[0]" = "Horizontal";
+
+/* Class = "NSSegmentedCell"; z4u-en-r5J.ibShadowedLabels[1] = "Vertical"; ObjectID = "z4u-en-r5J"; */
+"z4u-en-r5J.ibShadowedLabels[1]" = "Vertikal";

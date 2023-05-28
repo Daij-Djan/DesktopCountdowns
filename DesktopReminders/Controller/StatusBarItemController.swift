@@ -9,32 +9,32 @@ import Cocoa
 
 struct StatusBarItemController {
   private var statusBarItem: NSStatusItem?
-
+  
   private var title: String {
-    String(format: NSLocalizedString("%d Reminders", comment: "number of open reminders"), reminders.count)
+    String(format: NSLocalizedString("%d Reminders", comment: "statusbar icon with number of open reminders"), reminders.count)
   }
-
+  
   private var image: NSImage? {
     // swiftlint:disable object_literal
     // using #imageLiteral here makes it harder to read
     return NSImage(named: "StatusBarIcon")
     // swiftlint:enable object_literal
   }
-
+  
   var menu: NSMenu? {
     didSet {
       statusBarItem?.menu = menu
-      addRemindersToMenu()
+      Self.addRemindersToMenu(reminders, menu)
     }
   }
-
+  
   var reminders: [Reminder] = [] {
     didSet {
       statusBarItem?.button?.title = title
-      addRemindersToMenu()
+      Self.addRemindersToMenu(reminders, menu)
     }
   }
-
+  
   var viewOptions = ViewOptions.default {
     didSet {
       statusBarItem?.button?.image?.size = viewOptions.statusBarIconSize
@@ -47,7 +47,7 @@ struct StatusBarItemController {
       if enabled {
         let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusBarItem.menu = menu
-        addRemindersToMenu()
+        Self.addRemindersToMenu(reminders, menu)
         
         if let button = statusBarItem.button {
           button.title = title
@@ -64,21 +64,17 @@ struct StatusBarItemController {
       }
     }
   }
-  
-  private func addRemindersToMenu() {
-    let openRemindersAppAction = #selector(AppDelegate.openRemindersApp(_:))
+}
 
+extension StatusBarItemController {
+  private static func addRemindersToMenu(_ reminders: [Reminder], _ menu: NSMenu?) {
+    let openRemindersAppAction = #selector(AppDelegate.openRemindersApp(_:))
+    
     // gather dynamic reminder items
     let reminderItems = reminders.map { reminder in
-      var title = reminder.title
-      if let dueDate = reminder.dueDate {
-        title += " (\(dueDate.daysBetween(Date())))"
-      }
-      title += "..."
-      
-      return NSMenuItem(title: title, action: openRemindersAppAction, keyEquivalent: "")
+      return NSMenuItem(title: menuItemTitleReminder(reminder), action: openRemindersAppAction, keyEquivalent: "")
     }
-
+    
     // assemble new menu by
     // 1. adding old menu items back
     // 2. adding dynamic items and a sentinal action
@@ -92,12 +88,30 @@ struct StatusBarItemController {
       }
     }
     allItems.append(NSMenuItem.separator())
-    allItems.append(NSMenuItem(title: "REMINDERS", action: nil, keyEquivalent: ""))
+    allItems.append(NSMenuItem(title: menuItemTitleForRemindersGroup(), action: nil, keyEquivalent: ""))
     if !reminderItems.isEmpty {
       allItems.append(contentsOf: reminderItems)
       allItems.append(NSMenuItem.separator())
     }
-    allItems.append(NSMenuItem(title: "Manage...", action: openRemindersAppAction, keyEquivalent: "r"))
+    allItems.append(NSMenuItem(title: menuItemTitleForOpenRemindersApp(), action: openRemindersAppAction, keyEquivalent: "r"))
     menu?.items = allItems
+  }
+  
+  private static func menuItemTitleForRemindersGroup() -> String {
+    return NSLocalizedString("REMINDERS", comment: "menu item for reminders group")
+  }
+  
+  private static func menuItemTitleForOpenRemindersApp() -> String {
+    return NSLocalizedString("Manage...", comment: "menu item for opening reminders app")
+  }
+  
+  private static func menuItemTitleReminder(_ reminder: Reminder) -> String {
+    let title: String
+    if let dueDate = reminder.dueDate {
+      title = String(format: NSLocalizedString("%@ (%d)...", comment: "menu item for reminder with duedate"), reminder.title, dueDate.daysBetween(Date()))
+    } else {
+      title = String(format: NSLocalizedString("%@...", comment: "menu item for reminder without duedate"), reminder.title)
+    }
+    return title
   }
 }
