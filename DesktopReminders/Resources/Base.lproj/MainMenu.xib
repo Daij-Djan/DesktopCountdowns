@@ -79,10 +79,10 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cld-tw-fGZ">
-                        <rect key="frame" x="146" y="483" width="100" height="100"/>
+                        <rect key="frame" x="126" y="463" width="140" height="140"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="G2i-iE-ghH"/>
-                            <constraint firstAttribute="height" constant="100" id="HCA-sC-VLg"/>
+                            <constraint firstAttribute="width" constant="140" id="G2i-iE-ghH"/>
+                            <constraint firstAttribute="height" constant="140" id="HCA-sC-VLg"/>
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="prefsIcon" id="7j8-4G-i3i"/>
                     </imageView>
@@ -462,12 +462,12 @@
                 <constraints>
                     <constraint firstItem="yYv-h1-Ah2" firstAttribute="leading" secondItem="9XS-AR-WMD" secondAttribute="trailing" constant="8" symbolic="YES" id="0lb-9e-jw3"/>
                     <constraint firstItem="9XS-AR-WMD" firstAttribute="leading" secondItem="8dP-YQ-7sQ" secondAttribute="leading" id="2e0-cS-Ykc"/>
-                    <constraint firstItem="VQC-kX-h0c" firstAttribute="top" secondItem="Cld-tw-fGZ" secondAttribute="bottom" constant="20" id="3L2-6U-JQ4"/>
                     <constraint firstItem="Nie-OI-jH2" firstAttribute="leading" secondItem="Cgw-Ij-JmI" secondAttribute="leading" id="3XD-7e-bDl"/>
+                    <constraint firstItem="VQC-kX-h0c" firstAttribute="leading" secondItem="Cld-tw-fGZ" secondAttribute="trailing" constant="-246" id="3vq-eN-mBC"/>
                     <constraint firstItem="KUA-qx-CUg" firstAttribute="baseline" secondItem="C9C-mi-aQK" secondAttribute="baseline" id="4cV-PP-oIl"/>
                     <constraint firstItem="vjh-vQ-b7m" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="132" id="4zH-H4-3OW"/>
                     <constraint firstAttribute="trailing" secondItem="yWr-Hp-PAc" secondAttribute="trailing" constant="22" id="5sq-AE-uL4"/>
-                    <constraint firstItem="Cld-tw-fGZ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="146" id="7Wn-Us-DTz"/>
+                    <constraint firstItem="Cld-tw-fGZ" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="126" id="7Wn-Us-DTz"/>
                     <constraint firstItem="p2h-9d-Nkl" firstAttribute="leading" secondItem="C9C-mi-aQK" secondAttribute="leading" id="AZk-ba-b4U"/>
                     <constraint firstItem="Cgw-Ij-JmI" firstAttribute="leading" secondItem="p2h-9d-Nkl" secondAttribute="leading" id="Ar5-90-SWx"/>
                     <constraint firstItem="gNx-6D-4hk" firstAttribute="top" secondItem="C9C-mi-aQK" secondAttribute="bottom" constant="15" id="Cr7-T2-Cqs"/>
@@ -499,11 +499,12 @@
                     <constraint firstItem="KhT-4f-Qlg" firstAttribute="leading" secondItem="8dP-YQ-7sQ" secondAttribute="trailing" constant="8" symbolic="YES" id="XIs-5i-ANB"/>
                     <constraint firstItem="vS7-Od-kJs" firstAttribute="top" secondItem="vhr-9l-vjp" secondAttribute="bottom" constant="18" id="Ymq-U5-1Sx"/>
                     <constraint firstItem="vhr-9l-vjp" firstAttribute="leading" secondItem="7cN-ch-RY3" secondAttribute="leading" id="a5y-XW-h3g"/>
-                    <constraint firstItem="Cld-tw-fGZ" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="aA7-Dl-54r"/>
+                    <constraint firstItem="Cld-tw-fGZ" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="aA7-Dl-54r"/>
                     <constraint firstItem="1l7-SY-rWN" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="aVd-oI-rfs"/>
                     <constraint firstItem="TOn-AC-Tyi" firstAttribute="leading" secondItem="yNd-fm-5aM" secondAttribute="leading" id="cxf-Ed-zQ8"/>
                     <constraint firstItem="fC0-Hc-2c0" firstAttribute="baseline" secondItem="9XS-AR-WMD" secondAttribute="baseline" id="d1M-pB-ZM6"/>
                     <constraint firstItem="7cN-ch-RY3" firstAttribute="trailing" secondItem="Jbh-FR-6ry" secondAttribute="trailing" id="d28-49-rRG"/>
+                    <constraint firstItem="VQC-kX-h0c" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="f22-Mz-JTm"/>
                     <constraint firstAttribute="trailing" secondItem="Cgw-Ij-JmI" secondAttribute="trailing" constant="12" id="fAo-k2-hw3"/>
                     <constraint firstItem="VQC-kX-h0c" firstAttribute="trailing" secondItem="vhr-9l-vjp" secondAttribute="trailing" id="fFg-BW-CST"/>
                     <constraint firstItem="ZqQ-AW-nJm" firstAttribute="leading" secondItem="7cN-ch-RY3" secondAttribute="trailing" constant="12" id="fd7-NH-sxL"/>
@@ -518,6 +519,7 @@
                     <constraint firstAttribute="bottom" secondItem="yWr-Hp-PAc" secondAttribute="bottom" constant="20" symbolic="YES" id="ngs-CK-oUe"/>
                     <constraint firstItem="p2h-9d-Nkl" firstAttribute="top" secondItem="vjh-vQ-b7m" secondAttribute="bottom" constant="21" id="oBK-n5-yFq"/>
                     <constraint firstItem="8dP-YQ-7sQ" firstAttribute="baseline" secondItem="KhT-4f-Qlg" secondAttribute="baseline" id="oNC-hx-3Tr"/>
+                    <constraint firstItem="VQC-kX-h0c" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="140" id="olR-2X-MpR"/>
                     <constraint firstItem="vhr-9l-vjp" firstAttribute="top" secondItem="VQC-kX-h0c" secondAttribute="bottom" constant="12" id="ovU-vf-CLE"/>
                     <constraint firstItem="8dP-YQ-7sQ" firstAttribute="leading" secondItem="7Fi-ZP-r1y" secondAttribute="trailing" constant="8" symbolic="YES" id="puh-oa-7Ln"/>
                     <constraint firstItem="Nie-OI-jH2" firstAttribute="top" secondItem="Jbh-FR-6ry" secondAttribute="bottom" constant="23" id="r7w-lK-H0v"/>
@@ -540,6 +542,6 @@
         <userDefaultsController representsSharedInstance="YES" id="zX6-4Q-WqJ"/>
     </objects>
     <resources>
-        <image name="prefsIcon" width="256" height="256"/>
+        <image name="prefsIcon" width="1898.5" height="1898.5"/>
     </resources>
 </document>
