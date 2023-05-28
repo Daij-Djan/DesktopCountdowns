@@ -58,9 +58,9 @@ extension ViewOptions {
     darkenColorByDueDate: true,
     fadeColorByDueDate: true,
     highpriColor: NSColor(hex: "e53428"),
-    midpriColor: NSColor(hex: "efc000"),
+    midpriColor: NSColor(hex: "fed200"),
     lowpriColor: NSColor(hex: "10aa36"),
-    defaultColor: NSColor(hex: "535353")
+    defaultColor: NSColor(hex: "929292")
   )
   
   init(from defaults: UserDefaults) {

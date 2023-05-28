@@ -34,17 +34,35 @@ extension NSColor {
     }
     self.init(red: components.R, green: components.G, blue: components.B, alpha: components.a)
   }
+  
+  func toHex(withAlpha: Bool = false) -> String {
+    // swiftlint:disable force_unwrapping
+    var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+    self.usingColorSpace(.sRGB)!.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    // swiftlint:enable force_unwrapping
+    
+    let values = (
+      R: lroundf(Float(red) * 255),
+      G: lroundf(Float(green) * 255),
+      B: lroundf(Float(blue) * 255),
+      A: lroundf(Float(alpha) * 255)
+    )
+    
+    return withAlpha
+    ? String(format: "%02lX%02lX%02lX%02lX", values.R, values.G, values.B, values.A)
+    : String(format: "%02lX%02lX%02lX", values.R, values.G, values.B, values.A)
+  }
 }
 
 extension NSColor {
   func lighter(by percentage: CGFloat = 30.0) -> NSColor {
     self.adjust(by: abs(percentage) )
   }
-
+  
   func darker(by percentage: CGFloat = 30.0) -> NSColor {
     self.adjust(by: -1 * abs(percentage) )
   }
-
+  
   func adjust(by percentage: CGFloat = 30.0) -> NSColor {
     // swiftlint:disable force_unwrapping
     var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
