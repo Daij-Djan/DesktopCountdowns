@@ -32,6 +32,10 @@ class ReminderCell: NSCollectionViewItem {
   }
     
   private static func adjustBackgroundColorForDueDateDaysBetween(_ backgroundColor: NSColor, _ daysBetween: Int) -> NSColor {
+    guard daysBetween >= 0 else {
+      return backgroundColor
+    }
+      
     let maxDarkening = Double(50)
     let daysForCalculation = Double(daysBetween)
     let newDarkening = min(daysForCalculation / 1.6, maxDarkening)
@@ -40,6 +44,10 @@ class ReminderCell: NSCollectionViewItem {
   }
   
   private static func adjustOpacityForDueDateDaysBetween(_ opacity: Float, _ daysBetween: Int) -> Float {
+    guard daysBetween >= 0 else {
+      return opacity
+    }
+      
     let maxOpacity = Double(opacity * 100)
     let minOpacity = Double(maxOpacity / 100 * 20)
     let daysForCalculation = Double(daysBetween)
