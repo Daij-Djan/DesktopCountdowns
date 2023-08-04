@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  DesktopCountdowns
+
+  Created by Dominik Pich on 7/6/20.
+  
+*/
+
+/* statusbar icon with number of open reminders */
+"%d Reminders" = "%d";
+
+/* menu item for reminders group */
+"REMINDERS" = "TODOs";
+
+/* menu item for opening reminders app */
+"Manage..." = "Bearbeiten...";
+
+/* menu item for reminder with duedate */
+"%@ (%d)..." = "%@ (%d)...";
+
+/* menu item for reminder without duedate */
+"%@..." = "%@...";
+

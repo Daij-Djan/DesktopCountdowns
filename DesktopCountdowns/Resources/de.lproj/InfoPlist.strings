@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  DesktopCountdowns
+
+  Created by Dominik Pich on 8/9/20.
+  
+*/
+
+"CFBundleName" = "DesktopCountdowns";
+"CFBundleDisplayName" = "DesktopCountdowns";

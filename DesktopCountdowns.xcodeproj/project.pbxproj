@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B329ACB02A20763C0097C22F /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B329ACAF2A20763C0097C22F /* Options.swift */; };
+		B32C542E2A1F236F00DEDAFD /* NSColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32C542D2A1F236F00DEDAFD /* NSColorUtils.swift */; };
+		B32C542F2A1F2E1D00DEDAFD /* ReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32C54312A1F2E1D00DEDAFD /* ReminderCell.xib */; };
+		B34AA64824ADB214000C2E0E /* LaunchAtLoginUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34AA64724ADB214000C2E0E /* LaunchAtLoginUtils.swift */; };
+		B34DDA6424ADAAB100EC70E9 /* DesktopCountdowns-launcher.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = B34DDA5124ADA9F000EC70E9 /* DesktopCountdowns-launcher.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B34DDA6624ADAC7700EC70E9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DDA6524ADAC7700EC70E9 /* main.swift */; };
+		B36111D624AD6E1B0020922F /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36111D524AD6E1B0020922F /* UserDefaultsUtils.swift */; };
+		B381A45524A82E08002B86C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381A45424A82E08002B86C0 /* AppDelegate.swift */; };
+		B381A45724A82E08002B86C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B381A45624A82E08002B86C0 /* Assets.xcassets */; };
+		B381A45A24A82E08002B86C0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B381A45824A82E08002B86C0 /* MainMenu.xib */; };
+		B381A46324A83BCE002B86C0 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381A46224A83BCE002B86C0 /* DateUtils.swift */; };
+		B381A46524A841F8002B86C0 /* DesktopWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B381A46424A841F8002B86C0 /* DesktopWindowController.swift */; };
+		B386753E24AECAE100BF4CBC /* DebuggerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B386753D24AECAE100BF4CBC /* DebuggerUtils.swift */; };
+		B386C5B52A20999B003AF32A /* NSColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B386C5B42A20999B003AF32A /* NSColorTransformer.swift */; };
+		B389D2CF24E088D600C80520 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B389D2D124E088D600C80520 /* Localizable.strings */; };
+		B389D2D624E08ED700C80520 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B389D2D824E08ED700C80520 /* InfoPlist.strings */; };
+		B38A239324AC5A30009B41F5 /* StatusBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38A239224AC5A30009B41F5 /* StatusBarItemController.swift */; };
+		B3BCAB1C2A1EA33900B62D57 /* ReminderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCAB1B2A1EA33900B62D57 /* ReminderStore.swift */; };
+		B3BCAB212A1EA41200B62D57 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCAB202A1EA41200B62D57 /* Reminder.swift */; };
+		B3BCAB2D2A1EDC6200B62D57 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCAB2C2A1EDC6200B62D57 /* ReminderCell.swift */; };
+		B3E799D024B39E8A0025BC01 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E799CF24B39E8A0025BC01 /* ReminderViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B34DDA6124ADAA6E00EC70E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B381A44924A82E08002B86C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B34DDA5024ADA9F000EC70E9;
+			remoteInfo = "DesktopCountdowns-launcher";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B34DDA6324ADAA9900EC70E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				B34DDA6424ADAAB100EC70E9 /* DesktopCountdowns-launcher.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B311837E2A23096D000376C0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		B313F68A24E07C6D00B7C4C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B313F68D24E07C6D00B7C4C3 /* screenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot.jpg; sourceTree = "<group>"; };
+		B329ACAF2A20763C0097C22F /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		B329ACB42A2090D50097C22F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ReminderCell.strings; sourceTree = "<group>"; };
+		B32C542C2A1EEB8F00DEDAFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B32C542D2A1F236F00DEDAFD /* NSColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorUtils.swift; sourceTree = "<group>"; };
+		B32C54302A1F2E1D00DEDAFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ReminderCell.xib; sourceTree = "<group>"; };
+		B34AA64724ADB214000C2E0E /* LaunchAtLoginUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginUtils.swift; sourceTree = "<group>"; };
+		B34DDA5124ADA9F000EC70E9 /* DesktopCountdowns-launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DesktopCountdowns-launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B34DDA5A24ADA9F000EC70E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B34DDA5B24ADA9F000EC70E9 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		B34DDA6524ADAC7700EC70E9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B36111D524AD6E1B0020922F /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		B381A45124A82E08002B86C0 /* DesktopCountdowns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopCountdowns.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B381A45424A82E08002B86C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B381A45624A82E08002B86C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B381A45B24A82E08002B86C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B381A45C24A82E08002B86C0 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		B381A46224A83BCE002B86C0 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		B381A46424A841F8002B86C0 /* DesktopWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopWindowController.swift; sourceTree = "<group>"; };
+		B386753D24AECAE100BF4CBC /* DebuggerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggerUtils.swift; sourceTree = "<group>"; };
+		B386C5B42A20999B003AF32A /* NSColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSColorTransformer.swift; sourceTree = "<group>"; };
+		B389D2D024E088D600C80520 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B389D2D324E0891900C80520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B389D2D724E08ED700C80520 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B389D2D924E08EE200C80520 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B38A239224AC5A30009B41F5 /* StatusBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarItemController.swift; sourceTree = "<group>"; };
+		B39CC1BF2A21D2B1000EE323 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B39CC1C02A21D2B1000EE323 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B3BCAB1B2A1EA33900B62D57 /* ReminderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderStore.swift; sourceTree = "<group>"; };
+		B3BCAB202A1EA41200B62D57 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		B3BCAB2C2A1EDC6200B62D57 /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
+		B3E799CF24B39E8A0025BC01 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B34DDA4E24ADA9F000EC70E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B381A44E24A82E08002B86C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B313F68B24E07C6D00B7C4C3 /* README-Files */ = {
+			isa = PBXGroup;
+			children = (
+				B313F68D24E07C6D00B7C4C3 /* screenshot.jpg */,
+			);
+			path = "README-Files";
+			sourceTree = "<group>";
+		};
+		B34DDA5224ADA9F000EC70E9 /* DesktopCountdowns-launcher */ = {
+			isa = PBXGroup;
+			children = (
+				B34DDA6524ADAC7700EC70E9 /* main.swift */,
+				B34DDA6724ADACB800EC70E9 /* Resources */,
+			);
+			path = "DesktopCountdowns-launcher";
+			sourceTree = "<group>";
+		};
+		B34DDA6724ADACB800EC70E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B34DDA5A24ADA9F000EC70E9 /* Info.plist */,
+				B34DDA5B24ADA9F000EC70E9 /* App.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B381A44824A82E08002B86C0 = {
+			isa = PBXGroup;
+			children = (
+				B39CC1C02A21D2B1000EE323 /* .swiftlint.yml */,
+				B381A45324A82E08002B86C0 /* DesktopCountdowns */,
+				B34DDA5224ADA9F000EC70E9 /* DesktopCountdowns-launcher */,
+				B39CC1BF2A21D2B1000EE323 /* LICENSE */,
+				B381A45224A82E08002B86C0 /* Products */,
+				B313F68B24E07C6D00B7C4C3 /* README-Files */,
+				B313F68A24E07C6D00B7C4C3 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		B381A45224A82E08002B86C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B381A45124A82E08002B86C0 /* DesktopCountdowns.app */,
+				B34DDA5124ADA9F000EC70E9 /* DesktopCountdowns-launcher.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B381A45324A82E08002B86C0 /* DesktopCountdowns */ = {
+			isa = PBXGroup;
+			children = (
+				B381A45424A82E08002B86C0 /* AppDelegate.swift */,
+				B329ACAF2A20763C0097C22F /* Options.swift */,
+				B3BCAB272A1EA83700B62D57 /* Controller */,
+				B3BCAB1F2A1EA3D000B62D57 /* Model */,
+				B381A46724A851D9002B86C0 /* Resources */,
+				B3BCAB262A1EA81300B62D57 /* Util */,
+				B3BCAB2F2A1EDF0900B62D57 /* View */,
+			);
+			path = DesktopCountdowns;
+			sourceTree = "<group>";
+		};
+		B381A46724A851D9002B86C0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B381A45624A82E08002B86C0 /* Assets.xcassets */,
+				B381A45B24A82E08002B86C0 /* Info.plist */,
+				B389D2D824E08ED700C80520 /* InfoPlist.strings */,
+				B389D2D124E088D600C80520 /* Localizable.strings */,
+				B381A45824A82E08002B86C0 /* MainMenu.xib */,
+				B32C54312A1F2E1D00DEDAFD /* ReminderCell.xib */,
+				B381A45C24A82E08002B86C0 /* App.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3BCAB1F2A1EA3D000B62D57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3BCAB202A1EA41200B62D57 /* Reminder.swift */,
+				B3BCAB1B2A1EA33900B62D57 /* ReminderStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3BCAB262A1EA81300B62D57 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B381A46224A83BCE002B86C0 /* DateUtils.swift */,
+				B386753D24AECAE100BF4CBC /* DebuggerUtils.swift */,
+				B34AA64724ADB214000C2E0E /* LaunchAtLoginUtils.swift */,
+				B386C5B42A20999B003AF32A /* NSColorTransformer.swift */,
+				B32C542D2A1F236F00DEDAFD /* NSColorUtils.swift */,
+				B36111D524AD6E1B0020922F /* UserDefaultsUtils.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		B3BCAB272A1EA83700B62D57 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B381A46424A841F8002B86C0 /* DesktopWindowController.swift */,
+				B3E799CF24B39E8A0025BC01 /* ReminderViewController.swift */,
+				B38A239224AC5A30009B41F5 /* StatusBarItemController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B3BCAB2F2A1EDF0900B62D57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3BCAB2C2A1EDC6200B62D57 /* ReminderCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B34DDA5024ADA9F000EC70E9 /* DesktopCountdowns-launcher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B34DDA5E24ADA9F000EC70E9 /* Build configuration list for PBXNativeTarget "DesktopCountdowns-launcher" */;
+			buildPhases = (
+				B34DDA4D24ADA9F000EC70E9 /* Sources */,
+				B34DDA4E24ADA9F000EC70E9 /* Frameworks */,
+				B34DDA4F24ADA9F000EC70E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DesktopCountdowns-launcher";
+			productName = "DesktopCountdowns-launcher";
+			productReference = B34DDA5124ADA9F000EC70E9 /* DesktopCountdowns-launcher.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B381A45024A82E08002B86C0 /* DesktopCountdowns */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B381A45F24A82E08002B86C0 /* Build configuration list for PBXNativeTarget "DesktopCountdowns" */;
+			buildPhases = (
+				B381A44D24A82E08002B86C0 /* Sources */,
+				B381A44E24A82E08002B86C0 /* Frameworks */,
+				B381A44F24A82E08002B86C0 /* Resources */,
+				B34DDA6324ADAA9900EC70E9 /* CopyFiles */,
+				B39CC1BE2A21AE99000EE323 /* Run SwiftLint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B34DDA6224ADAA6E00EC70E9 /* PBXTargetDependency */,
+			);
+			name = DesktopCountdowns;
+			productName = DesktopCountdowns;
+			productReference = B381A45124A82E08002B86C0 /* DesktopCountdowns.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B381A44924A82E08002B86C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B34DDA5024ADA9F000EC70E9 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					B381A45024A82E08002B86C0 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = B381A44C24A82E08002B86C0 /* Build configuration list for PBXProject "DesktopCountdowns" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				de,
+				Base,
+			);
+			mainGroup = B381A44824A82E08002B86C0;
+			productRefGroup = B381A45224A82E08002B86C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B381A45024A82E08002B86C0 /* DesktopCountdowns */,
+				B34DDA5024ADA9F000EC70E9 /* DesktopCountdowns-launcher */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B34DDA4F24ADA9F000EC70E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B381A44F24A82E08002B86C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B381A45724A82E08002B86C0 /* Assets.xcassets in Resources */,
+				B389D2D624E08ED700C80520 /* InfoPlist.strings in Resources */,
+				B32C542F2A1F2E1D00DEDAFD /* ReminderCell.xib in Resources */,
+				B389D2CF24E088D600C80520 /* Localizable.strings in Resources */,
+				B381A45A24A82E08002B86C0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B39CC1BE2A21AE99000EE323 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\nif which swiftlint >/dev/null; then\nswiftlint --config \"$SRCROOT/.swiftlint.yml\"\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B34DDA4D24ADA9F000EC70E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B34DDA6624ADAC7700EC70E9 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B381A44D24A82E08002B86C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B381A46324A83BCE002B86C0 /* DateUtils.swift in Sources */,
+				B386753E24AECAE100BF4CBC /* DebuggerUtils.swift in Sources */,
+				B381A45524A82E08002B86C0 /* AppDelegate.swift in Sources */,
+				B3BCAB1C2A1EA33900B62D57 /* ReminderStore.swift in Sources */,
+				B381A46524A841F8002B86C0 /* DesktopWindowController.swift in Sources */,
+				B34AA64824ADB214000C2E0E /* LaunchAtLoginUtils.swift in Sources */,
+				B386C5B52A20999B003AF32A /* NSColorTransformer.swift in Sources */,
+				B329ACB02A20763C0097C22F /* Options.swift in Sources */,
+				B32C542E2A1F236F00DEDAFD /* NSColorUtils.swift in Sources */,
+				B3BCAB2D2A1EDC6200B62D57 /* ReminderCell.swift in Sources */,
+				B3E799D024B39E8A0025BC01 /* ReminderViewController.swift in Sources */,
+				B38A239324AC5A30009B41F5 /* StatusBarItemController.swift in Sources */,
+				B36111D624AD6E1B0020922F /* UserDefaultsUtils.swift in Sources */,
+				B3BCAB212A1EA41200B62D57 /* Reminder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B34DDA6224ADAA6E00EC70E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B34DDA5024ADA9F000EC70E9 /* DesktopCountdowns-launcher */;
+			targetProxy = B34DDA6124ADAA6E00EC70E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B32C54312A1F2E1D00DEDAFD /* ReminderCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32C54302A1F2E1D00DEDAFD /* Base */,
+				B329ACB42A2090D50097C22F /* de */,
+			);
+			name = ReminderCell.xib;
+			sourceTree = "<group>";
+		};
+		B381A45824A82E08002B86C0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32C542C2A1EEB8F00DEDAFD /* Base */,
+				B311837E2A23096D000376C0 /* de */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B389D2D124E088D600C80520 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B389D2D024E088D600C80520 /* en */,
+				B389D2D324E0891900C80520 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B389D2D824E08ED700C80520 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B389D2D724E08ED700C80520 /* en */,
+				B389D2D924E08EE200C80520 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B34DDA5C24ADA9F000EC70E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DesktopCountdowns-launcher/Resources/App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 77B3U2EKEM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "DesktopCountdowns-launcher/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "info.pich.DesktopCountdowns-launcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B34DDA5D24ADA9F000EC70E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "DesktopCountdowns-launcher/Resources/App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 77B3U2EKEM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "DesktopCountdowns-launcher/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "info.pich.DesktopCountdowns-launcher";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B381A45D24A82E08002B86C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B381A45E24A82E08002B86C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		B381A46024A82E08002B86C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DesktopCountdowns/Resources/App.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 77B3U2EKEM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = DesktopCountdowns/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pich.DesktopCountdowns;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B381A46124A82E08002B86C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DesktopCountdowns/Resources/App.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 77B3U2EKEM;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = DesktopCountdowns/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pich.DesktopCountdowns;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B34DDA5E24ADA9F000EC70E9 /* Build configuration list for PBXNativeTarget "DesktopCountdowns-launcher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B34DDA5C24ADA9F000EC70E9 /* Debug */,
+				B34DDA5D24ADA9F000EC70E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B381A44C24A82E08002B86C0 /* Build configuration list for PBXProject "DesktopCountdowns" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B381A45D24A82E08002B86C0 /* Debug */,
+				B381A45E24A82E08002B86C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B381A45F24A82E08002B86C0 /* Build configuration list for PBXNativeTarget "DesktopCountdowns" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B381A46024A82E08002B86C0 /* Debug */,
+				B381A46124A82E08002B86C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B381A44924A82E08002B86C0 /* Project object */;
+}
