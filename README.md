@@ -1,7 +1,8 @@
 # DesktopCountdownsSwiftUI
-This repo has a rewrite of the DesktopCountdows macos app that shows the reminders you have scheduled in the Apple Reminders app as countdowns on your desktop.
+This repo contains a rewrite of the DesktopCountdowns macos app that shows the reminders you have scheduled in the Apple Reminders app as countdowns on your desktop. see: [https://github.com/Daij-Djan/DesktopCountdowns](https://github.com/Daij-Djan/DesktopCountdowns)
 
-see: [https://github.com/Daij-Djan/DesktopCountdowns](https://github.com/Daij-Djan/DesktopCountdowns)
+####The actual functionality of the app is less interesting than the multiplatform setup!
+the setup is the meaningful part that I hope helps someone :)
 
 ## Change to use SwiftUI multiplatform approach
 The original app is using UIKit while the rwrite aims to use a SwiftUI multi-platform codebase.
@@ -32,8 +33,3 @@ The explanation (and only downside here) is that the two targets might be unable
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-targets.jpg)
 
 SwiftUI Previews work fine for all 6 platforms! 
-
-## Why release this
-I open source this in the hope it helps someone :)  
-
-**The actual functionality of the app is less interesting than the multiplatform setup!**
