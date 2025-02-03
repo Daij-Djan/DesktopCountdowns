@@ -19,7 +19,7 @@ At the time of writing (2/3/2025) this allows the app to cover _every_ apple pla
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/watch.jpg)
 
 ## How much is shared
-The codebase is 9% shared fully. That includes Assets, Info.plist and all Code between the 6 platforms EXCEPT for 3 different @AppDelegateAdaptor classes that allow hooking into the different sdk's app lifecycles.
+The codebase is 99% shared fully. That includes Assets, Info.plist and all Code between the 6 platforms EXCEPT for 3 different @AppDelegateAdaptor classes that allow hooking into the different sdk's app lifecycles.
 
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-code.jpg)
 
