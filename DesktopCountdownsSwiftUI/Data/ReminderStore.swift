@@ -72,7 +72,6 @@ final class ReminderStore {
 // MARK: SampleData for developing
 #if DEBUG
 extension ReminderStore {
-  // swiftlint:disable discouraged_optional_collection
   private static func getSampleData(for fetchOptions: FetchOptions) -> [Reminder]? {
     if fetchOptions.debugUsesSamleData && DeveloperUtils.isDebuggerAttached() {
       print("[DEBUG] useSampleData")
@@ -80,6 +79,5 @@ extension ReminderStore {
     }
     return nil
   }
-  // swiftlint:enable discouraged_optional_collection
 }
 #endif

@@ -11,7 +11,6 @@ import SwiftUI
 extension UserDefaults {
   // swiftlint:disable block_based_kvo
   // swiftlint:disable override_in_extension
-  // swiftlint:disable discouraged_optional_collection
   typealias ChangeHandler = (_ keyPath: String?) -> Void
 
   private static var storages = [UnsafeMutablePointer<ChangeHandler>]()
@@ -31,7 +30,6 @@ extension UserDefaults {
     let handler = context.unsafelyUnwrapped.assumingMemoryBound(to: ChangeHandler.self).pointee
     handler(keyPath)
   }
-  // swiftlint:enable discouraged_optional_collection
   // swiftlint:enable override_in_extension
   // swiftlint:enable block_based_kvo
 }

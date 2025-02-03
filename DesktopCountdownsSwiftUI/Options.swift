@@ -82,7 +82,7 @@ extension ViewOptions {
 }
 
 #if canImport(AppKit)
- struct AppOptions {
+struct AppOptions {
   let dockIcon: Bool
   let statusBarItem: Bool
   let openAtLogin: Bool
