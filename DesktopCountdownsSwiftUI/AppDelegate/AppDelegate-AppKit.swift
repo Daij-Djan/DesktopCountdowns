@@ -7,6 +7,7 @@
 
 #if canImport(AppKit)
 import AppKit
+import SwiftUI
 
 private let kSettingsDebounceDelay = 0.1
 
@@ -17,12 +18,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   private var notificationTokens = [NSObjectProtocol]()
   private var wasCalledBefore = false
 
-  func showPrefs(_: Any) {
+  @objc func showPrefs(_: Any) {
+    EnvironmentValues().openSettings()
     NSApp.activate(ignoringOtherApps: true)
-    // prefsWindow?.makeKeyAndOrderFront(self)// TODO
   }
 
-  func openRemindersApp(_: Any) {
+  @objc func openRemindersApp(_: Any) {
     let reminderAppUrl = URL(fileURLWithPath: "/System/Applications/Reminders.app")
     NSWorkspace.shared.openApplication(at: reminderAppUrl, configuration: NSWorkspace.OpenConfiguration())
   }
@@ -57,13 +58,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // fetch reminders
     reminderStore.readAll(with: fetchOptions) { reminders in
-      // update statusbar
-      //      self.statusBarItemController.reminders = reminders
-      //      self.statusBarItemController.enabled = appOptions.statusBarItem
-
-      // update subscription
+      // update model
       self.model.reminders = reminders
       self.model.viewOptions = viewOptions
+      self.model.statusBarItemEnabled = appOptions.statusBarItem
     }
 
     wasCalledBefore = true

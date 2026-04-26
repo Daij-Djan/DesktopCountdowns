@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+#if os(macOS)
+private struct MenuBarLabel: View {
+  @ObservedObject var model: Model
+  var body: some View {
+    HStack {
+      Image("StatusBarIcon")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(height: 20)
+      Text("\(model.reminders.count)")
+    }
+  }
+}
+#endif
+
 @main
 struct MultiplatformApp: App {
 #if os(watchOS)
@@ -36,6 +51,22 @@ struct MultiplatformApp: App {
     Settings {
       PreferencesView()
     }
+// swiftlint:disable:next indentation_width
+    MenuBarExtra(
+      isInserted: Binding(
+        get: { appDelegate.model.statusBarItemEnabled },
+        set: { newValue in
+          DispatchQueue.main.async {
+            appDelegate.model.statusBarItemEnabled = newValue
+          }
+        }
+      )
+    ) {
+      StatusBarMenu(model: appDelegate.model)
+    } label: {
+      MenuBarLabel(model: appDelegate.model)
+    }
+    .menuBarExtraStyle(.menu)
 #endif
   }
 }

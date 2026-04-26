@@ -11,6 +11,7 @@ disabled_rules:
 - vertical_whitespace_between_cases
 - attributes
 - closure_body_length
+- nslocalizedstring_require_bundle
 
 opt_in_rules:
 - all

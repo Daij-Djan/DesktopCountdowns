@@ -41,6 +41,7 @@
 				View/PreferencesView.swift,
 				View/RemindersList.swift,
 				View/RemindersListItem.swift,
+				View/StatusBarMenu.swift,
 			);
 			target = B36254C82D505D4D00EDEC64 /* App-WatchOS */;
 		};
