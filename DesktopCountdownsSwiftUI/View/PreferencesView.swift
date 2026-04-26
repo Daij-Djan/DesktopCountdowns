@@ -17,10 +17,7 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.direction) private var direction = ViewOptions.default.direction.rawValue
   @AppStorage(UserDefaults.Key.darkenColorByDueDate) private var darkenColorByDueDate = ViewOptions.default.darkenColorByDueDate
   @AppStorage(UserDefaults.Key.fadeColorByDueDate) private var fadeColorByDueDate = ViewOptions.default.fadeColorByDueDate
-  @AppStorage(UserDefaults.Key.highpriColor) private var highpriColor = ViewOptions.default.highpriColor
-  @AppStorage(UserDefaults.Key.midpriColor) private var midpriColor = ViewOptions.default.midpriColor
-  @AppStorage(UserDefaults.Key.lowpriColor) private var lowpriColor = ViewOptions.default.lowpriColor
-  @AppStorage(UserDefaults.Key.defaultColor) private var defaultColor = ViewOptions.default.defaultColor
+
 
 #if canImport(AppKit)
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
@@ -51,10 +48,10 @@ struct PreferencesView: View {
 #if !os(watchOS)
       Section("Reminder Color By Priority") {
         HStack {
-          colorPickerItem("LowPri", selection: $lowpriColor)
-          colorPickerItem("MidPri", selection: $midpriColor)
-          colorPickerItem("HighPri", selection: $highpriColor)
-          colorPickerItem("Default", selection: $defaultColor)
+          colorPickerItem("LowPri", key: UserDefaults.Key.lowpriColor, default: ViewOptions.default.lowpriColor)
+          colorPickerItem("MidPri", key: UserDefaults.Key.midpriColor, default: ViewOptions.default.midpriColor)
+          colorPickerItem("HighPri", key: UserDefaults.Key.highpriColor, default: ViewOptions.default.highpriColor)
+          colorPickerItem("Default", key: UserDefaults.Key.defaultColor, default: ViewOptions.default.defaultColor)
         }
       }
 #endif
@@ -95,9 +92,12 @@ struct PreferencesView: View {
   }
 
 #if !os(watchOS)
-  private func colorPickerItem(_ label: String, selection: Binding<Color>) -> some View {
+  private func colorPickerItem(_ label: String, key: String, default defaultColor: Color) -> some View {
     VStack {
-      ColorPicker("", selection: selection, supportsOpacity: false)
+      ColorPicker("", selection: Binding(
+        get: { UserDefaults.standard.color(forKey: key) ?? defaultColor },
+        set: { UserDefaults.standard.set($0.rawValue, forKey: key) }
+      ), supportsOpacity: false)
         .labelsHidden()
       Text(label)
         .font(.caption)

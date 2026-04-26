@@ -20,7 +20,18 @@ struct MultiplatformApp: App {
 
   var body: some Scene {
     WindowGroup {
+#if os(macOS)
       RemindersList(model: appDelegate.model)
+#else
+      NavigationStack {
+        RemindersList(model: appDelegate.model)
+      }
+#endif
     }
+#if os(macOS)
+    Settings {
+      PreferencesView()
+    }
+#endif
   }
 }

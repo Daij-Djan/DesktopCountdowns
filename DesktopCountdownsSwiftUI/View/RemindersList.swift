@@ -9,7 +9,10 @@ import SwiftUI
 
 struct RemindersList: View {
   @ObservedObject var model: Model
-  
+#if !os(macOS)
+  @State private var showingPreferences = false
+#endif
+
   var body: some View {
     VStack {
       List(model.reminders, id: \.self) { reminder in
@@ -17,6 +20,31 @@ struct RemindersList: View {
       }
     }
     .padding()
+#if !os(macOS)
+    .navigationTitle("Reminders")
+    .toolbar {
+      ToolbarItem(placement: .automatic) {
+        Button {
+          showingPreferences = true
+        } label: {
+          Image(systemName: "gear")
+        }
+      }
+    }
+    .sheet(isPresented: $showingPreferences) {
+      NavigationStack {
+        PreferencesView()
+          .navigationTitle("Preferences")
+          .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+              Button("Done") {
+                showingPreferences = false
+              }
+            }
+          }
+      }
+    }
+#endif
   }
 }
 

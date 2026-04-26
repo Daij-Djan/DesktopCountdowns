@@ -6,10 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B47DF6E02F9D12EF007ADD4B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B47DF6D02F9D12EF007ADD4B /* README.md */; };
+		B47DF6E32F9D12EF007ADD4B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B47DF6CF2F9D12EF007ADD4B /* LICENSE */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B3030B252D4F06A400D6A7FE /* DesktopCountdowns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopCountdowns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3189C3C2D4F08D4009BAC7B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B36254C92D505D4D00EDEC64 /* DesktopCountdowns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopCountdowns.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B47DF6CF2F9D12EF007ADD4B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B47DF6D02F9D12EF007ADD4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -31,6 +38,7 @@
 				Util/DeveloperUtils.swift,
 				Util/LaunchAtLoginUtils.swift,
 				Util/UserDefaultsUtils.swift,
+				View/PreferencesView.swift,
 				View/RemindersList.swift,
 				View/RemindersListItem.swift,
 			);
@@ -53,6 +61,11 @@
 				B31FD3F42D5064A00021F8B0 /* Exceptions for "DesktopCountdownsSwiftUI" folder in "App-WatchOS" target */,
 			);
 			path = DesktopCountdownsSwiftUI;
+			sourceTree = "<group>";
+		};
+		B47DF6DA2F9D12EF007ADD4B /* README-Files */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "README-Files";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -81,6 +94,9 @@
 				B3189C3C2D4F08D4009BAC7B /* .swiftlint.yml */,
 				B3030B272D4F06A400D6A7FE /* DesktopCountdownsSwiftUI */,
 				B3030B262D4F06A400D6A7FE /* Products */,
+				B47DF6CF2F9D12EF007ADD4B /* LICENSE */,
+				B47DF6D02F9D12EF007ADD4B /* README.md */,
+				B47DF6DA2F9D12EF007ADD4B /* README-Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +127,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				B3030B272D4F06A400D6A7FE /* DesktopCountdownsSwiftUI */,
+				B47DF6DA2F9D12EF007ADD4B /* README-Files */,
 			);
 			name = "App-Multiplatform";
 			packageProductDependencies = (
@@ -183,6 +200,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B47DF6E02F9D12EF007ADD4B /* README.md in Resources */,
+				B47DF6E32F9D12EF007ADD4B /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

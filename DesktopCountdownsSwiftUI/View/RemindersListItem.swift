@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RemindersListItem: View {
-  @State var reminder: Reminder
-  @State var viewOptions: ViewOptions
+  var reminder: Reminder
+  var viewOptions: ViewOptions
   
   var body: some View {
     HStack {
@@ -36,7 +36,7 @@ struct RemindersListItem: View {
     )
     .padding()
     .background(Self.backgroundColorForReminder(reminder, viewOptions))
-    .cornerRadius(Self.opacityForReminder(reminder, viewOptions))
+    .opacity(Self.opacityForReminder(reminder, viewOptions))
   }
 }
 

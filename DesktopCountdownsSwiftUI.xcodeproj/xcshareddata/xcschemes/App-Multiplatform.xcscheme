@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B3030B242D4F06A400D6A7FE"
-               BuildableName = "App-Multiplatform.app"
+               BuildableName = "DesktopCountdowns.app"
                BlueprintName = "App-Multiplatform"
                ReferencedContainer = "container:DesktopCountdownsSwiftUI.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3030B242D4F06A400D6A7FE"
-            BuildableName = "App-Multiplatform.app"
+            BuildableName = "DesktopCountdowns.app"
             BlueprintName = "App-Multiplatform"
             ReferencedContainer = "container:DesktopCountdownsSwiftUI.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3030B242D4F06A400D6A7FE"
-            BuildableName = "App-Multiplatform.app"
+            BuildableName = "DesktopCountdowns.app"
             BlueprintName = "App-Multiplatform"
             ReferencedContainer = "container:DesktopCountdownsSwiftUI.xcodeproj">
          </BuildableReference>
