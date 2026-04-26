@@ -75,7 +75,19 @@ extension ReminderStore {
   private static func getSampleData(for fetchOptions: FetchOptions) -> [Reminder]? {
     if fetchOptions.debugUsesSamleData && DeveloperUtils.isDebuggerAttached() {
       print("[DEBUG] useSampleData")
-      return Reminder.sampleData
+      var reminders = Reminder.sampleData
+      if fetchOptions.onlyWithDueDate {
+        reminders = reminders.filter { $0.dueDate != nil }
+      }
+      if fetchOptions.orderByDueDate {
+        reminders.sort { reminderA, reminderB in
+          if let dueDateA = reminderA.dueDate, let dueDateB = reminderB.dueDate {
+            return dueDateA < dueDateB
+          }
+          return reminderA.dueDate == nil
+        }
+      }
+      return reminders
     }
     return nil
   }
