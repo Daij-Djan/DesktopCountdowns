@@ -1,20 +1,16 @@
 disabled_rules:
-- anyobject_protocol
-- inert_defer
-- unused_capture_list
 - required_deinit
 - file_name
-- trailing_whitespace
 - explicit_acl
 - explicit_top_level_acl
 - explicit_type_interface
-- prohibited_interface_builder
 - no_grouping_extension
-- convenience_type
-- implicit_return
-- nslocalizedstring_require_bundle
-- private_action
-- discouraged_optional_collection
+- contrasted_opening_brace
+- todo
+- let_var_whitespace
+- vertical_whitespace_between_cases
+- attributes
+- closure_body_length
 
 opt_in_rules:
 - all

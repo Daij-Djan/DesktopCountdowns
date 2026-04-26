@@ -9,11 +9,12 @@ import SwiftUI
 
 // swiftlint:disable no_magic_numbers
 // swiftlint:disable file_types_order
+// swiftlint:disable one_declaration_per_file
 
 struct FetchOptions {
   let onlyWithDueDate: Bool
   let orderByDueDate: Bool
-  
+
   let onlyIncomplete = true
 #if DEBUG
   let debugUsesSamleData = true
@@ -24,7 +25,7 @@ extension FetchOptions {
     onlyWithDueDate: true,
     orderByDueDate: true
   )
-  
+
   init(from defaults: UserDefaults) {
     onlyWithDueDate = defaults.onlyWithDueDate
     orderByDueDate = defaults.orderByDueDate
@@ -36,7 +37,7 @@ struct ViewOptions {
     case flowHorizontally = 0
     case flowVertically = 1
   }
-  
+
   let opacity: CGFloat
   let direction: FlowDirection
   let darkenColorByDueDate: Bool
@@ -45,7 +46,7 @@ struct ViewOptions {
   let midpriColor: Color
   let lowpriColor: Color
   let defaultColor: Color
-  
+
   let screenFrameInset = 6.0
   let cellSize = CGSize(width: 386.0, height: 86.0)
   let cellCornerRadius = 10.0
@@ -68,7 +69,7 @@ extension ViewOptions {
     lowpriColor: Color(hex: "10aa36"),
     defaultColor: Color(hex: "929292")
   )
-  
+
   init(from defaults: UserDefaults) {
     opacity = defaults.opacity
     direction = defaults.direction
@@ -86,7 +87,7 @@ struct AppOptions {
   let dockIcon: Bool
   let statusBarItem: Bool
   let openAtLogin: Bool
-  
+
 #if DEBUG
   let debugAlwaysShowsDock = true
 #endif
@@ -97,7 +98,7 @@ extension AppOptions {
     statusBarItem: true,
     openAtLogin: false
   )
-  
+
   init(from defaults: UserDefaults) {
     dockIcon = defaults.dockIcon
     statusBarItem = defaults.statusBarItem
@@ -106,5 +107,6 @@ extension AppOptions {
 }
 #endif
 
+// swiftlint:enable one_declaration_per_file
 // swiftlint:enable file_types_order
 // swiftlint:enable no_magic_numbers

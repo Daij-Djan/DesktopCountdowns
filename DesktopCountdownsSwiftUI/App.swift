@@ -21,14 +21,18 @@ struct MultiplatformApp: App {
   var body: some Scene {
     WindowGroup {
 #if os(macOS)
+// swiftlint:disable:next indentation_width
       RemindersList(model: appDelegate.model)
 #else
+// swiftlint:disable:next indentation_width
       NavigationStack {
         RemindersList(model: appDelegate.model)
       }
 #endif
+// swiftlint:disable:next indentation_width
     }
 #if os(macOS)
+// swiftlint:disable:next indentation_width
     Settings {
       PreferencesView()
     }

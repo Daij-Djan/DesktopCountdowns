@@ -26,7 +26,7 @@ extension Color {
       Int(components.opacity * 255)
     )
   }
-  
+
   init(hex: String) {
     let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     var int: UInt64 = 0
@@ -39,11 +39,11 @@ extension Color {
       (alpha, red, green, blue) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
     case 8: // ARGB (32-bit)
       (alpha, red, green, blue) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-      
+
     default:
       (alpha, red, green, blue) = (1, 1, 1, 0)
     }
-    
+
     self.init(
       .sRGB,
       red: Double(red) / 255,
@@ -60,20 +60,18 @@ extension Color {
   func lighter(by percentage: CGFloat = 30.0) -> Color {
     self.adjust(by: abs(percentage) )
   }
-  
+
   func darker(by percentage: CGFloat = 30.0) -> Color {
     self.adjust(by: -1 * abs(percentage) )
   }
-  
+
   func adjust(by percentage: CGFloat = 30.0) -> Color {
-    // swiftlint:disable no_magic_numbers
-    return Color(
+    Color(
       red: min(components.red + percentage / 100, 1.0),
       green: min(components.green + percentage / 100, 1.0),
       blue: min(components.blue + percentage / 100, 1.0),
       opacity: components.opacity
     )
-    // swiftlint:enable no_magic_numbers
   }
 }
 
@@ -86,7 +84,7 @@ extension Color {
     var green: CGFloat = 0
     var blue: CGFloat = 0
     var alpha: CGFloat = 0
-    
+
     NativeColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
     return (red, green, blue, alpha)
   }

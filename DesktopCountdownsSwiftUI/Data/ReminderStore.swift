@@ -9,7 +9,7 @@ import Foundation
 final class ReminderStore {
   protocol BackingStore {
     var isAvailable: Bool { get }
-    
+
     func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void)
     func addChangeObserver(handler: @escaping  () -> Void) -> NSObjectProtocol?
   }
@@ -20,14 +20,14 @@ final class ReminderStore {
 #else
   private let engine: BackingStore? = nil
 #endif
-  
+
   var isAvailable: Bool {
-    return engine?.isAvailable ?? false
+    engine?.isAvailable ?? false
   }
-  
+
   private static func filterAndSortReminders(_ input: [Reminder], with fetchOptions: FetchOptions) -> [Reminder] {
     var reminders = input
-    
+
     // filter
     if fetchOptions.onlyWithDueDate {
       reminders = reminders.filter { $0.dueDate != nil }
@@ -41,20 +41,21 @@ final class ReminderStore {
         return reminderA.dueDate == nil
       }
     }
-    
+
     return reminders
   }
-  
+
   func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void) {
     #if DEBUG
-    if let sampleData = Self.getSampleData(for: fetchOptions) {
+    let sampleData = Self.getSampleData(for: fetchOptions)
+    if sampleData.isEmpty == false {
       DispatchQueue.main.async {
         completion(sampleData)
       }
       return
     }
     #endif
-    
+
     engine?.readAll(with: fetchOptions) { reminders in
       let finalReminders = Self.filterAndSortReminders(reminders, with: fetchOptions)
       DispatchQueue.main.async {
@@ -62,7 +63,7 @@ final class ReminderStore {
       }
     }
   }
-  
+
   func addChangeObserver(handler: @escaping () -> Void) -> NSObjectProtocol {
     let token = engine?.addChangeObserver(handler: handler)
     return token ?? "" as NSObjectProtocol
@@ -72,8 +73,8 @@ final class ReminderStore {
 // MARK: SampleData for developing
 #if DEBUG
 extension ReminderStore {
-  private static func getSampleData(for fetchOptions: FetchOptions) -> [Reminder]? {
-    if fetchOptions.debugUsesSamleData && DeveloperUtils.isDebuggerAttached() {
+  private static func getSampleData(for fetchOptions: FetchOptions) -> [Reminder] {
+    if fetchOptions.debugUsesSamleData, DeveloperUtils.isDebuggerAttached() {
       print("[DEBUG] useSampleData")
       var reminders = Reminder.sampleData
       if fetchOptions.onlyWithDueDate {
@@ -89,7 +90,7 @@ extension ReminderStore {
       }
       return reminders
     }
-    return nil
+    return []
   }
 }
 #endif

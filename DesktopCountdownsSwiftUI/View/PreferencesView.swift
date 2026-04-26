@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// swiftlint:disable no_magic_numbers
-
 struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
   @AppStorage(UserDefaults.Key.orderByDueDate) private var orderByDueDate = FetchOptions.default.orderByDueDate
@@ -17,7 +15,6 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.direction) private var direction = ViewOptions.default.direction.rawValue
   @AppStorage(UserDefaults.Key.darkenColorByDueDate) private var darkenColorByDueDate = ViewOptions.default.darkenColorByDueDate
   @AppStorage(UserDefaults.Key.fadeColorByDueDate) private var fadeColorByDueDate = ViewOptions.default.fadeColorByDueDate
-
 
 #if canImport(AppKit)
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
@@ -46,6 +43,7 @@ struct PreferencesView: View {
       }
 
 #if !os(watchOS)
+// swiftlint:disable:next indentation_width
       Section("Reminder Color By Priority") {
         HStack {
           colorPickerItem("LowPri", key: UserDefaults.Key.lowpriColor, default: ViewOptions.default.lowpriColor)
@@ -56,12 +54,14 @@ struct PreferencesView: View {
       }
 #endif
 
+// swiftlint:disable:next indentation_width
       Section {
         Toggle("Darken reminders' background color the later they are due", isOn: $darkenColorByDueDate)
         Toggle("Reduce reminders' opacity the later they are due", isOn: $fadeColorByDueDate)
       }
 
 #if canImport(AppKit)
+// swiftlint:disable:next indentation_width
       Section {
         Toggle("App Should Show Dock Icon", isOn: $dockIcon)
         Toggle("App Should Show Menubar Icon", isOn: Binding(
@@ -73,6 +73,7 @@ struct PreferencesView: View {
       }
 #endif
 
+// swiftlint:disable:next indentation_width
       Section {
         HStack {
           Spacer()
@@ -94,11 +95,13 @@ struct PreferencesView: View {
 #if !os(watchOS)
   private func colorPickerItem(_ label: String, key: String, default defaultColor: Color) -> some View {
     VStack {
-      ColorPicker("", selection: Binding(
+      let selection = Binding(
         get: { UserDefaults.standard.color(forKey: key) ?? defaultColor },
         set: { UserDefaults.standard.set($0.rawValue, forKey: key) }
-      ), supportsOpacity: false)
-        .labelsHidden()
+      )
+
+      ColorPicker("", selection: selection, supportsOpacity: false)
+      .labelsHidden()
       Text(label)
         .font(.caption)
     }
@@ -106,8 +109,6 @@ struct PreferencesView: View {
   }
 #endif
 }
-
-// swiftlint:enable no_magic_numbers
 
 #Preview {
   PreferencesView()

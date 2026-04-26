@@ -21,7 +21,7 @@ struct Reminder: Equatable, Identifiable, Hashable {
 // swiftlint:disable no_magic_numbers
 extension Reminder {
   private static var secondsInADay = 86_400.0
-  
+
   static var sampleData = [
     Reminder(
       title: "Submit reimbursement report",

@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: Tools for development
-struct DeveloperUtils {
+enum DeveloperUtils {
   static func isDebuggerAttached() -> Bool {
     var info = kinfo_proc()
     var mib: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
@@ -21,9 +21,9 @@ struct DeveloperUtils {
     }
     return (info.kp_proc.p_flag & P_TRACED) != 0
   }
-  
+
   static func isInPreviewMode() -> Bool {
-    return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
   }
 }
 #endif

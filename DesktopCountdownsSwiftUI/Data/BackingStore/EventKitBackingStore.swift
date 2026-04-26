@@ -10,11 +10,11 @@ import EventKit
 
 final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
   private let ekStore = EKEventStore()
-  
+
   var isAvailable: Bool {
     EKEventStore.authorizationStatus(for: .reminder) == .fullAccess
   }
-  
+
   func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void) {
     if isAvailable {
       self.readAllAuthorized(with: fetchOptions, completion: completion)
@@ -31,11 +31,11 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
       }
     }
   }
-  
+
   private func readAllAuthorized(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void) {
     let predicate = fetchOptions.onlyIncomplete ? ekStore.predicateForIncompleteReminders(withDueDateStarting: nil, ending: nil, calendars: nil) : ekStore.predicateForReminders(in: nil)
     let date = Date()
-    
+
     ekStore.fetchReminders(matching: predicate) { ekReminders in
       let mappedReminders = (ekReminders ?? []).map { Reminder(with: $0, for: date) }
       DispatchQueue.main.async {
@@ -43,9 +43,9 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
       }
     }
   }
-  
+
   func addChangeObserver(handler: @escaping  () -> Void) -> NSObjectProtocol? {
-    return NotificationCenter.default.addObserver(forName: .EKEventStoreChanged, object: ekStore, queue: nil) { _ in
+    NotificationCenter.default.addObserver(forName: .EKEventStoreChanged, object: ekStore, queue: nil) { _ in
       handler()
     }
   }

@@ -9,10 +9,10 @@
 import ServiceManagement
 
 // MARK: wrapper to manage the caller as a login item
-struct LaunchAtLogin {
+enum LaunchAtLogin {
   static var isEnabled: Bool {
     get {
-      return SMAppService.mainApp.status == .enabled
+      SMAppService.mainApp.status == .enabled
     }
     set {
       do {

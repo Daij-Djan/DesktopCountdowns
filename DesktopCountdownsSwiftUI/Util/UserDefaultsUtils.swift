@@ -25,8 +25,9 @@ extension UserDefaults {
       self.addObserver(self, forKeyPath: key, options: [.initial, .new], context: storage)
     }
   }
-  
-  override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+
+  // swiftlint:disable:next discouraged_optional_collection
+  override open func observeValue(forKeyPath keyPath: String?, of _: Any?, change _: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
     let handler = context.unsafelyUnwrapped.assumingMemoryBound(to: ChangeHandler.self).pointee
     handler(keyPath)
   }

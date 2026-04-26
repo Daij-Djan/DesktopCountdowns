@@ -21,13 +21,14 @@ struct RemindersList: View {
     }
     .padding()
 #if !os(macOS)
+// swiftlint:disable:next indentation_width
     .navigationTitle("Reminders")
     .toolbar {
       ToolbarItem(placement: .automatic) {
         Button {
           showingPreferences = true
         } label: {
-          Image(systemName: "gear")
+          Image(systemName: "gear").accessibilityLabel(Text("Preferences"))
         }
       }
     }
