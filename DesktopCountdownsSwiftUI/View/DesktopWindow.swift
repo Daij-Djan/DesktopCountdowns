@@ -57,7 +57,9 @@ struct DesktopWindow {
   }
 
   mutating func updateFrame() {
-    guard let window else { return }
+    guard let window else {
+      return
+    }
     let inset = model.viewOptions.screenFrameInset
     let rect = NSScreen.main?.visibleFrame.insetBy(dx: inset, dy: inset) ?? .zero
     window.setFrame(rect, display: true)

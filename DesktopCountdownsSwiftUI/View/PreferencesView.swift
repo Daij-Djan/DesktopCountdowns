@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+let kLogoSize = 64.0
+let kWindowWidth = 450.0
+
 struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
   @AppStorage(UserDefaults.Key.orderByDueDate) private var orderByDueDate = FetchOptions.default.orderByDueDate
@@ -27,10 +30,11 @@ struct PreferencesView: View {
       Section {
         HStack {
           Spacer()
-          Image("prefsIcon")
+          Image(.prefsIcon)
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(height: 64)
+            .frame(height: kLogoSize)
+            .accessibilityLabel("logo")
           Spacer()
         }
       }
@@ -101,7 +105,7 @@ struct PreferencesView: View {
       }
     }
     .formStyle(.grouped)
-    .frame(width: 450)
+    .frame(width: kWindowWidth)
   }
 
 #if !os(watchOS)

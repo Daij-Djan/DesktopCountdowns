@@ -25,7 +25,6 @@ struct RemindersList: View {
       }
     }
     .padding()
-// swiftlint:disable:next indentation_width
     .navigationTitle("Reminders")
     .toolbar {
       ToolbarItem(placement: .automatic) {
@@ -54,8 +53,9 @@ struct RemindersList: View {
 }
 
 #if os(macOS)
+let kGridSpacing = 4.0
+
 extension RemindersList {
-  // swiftlint:disable:next no_magic_numbers
   @ViewBuilder private var remindersGrid: some View {
     let cellWidth = model.viewOptions.cellSize.width
     let cellHeight = model.viewOptions.cellSize.height
@@ -64,8 +64,8 @@ extension RemindersList {
     case .flowHorizontally:
       ScrollView(.vertical) {
         LazyVGrid(
-          columns: [GridItem(.adaptive(minimum: cellWidth), spacing: 4)],
-          spacing: 4
+          columns: [GridItem(.adaptive(minimum: cellWidth), spacing: kGridSpacing)],
+          spacing: kGridSpacing
         ) {
           ForEach(model.reminders, id: \.self) { reminder in
             RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
@@ -78,8 +78,8 @@ extension RemindersList {
     case .flowVertically:
       ScrollView(.horizontal) {
         LazyHGrid(
-          rows: [GridItem(.adaptive(minimum: cellHeight), spacing: 4)],
-          spacing: 4
+          rows: [GridItem(.adaptive(minimum: cellHeight), spacing: kGridSpacing)],
+          spacing: kGridSpacing
         ) {
           ForEach(model.reminders, id: \.self) { reminder in
             RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// swiftlint:disable no_magic_numbers
 struct RemindersListItem: View {
   var reminder: Reminder
   var viewOptions: ViewOptions
@@ -59,7 +60,6 @@ struct RemindersListItem: View {
 }
 
 extension RemindersListItem {
-  // swiftlint:disable no_magic_numbers
   private static func opacityForReminder(_ reminder: Reminder, _ viewOptions: ViewOptions) -> CGFloat {
     var opacity = viewOptions.opacity
     if reminder.dueDate != nil, viewOptions.fadeColorByDueDate {
@@ -126,5 +126,5 @@ extension RemindersListItem {
 
     return CGFloat(newOpacity / 100)
   }
-  // swiftlint:enable no_magic_numbers
 }
+// swiftlint:enable no_magic_numbers
