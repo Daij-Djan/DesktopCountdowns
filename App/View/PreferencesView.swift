@@ -106,6 +106,12 @@ struct PreferencesView: View {
     }
     .formStyle(.grouped)
     .frame(width: kWindowWidth)
+#if canImport(AppKit)
+// swiftlint:disable:next indentation_width
+    .onDisappear {
+      NSColorPanel.shared.close()
+    }
+#endif
   }
 
 #if !os(watchOS)
