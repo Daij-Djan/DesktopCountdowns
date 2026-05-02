@@ -49,7 +49,7 @@ final class AppDelegate: NSObject, WKApplicationDelegate {
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
-    let notificationTokenDefaults = UserDefaults.standard.addChangeObserver {
+    let notificationTokenDefaultsDidChange = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: OperationQueue.main) { _ in
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
@@ -76,7 +76,7 @@ final class AppDelegate: NSObject, WKApplicationDelegate {
 
     // save tokens for app lifetime
     notificationTokens = [
-      notificationTokenDefaults,
+      notificationTokenDefaultsDidChange,
       notificationTokenDayChange,
       notificationTokenRemindes
     ]

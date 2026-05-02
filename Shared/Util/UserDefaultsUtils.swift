@@ -8,13 +8,13 @@ import SwiftUI
 
 extension UserDefaults {
   func color(forKey key: String) -> Color? {
-    guard let hex = string(forKey: key) else {
+    guard let b64data = string(forKey: key) else {
       return nil
     }
-    return Color(hex: hex)
+    return Color(rawValue: b64data)
   }
 
   func set(_ color: Color, forKey key: String) {
-    set(color.hex, forKey: key)
+    set(color.rawValue, forKey: key)
   }
 }
