@@ -25,6 +25,17 @@ struct PreferencesView: View {
   var body: some View {
     Form {
       Section {
+        HStack {
+          Spacer()
+          Image("prefsIcon")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 64)
+          Spacer()
+        }
+      }
+
+      Section {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
       }
@@ -90,6 +101,7 @@ struct PreferencesView: View {
       }
     }
     .formStyle(.grouped)
+    .frame(width: 450)
   }
 
 #if !os(watchOS)

@@ -17,6 +17,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   private lazy var reminderStore = ReminderStore.shared
   private var notificationTokens = [NSObjectProtocol]()
   private var wasCalledBefore = false
+  private var desktopWindow: DesktopWindow?
 
   @objc func showPrefs(_: Any) {
     EnvironmentValues().openSettings()
@@ -65,6 +66,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     wasCalledBefore = true
+    desktopWindow?.updateFrame()
   }
 
   func applicationDidFinishLaunching(_: Notification) {
@@ -73,14 +75,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       return
     }
 
-    //    // prepare our UI Windows
-    //    statusBarItemController.menu = NSApp.mainMenu?.items.first?.submenu
-    //    desktopWindowController.enabled = true
-    //
-    //    // Workaround for dock icon visibility toggle: osx hides our windows on becoming .accessory. dont let it
-    //    for window in NSApp.windows {
-    //      window.canHide = false
-    //    }
+    desktopWindow = DesktopWindow(model: model)
+    desktopWindow?.show()
 
     // prepare settings
     let sel = #selector(applySettings)

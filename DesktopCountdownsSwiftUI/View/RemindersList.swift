@@ -14,13 +14,17 @@ struct RemindersList: View {
 #endif
 
   var body: some View {
+#if os(macOS)
+// swiftlint:disable:next indentation_width
+    remindersGrid
+#else
+// swiftlint:disable:next indentation_width
     VStack {
       List(model.reminders, id: \.self) { reminder in
         RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
       }
     }
     .padding()
-#if !os(macOS)
 // swiftlint:disable:next indentation_width
     .navigationTitle("Reminders")
     .toolbar {
@@ -48,6 +52,46 @@ struct RemindersList: View {
 #endif
   }
 }
+
+#if os(macOS)
+extension RemindersList {
+  // swiftlint:disable:next no_magic_numbers
+  @ViewBuilder private var remindersGrid: some View {
+    let cellWidth = model.viewOptions.cellSize.width
+    let cellHeight = model.viewOptions.cellSize.height
+
+    switch model.viewOptions.direction {
+    case .flowHorizontally:
+      ScrollView(.vertical) {
+        LazyVGrid(
+          columns: [GridItem(.adaptive(minimum: cellWidth), spacing: 4)],
+          spacing: 4
+        ) {
+          ForEach(model.reminders, id: \.self) { reminder in
+            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
+              .frame(width: cellWidth, height: cellHeight)
+          }
+        }
+      }
+      .scrollIndicators(.hidden)
+
+    case .flowVertically:
+      ScrollView(.horizontal) {
+        LazyHGrid(
+          rows: [GridItem(.adaptive(minimum: cellHeight), spacing: 4)],
+          spacing: 4
+        ) {
+          ForEach(model.reminders, id: \.self) { reminder in
+            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
+              .frame(width: cellWidth, height: cellHeight)
+          }
+        }
+      }
+      .scrollIndicators(.hidden)
+    }
+  }
+}
+#endif
 
 #Preview {
   RemindersList(model: Model.forPreview())

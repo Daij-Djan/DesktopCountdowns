@@ -10,32 +10,42 @@ import SwiftUI
 struct RemindersListItem: View {
   var reminder: Reminder
   var viewOptions: ViewOptions
+  @Environment(\.colorScheme) private var colorScheme
 
   var body: some View {
     HStack {
       if reminder.dueDate != nil {
         VStack {
           Text(Self.stringForCountdown(reminder.countDownDays))
-            .font(Font.system(.largeTitle))
+            .font(.system(size: 39, weight: .bold))
+            .minimumScaleFactor(0.5)
+            .lineLimit(1)
           Text("DAYS")
+            .font(.system(size: 10, weight: .medium))
         }
+        .frame(width: 93)
+        .fixedSize(horizontal: false, vertical: false)
         Divider()
       }
       VStack(alignment: .leading) {
         Text(reminder.title)
-          .font(Font.system(.headline))
+          .font(.system(size: 16, weight: .bold))
         if let dueDate = reminder.dueDate {
           Text(Self.stringForDueDate(dueDate, reminder.dueDateHasTime))
+            .font(.system(size: 13))
         }
       }
     }
+    .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
     .frame(
       maxWidth: .infinity,
       maxHeight: .infinity,
       alignment: .leading
     )
-    .padding()
+    .padding(.horizontal, 4)
+    .padding(.vertical, 2)
     .background(Self.backgroundColorForReminder(reminder, viewOptions))
+    .clipShape(RoundedRectangle(cornerRadius: viewOptions.cellCornerRadius))
     .opacity(Self.opacityForReminder(reminder, viewOptions))
   }
 }

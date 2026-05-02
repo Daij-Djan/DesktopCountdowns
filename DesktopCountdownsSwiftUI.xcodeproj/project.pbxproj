@@ -38,6 +38,7 @@
 				Util/DeveloperUtils.swift,
 				Util/LaunchAtLoginUtils.swift,
 				Util/UserDefaultsUtils.swift,
+				View/DesktopWindow.swift,
 				View/PreferencesView.swift,
 				View/RemindersList.swift,
 				View/RemindersListItem.swift,

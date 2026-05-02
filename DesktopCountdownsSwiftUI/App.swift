@@ -34,24 +34,11 @@ struct MultiplatformApp: App {
   var appDelegate: AppDelegate
 
   var body: some Scene {
-    WindowGroup {
-#if os(macOS)
-// swiftlint:disable:next indentation_width
-      RemindersList(model: appDelegate.model)
-#else
-// swiftlint:disable:next indentation_width
-      NavigationStack {
-        RemindersList(model: appDelegate.model)
-      }
-#endif
-// swiftlint:disable:next indentation_width
-    }
 #if os(macOS)
 // swiftlint:disable:next indentation_width
     Settings {
       PreferencesView()
     }
-// swiftlint:disable:next indentation_width
     MenuBarExtra(
       isInserted: Binding(
         get: { appDelegate.model.statusBarItemEnabled },
@@ -67,6 +54,13 @@ struct MultiplatformApp: App {
       MenuBarLabel(model: appDelegate.model)
     }
     .menuBarExtraStyle(.menu)
+#else
+// swiftlint:disable:next indentation_width
+    WindowGroup {
+      NavigationStack {
+        RemindersList(model: appDelegate.model)
+      }
+    }
 #endif
   }
 }
