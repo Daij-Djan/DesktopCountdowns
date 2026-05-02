@@ -1,5 +1,5 @@
 //
-//  CountdownsWidgetView.swift
+//  CountdownsWidgetItem.swift
 //  DesktopCountdowns
 //
 //  Created by Dominik Pich on 01.05.26.

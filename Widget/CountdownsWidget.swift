@@ -8,12 +8,14 @@
 import SwiftUI
 import WidgetKit
 
+@main
 struct CountdownsWidget: Widget {
   let kind = "CountdownsWidget"
 
   var body: some WidgetConfiguration {
     StaticConfiguration(kind: kind, provider: CountdownsTimelineProvider()) { entry in
       CountdownsWidgetView(entry: entry)
+        .widgetURL(URL(string: "desktopcountdowns://open-reminders"))
         .containerBackground(.fill.tertiary, for: .widget)
     }
     .configurationDisplayName("Countdown Reminders")

@@ -17,6 +17,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   private lazy var reminderStore = ReminderStore.shared
   private var notificationTokens = [NSObjectProtocol]()
   private var wasCalledBefore = false
+  private var launchedToOpenReminders = false
   private var desktopWindow: DesktopWindow?
 
   @objc func showPrefs(_: Any) {
@@ -48,7 +49,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let newActivationPolicy: NSApplication.ActivationPolicy = dockIcon ? .regular : .accessory
     if !wasCalledBefore || NSApp.activationPolicy() != newActivationPolicy {
       NSApp.setActivationPolicy(newActivationPolicy)
-      NSApp.activate(ignoringOtherApps: true)
+      if !launchedToOpenReminders {
+        NSApp.activate(ignoringOtherApps: true)
+      }
+      launchedToOpenReminders = false
     }
 
     // manage Start at Login
@@ -69,6 +73,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     desktopWindow?.updateFrame()
   }
 
+  func application(_: NSApplication, open urls: [URL]) {
+    for url in urls where url.host == "open-reminders" {
+      openRemindersApp(self)
+    }
+  }
+
+  func applicationWillFinishLaunching(_: Notification) {
+    NSAppleEventManager.shared().setEventHandler(
+      self,
+      andSelector: #selector(handleURLEvent(_:withReply:)),
+      forEventClass: AEEventClass(kInternetEventClass),
+      andEventID: AEEventID(kAEGetURL)
+    )
+  }
+
+  @objc private func handleURLEvent(_ event: NSAppleEventDescriptor, withReply _: NSAppleEventDescriptor) {
+    guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue,
+          let url = URL(string: urlString),
+          url.host == "open-reminders" else { return }
+    launchedToOpenReminders = true
+  }
+
   func applicationDidFinishLaunching(_: Notification) {
     // for preview mode, we dont want to do anything
     if DeveloperUtils.isInPreviewMode() {
@@ -81,10 +107,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
-    UserDefaults.standard.addKeysObserver(forKeys: UserDefaults.Key.all) { _ in
+    let notificationTokenDefaults = UserDefaults.standard.addChangeObserver {
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
+    self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
 
     // show prefs if needed
     if UserDefaults.standard.firstRun {
@@ -113,6 +140,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // save tokens for app lifetime
     notificationTokens = [
+      notificationTokenDefaults,
       notificationTokenDayChange,
       notificationTokenScreenSize,
       notificationTokenRemindes

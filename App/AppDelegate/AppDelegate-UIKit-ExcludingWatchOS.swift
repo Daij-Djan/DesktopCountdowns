@@ -50,10 +50,11 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
-    UserDefaults.standard.addKeysObserver(forKeys: UserDefaults.Key.all) { _ in
+    let notificationTokenDefaults = UserDefaults.standard.addChangeObserver {
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
+    self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
 
     // show prefs if needed
     if UserDefaults.standard.firstRun {
@@ -76,6 +77,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
     // save tokens for app lifetime
     notificationTokens = [
+      notificationTokenDefaults,
       notificationTokenDayChange,
       notificationTokenRemindes
     ]

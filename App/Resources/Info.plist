@@ -4,5 +4,16 @@
 <dict>
 	<key>NSRemindersFullAccessUsageDescription</key>
 	<string>This app wants to show reminders on your desktop</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>desktopcountdowns</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.desktopcountdowns.urlscheme</string>
+		</dict>
+	</array>
 </dict>
 </plist>
