@@ -89,9 +89,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @objc private func handleURLEvent(_ event: NSAppleEventDescriptor, withReply _: NSAppleEventDescriptor) {
-    guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue,
-          let url = URL(string: urlString),
-          url.host == "open-reminders" else { return }
+    guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue, let url = URL(string: urlString), url.host == "open-reminders" else {
+      return
+    }
     launchedToOpenReminders = true
   }
 
@@ -107,7 +107,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
-    let notificationTokenDefaults = UserDefaults.standard.addChangeObserver {
+    let notificationTokenDefaultsDidChange = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: OperationQueue.main) { _ in
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
@@ -140,7 +140,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // save tokens for app lifetime
     notificationTokens = [
-      notificationTokenDefaults,
+      notificationTokenDefaultsDidChange,
       notificationTokenDayChange,
       notificationTokenScreenSize,
       notificationTokenRemindes
