@@ -7,9 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B47DF6E02F9D12EF007ADD4B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B47DF6D02F9D12EF007ADD4B /* README.md */; };
-		B47DF6E32F9D12EF007ADD4B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B47DF6CF2F9D12EF007ADD4B /* LICENSE */; };
+		B49ECA372FA5A71100332F83 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49ECA362FA5A71100332F83 /* WidgetKit.framework */; };
+		B49ECA392FA5A71100332F83 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49ECA382FA5A71100332F83 /* SwiftUI.framework */; };
+		B49ECA462FA5A71100332F83 /* Widget-Multiplatform.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B49ECA342FA5A71000332F83 /* Widget-Multiplatform.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B49ECA442FA5A71100332F83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3030B1D2D4F06A400D6A7FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B49ECA332FA5A71000332F83;
+			remoteInfo = WidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B49ECA4B2FA5A71100332F83 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B49ECA462FA5A71100332F83 /* Widget-Multiplatform.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B3030B252D4F06A400D6A7FE /* DesktopCountdowns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopCountdowns.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -17,57 +42,83 @@
 		B36254C92D505D4D00EDEC64 /* DesktopCountdowns.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopCountdowns.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47DF6CF2F9D12EF007ADD4B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B47DF6D02F9D12EF007ADD4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B49ECA342FA5A71000332F83 /* Widget-Multiplatform.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Widget-Multiplatform.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B49ECA362FA5A71100332F83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
+		B49ECA382FA5A71100332F83 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B31FD3F42D5064A00021F8B0 /* Exceptions for "DesktopCountdownsSwiftUI" folder in "App-WatchOS" target */ = {
+		B31FD3F42D5064A00021F8B0 /* Exceptions for "App" folder in "App-WatchOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App.swift,
-				"AppDelegate/AppDelegate-AppKit.swift",
-				"AppDelegate/AppDelegate-UIKit-ExcludingWatchOS.swift",
-				"AppDelegate/AppDelegate-WatchKit.swift",
-				Data/BackingStore/EventKitBackingStore.swift,
-				Data/Reminder.swift,
-				Data/ReminderStore.swift,
 				Model.swift,
-				Options.swift,
+				"Options+Defaults.swift",
+				Resources/Assets.xcassets,
 				UserDefaults.swift,
-				Util/ColorUtils.swift,
-				Util/DateUtils.swift,
-				Util/DeveloperUtils.swift,
-				Util/LaunchAtLoginUtils.swift,
-				Util/UserDefaultsUtils.swift,
-				View/DesktopWindow.swift,
-				View/MenuBarExtraScene.swift,
-				View/PreferencesView.swift,
-				View/RemindersList.swift,
-				View/RemindersListItem.swift,
 			);
 			target = B36254C82D505D4D00EDEC64 /* App-WatchOS */;
 		};
-		B3F657652D5068C6009CD038 /* Exceptions for "DesktopCountdownsSwiftUI" folder in "App-Multiplatform" target */ = {
+		B421275B2FA5B0F30049C471 /* Exceptions for "App" folder in "App-Multiplatform" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
 			);
 			target = B3030B242D4F06A400D6A7FE /* App-Multiplatform */;
 		};
+		B421275C2FA5B1010049C471 /* Exceptions for "README-Files" folder in "App-Multiplatform" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				appletv.jpg,
+				iphone.jpg,
+				mac.jpg,
+				vision.jpg,
+				watch.jpg,
+				"xcode-code.jpg",
+				"xcode-preview-multiplatform-app.jpeg",
+				"xcode-preview-watchos-app.jpeg",
+				"xcode-targets.jpg",
+			);
+			target = B3030B242D4F06A400D6A7FE /* App-Multiplatform */;
+		};
+		B49ECA4A2FA5A71100332F83 /* Exceptions for "Widget" folder in "Widget-Multiplatform" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B49ECA332FA5A71000332F83 /* Widget-Multiplatform */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B3030B272D4F06A400D6A7FE /* DesktopCountdownsSwiftUI */ = {
+		B3030B272D4F06A400D6A7FE /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				B3F657652D5068C6009CD038 /* Exceptions for "DesktopCountdownsSwiftUI" folder in "App-Multiplatform" target */,
-				B31FD3F42D5064A00021F8B0 /* Exceptions for "DesktopCountdownsSwiftUI" folder in "App-WatchOS" target */,
+				B421275B2FA5B0F30049C471 /* Exceptions for "App" folder in "App-Multiplatform" target */,
+				B31FD3F42D5064A00021F8B0 /* Exceptions for "App" folder in "App-WatchOS" target */,
 			);
-			path = DesktopCountdownsSwiftUI;
+			path = App;
+			sourceTree = "<group>";
+		};
+		B42127372FA5A8D60049C471 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		B47DF6DA2F9D12EF007ADD4B /* README-Files */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B421275C2FA5B1010049C471 /* Exceptions for "README-Files" folder in "App-Multiplatform" target */,
+			);
 			path = "README-Files";
+			sourceTree = "<group>";
+		};
+		B49ECA3A2FA5A71100332F83 /* Widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B49ECA4A2FA5A71100332F83 /* Exceptions for "Widget" folder in "Widget-Multiplatform" target */,
+			);
+			path = Widget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -87,15 +138,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49ECA312FA5A71000332F83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B49ECA392FA5A71100332F83 /* SwiftUI.framework in Frameworks */,
+				B49ECA372FA5A71100332F83 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B3030B1C2D4F06A400D6A7FE = {
 			isa = PBXGroup;
 			children = (
-				B3189C3C2D4F08D4009BAC7B /* .swiftlint.yml */,
-				B3030B272D4F06A400D6A7FE /* DesktopCountdownsSwiftUI */,
+				B42127372FA5A8D60049C471 /* Shared */,
+				B3030B272D4F06A400D6A7FE /* App */,
+				B49ECA3A2FA5A71100332F83 /* Widget */,
+				B49ECA352FA5A71100332F83 /* Frameworks */,
 				B3030B262D4F06A400D6A7FE /* Products */,
+				B3189C3C2D4F08D4009BAC7B /* .swiftlint.yml */,
 				B47DF6CF2F9D12EF007ADD4B /* LICENSE */,
 				B47DF6D02F9D12EF007ADD4B /* README.md */,
 				B47DF6DA2F9D12EF007ADD4B /* README-Files */,
@@ -107,8 +170,18 @@
 			children = (
 				B3030B252D4F06A400D6A7FE /* DesktopCountdowns.app */,
 				B36254C92D505D4D00EDEC64 /* DesktopCountdowns.app */,
+				B49ECA342FA5A71000332F83 /* Widget-Multiplatform.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B49ECA352FA5A71100332F83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B49ECA362FA5A71100332F83 /* WidgetKit.framework */,
+				B49ECA382FA5A71100332F83 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,13 +195,16 @@
 				B3030B222D4F06A400D6A7FE /* Frameworks */,
 				B3030B232D4F06A400D6A7FE /* Resources */,
 				B38810382D4F0A7D00013B39 /* Run SwiftLint */,
+				B49ECA4B2FA5A71100332F83 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B49ECA452FA5A71100332F83 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				B3030B272D4F06A400D6A7FE /* DesktopCountdownsSwiftUI */,
+				B3030B272D4F06A400D6A7FE /* App */,
+				B42127372FA5A8D60049C471 /* Shared */,
 				B47DF6DA2F9D12EF007ADD4B /* README-Files */,
 			);
 			name = "App-Multiplatform";
@@ -151,12 +227,38 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				B42127372FA5A8D60049C471 /* Shared */,
+			);
 			name = "App-WatchOS";
 			packageProductDependencies = (
 			);
 			productName = "DesktopCountdownsSwiftUI-WatchOS Watch App";
 			productReference = B36254C92D505D4D00EDEC64 /* DesktopCountdowns.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B49ECA332FA5A71000332F83 /* Widget-Multiplatform */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B49ECA472FA5A71100332F83 /* Build configuration list for PBXNativeTarget "Widget-Multiplatform" */;
+			buildPhases = (
+				B49ECA302FA5A71000332F83 /* Sources */,
+				B49ECA312FA5A71000332F83 /* Frameworks */,
+				B49ECA322FA5A71000332F83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B42127372FA5A8D60049C471 /* Shared */,
+				B49ECA3A2FA5A71100332F83 /* Widget */,
+			);
+			name = "Widget-Multiplatform";
+			packageProductDependencies = (
+			);
+			productName = WidgetExtension;
+			productReference = B49ECA342FA5A71000332F83 /* Widget-Multiplatform.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -165,7 +267,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					B3030B242D4F06A400D6A7FE = {
@@ -173,6 +275,9 @@
 					};
 					B36254C82D505D4D00EDEC64 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					B49ECA332FA5A71000332F83 = {
+						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
 			};
@@ -193,6 +298,7 @@
 			targets = (
 				B3030B242D4F06A400D6A7FE /* App-Multiplatform */,
 				B36254C82D505D4D00EDEC64 /* App-WatchOS */,
+				B49ECA332FA5A71000332F83 /* Widget-Multiplatform */,
 			);
 		};
 /* End PBXProject section */
@@ -202,12 +308,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B47DF6E02F9D12EF007ADD4B /* README.md in Resources */,
-				B47DF6E32F9D12EF007ADD4B /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B36254C72D505D4D00EDEC64 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B49ECA322FA5A71000332F83 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -274,7 +385,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49ECA302FA5A71000332F83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B49ECA452FA5A71100332F83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B49ECA332FA5A71000332F83 /* Widget-Multiplatform */;
+			targetProxy = B49ECA442FA5A71100332F83 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B3030B322D4F06A500D6A7FE /* Debug */ = {
@@ -402,7 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DesktopCountdownsSwiftUI/Resources/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Resources/App.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -411,7 +537,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DesktopCountdownsSwiftUI/Resources/Info.plist;
+				INFOPLIST_FILE = App/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -445,7 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = DesktopCountdownsSwiftUI/Resources/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = App/Resources/App.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -454,7 +580,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DesktopCountdownsSwiftUI/Resources/Info.plist;
+				INFOPLIST_FILE = App/Resources/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -544,6 +670,88 @@
 			};
 			name = Release;
 		};
+		B49ECA482FA5A71100332F83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pich.DesktopCountdownsSwiftUI.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		B49ECA492FA5A71100332F83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pich.DesktopCountdownsSwiftUI.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,6 +778,15 @@
 			buildConfigurations = (
 				B36254D82D505D4E00EDEC64 /* Debug */,
 				B36254D92D505D4E00EDEC64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B49ECA472FA5A71100332F83 /* Build configuration list for PBXNativeTarget "Widget-Multiplatform" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B49ECA482FA5A71100332F83 /* Debug */,
+				B49ECA492FA5A71100332F83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

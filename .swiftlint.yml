@@ -12,6 +12,7 @@ disabled_rules:
 - attributes
 - closure_body_length
 - nslocalizedstring_require_bundle
+- no_extension_access_modifier
 
 opt_in_rules:
 - all
