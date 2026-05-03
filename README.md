@@ -9,33 +9,35 @@ The original app is using UIKit while the rwrite aims to use a SwiftUI multi-pla
 At the time of writing (2/3/2025) this allows the app to cover _every_ apple platform currently available with a single cofebase.
 
 - macos via AppKit
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+settings.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_light.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dark.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dimmed.jpg)
+![Screenshot of mac app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac.jpg)
+![Screenshot of mac app + settings](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+settings.jpg)
+![Screenshot of mac widget (light)](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_light.jpg)
+![Screenshot of mac widget (dark)](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dark.jpg)
+![Screenshot of mac widget (dimmed)](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dimmed.jpg)
 - ios via UIKit (iPhone, iPad, Vision & AppleTV)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_light.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_dark.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/ipad.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/vision.jpg)
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/appletv.jpg)
+![Screenshot of ios app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone.jpg)
+![Screenshot of ios widget (light)](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_light.jpg)
+![Screenshot of ios widget (dark)](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_dark.jpg)
+![Screenshot of ipad app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/ipad.jpg)
+![Screenshot of visionOS app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/vision.jpg)
+![Screenshot of tv app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/appletv.jpg)
 - watchos via WatchKit
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/watch.jpg)
+![Screenshot of apple watch app](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/watch.jpg)
 
 ## How much is shared
 The codebase is 99% shared fully. That includes Assets, Info.plist and all Code between the 6 platforms EXCEPT for 3 different @AppDelegateAdaptor classes that allow hooking into the different sdk's app lifecycles.
 
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-code.jpg)
 
-From a perspective of the IDE experience, the 6 platforms require 2 targets in xcode that share 100% of the files:
+From a perspective of the IDE experience, the 6 platforms require 2 app targets and 1 widget target in xcode that share 100% of the files:
 - 1. Multi-Platform (everything BUT watch)
 - 2. WatchOS App
 
 I expect apple to merge watchos into the multiplatform template given it is already 99% the same and totally compatible in terms of source code.
 The explanation (and only downside here) is that the two targets might be unable to share build caches behind the scenes at the moment.
 
-![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-targets.jpg)
+![Screenshot of xcode code](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-code.jpg)
+![Screenshot of xcode targets](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/xcode-targets.jpg)
 
 SwiftUI Previews work fine for all 6 platforms! 
+Widget works on mac, ios (iphone+ipad)
