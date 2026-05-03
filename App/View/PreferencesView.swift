@@ -9,6 +9,7 @@ import SwiftUI
 
 let kLogoSize = 64.0
 let kWindowWidth = 450.0
+let kWindowHeight = 700.0
 
 struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
@@ -30,11 +31,19 @@ struct PreferencesView: View {
       Section {
         HStack {
           Spacer()
-          Image(.prefsIcon)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(height: kLogoSize)
-            .accessibilityLabel("logo")
+          VStack {
+            Image(.prefsIcon)
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .frame(height: kLogoSize)
+              .accessibilityLabel("logo")
+            Text("Copyright 2025 Dominik Pich")
+              .font(.footnote)
+            if let url = URL(string: "https://www.pich.info") {
+              Link("https://www.pich.info", destination: url)
+                .font(.footnote)
+            }
+          }
           Spacer()
         }
       }
@@ -87,25 +96,9 @@ struct PreferencesView: View {
         Toggle("App Should Open At Login", isOn: $openAtLogin)
       }
 #endif
-
-// swiftlint:disable:next indentation_width
-      Section {
-        HStack {
-          Spacer()
-          VStack {
-            Text("Copyright 2025 Dominik Pich")
-              .font(.footnote)
-            if let url = URL(string: "https://www.pich.info") {
-              Link("https://www.pich.info", destination: url)
-                .font(.footnote)
-            }
-          }
-          Spacer()
-        }
-      }
     }
     .formStyle(.grouped)
-    .frame(width: kWindowWidth)
+    .frame(width: kWindowWidth, height: kWindowHeight)
 #if canImport(AppKit)
 // swiftlint:disable:next indentation_width
     .onDisappear {
