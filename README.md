@@ -10,8 +10,14 @@ At the time of writing (2/3/2025) this allows the app to cover _every_ apple pla
 
 - macos via AppKit
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+settings.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_light.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dark.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/mac+widget_dimmed.jpg)
 - ios via UIKit (iPhone, iPad, Vision & AppleTV)
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_light.jpg)
+![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/iphone+widget_dark.jpg)
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/ipad.jpg)
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/vision.jpg)
 ![Screenshot](https://github.com/Daij-Djan/DesktopCountdownsSwiftUI/raw/main/README-Files/appletv.jpg)
