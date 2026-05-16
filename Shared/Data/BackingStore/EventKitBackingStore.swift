@@ -39,21 +39,21 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     ekStore.fetchReminders(matching: predicate) { [weak self] ekReminders in
       var mapped = (ekReminders ?? []).map { Reminder(with: $0, for: date) }
 
-      guard let self, fetchOptions.includeBirthdaysThisMonth else {
+      guard let self, fetchOptions.includeBirthdays, fetchOptions.birthdayDays > 0 else {
         DispatchQueue.main.async { completion(mapped) }
         return
       }
 
-      self.readBirthdaysThisMonth(from: date) { birthdays in
+      self.readUpcomingBirthdays(within: fetchOptions.birthdayDays, from: date) { birthdays in
         mapped.append(contentsOf: birthdays)
         DispatchQueue.main.async { completion(mapped) }
       }
     }
   }
 
-  private func readBirthdaysThisMonth(from date: Date, completion: @escaping ([Reminder]) -> Void) {
+  private func readUpcomingBirthdays(within days: Int, from date: Date, completion: @escaping ([Reminder]) -> Void) {
     if EKEventStore.authorizationStatus(for: .event) == .fullAccess {
-      completion(fetchBirthdayReminders(from: date))
+      completion(fetchBirthdayReminders(within: days, from: date))
     } else {
       ekStore.requestFullAccessToEvents { [weak self] granted, error in
         guard let self, granted else {
@@ -61,23 +61,23 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
           completion([])
           return
         }
-        completion(self.fetchBirthdayReminders(from: date))
+        completion(self.fetchBirthdayReminders(within: days, from: date))
       }
     }
   }
 
-  private func fetchBirthdayReminders(from date: Date) -> [Reminder] {
+  private func fetchBirthdayReminders(within days: Int, from date: Date) -> [Reminder] {
     let birthdayCalendars = ekStore.calendars(for: .event).filter { $0.type == .birthday }
-    guard !birthdayCalendars.isEmpty else { return [] }
-
-    let calendar = Calendar.current
-    let comps = calendar.dateComponents([.year, .month], from: date)
-    guard let firstOfMonth = calendar.date(from: comps),
-          let firstOfNextMonth = calendar.date(byAdding: .month, value: 1, to: firstOfMonth) else {
+    guard !birthdayCalendars.isEmpty else {
       return []
     }
 
-    let predicate = ekStore.predicateForEvents(withStart: date, end: firstOfNextMonth, calendars: birthdayCalendars)
+    let calendar = Calendar.current
+    guard let endDate = calendar.date(byAdding: .day, value: days, to: date) else {
+      return []
+    }
+
+    let predicate = ekStore.predicateForEvents(withStart: date, end: endDate, calendars: birthdayCalendars)
     return ekStore.events(matching: predicate).map { Reminder(birthday: $0, for: date) }
   }
 
@@ -99,6 +99,7 @@ extension Reminder {
     }
     isComplete = false
     priority = 0
+    reminderType = .birthday
   }
 
   init(with ekReminder: EKReminder, for date: Date) {

@@ -7,6 +7,11 @@
 import Foundation
 
 struct Reminder: Equatable, Identifiable, Hashable {
+  enum ReminderType: String, Codable {
+    case regular
+    case birthday
+  }
+
   var id: String = UUID().uuidString
   var title: String
   var dueDate: Date?
@@ -15,6 +20,7 @@ struct Reminder: Equatable, Identifiable, Hashable {
   var notes: String?
   var isComplete = false
   var priority: Int = 0 // RFC 5545 allows priority to be specified with an integer in the range of 0-9, with 0 representing an undefined priority, 1 the highest priority, and 9 the lowest priority.
+  var reminderType: ReminderType = .regular
 }
 
 #if DEBUG

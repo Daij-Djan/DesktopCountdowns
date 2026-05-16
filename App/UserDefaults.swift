@@ -13,7 +13,8 @@ extension UserDefaults {
 
     static let onlyWithDueDate = "onlyWithDueDate"
     static let orderByDueDate = "orderByDueDate"
-    static let includeBirthdaysThisMonth = "includeBirthdaysThisMonth"
+    static let includeBirthdays = "includeBirthdays"
+    static let birthdayDays = "birthdayDays"
 
     static let opacity = "opacity"
     static let direction = "direction"
@@ -23,6 +24,7 @@ extension UserDefaults {
     static let midpriColor = "midpriColor"
     static let lowpriColor = "lowpriColor"
     static let defaultColor = "defaultColor"
+    static let birthdayColor = "birthdayColor"
 
     static let dockIcon = "dockIcon"
     static let statusBarItem = "statusBarItem"
@@ -34,7 +36,8 @@ extension UserDefaults {
       firstRun,
       onlyWithDueDate,
       orderByDueDate,
-      includeBirthdaysThisMonth,
+      includeBirthdays,
+      birthdayDays,
       opacity,
       direction,
       darkenColorByDueDate,
@@ -43,6 +46,7 @@ extension UserDefaults {
       midpriColor,
       lowpriColor,
       defaultColor,
+      birthdayColor,
       dockIcon,
       statusBarItem,
       openAtLogin,
@@ -67,8 +71,12 @@ extension UserDefaults {
     bool(forKey: Key.orderByDueDate)
   }
 
-  var includeBirthdaysThisMonth: Bool {
-    bool(forKey: Key.includeBirthdaysThisMonth)
+  var includeBirthdays: Bool {
+    bool(forKey: Key.includeBirthdays)
+  }
+
+  var birthdayDays: Int {
+    integer(forKey: Key.birthdayDays)
   }
 
   var opacity: CGFloat {
@@ -107,6 +115,10 @@ extension UserDefaults {
     color(forKey: Key.defaultColor) ?? ViewOptions.default.defaultColor
   }
 
+  var birthdayColor: Color {
+    color(forKey: Key.birthdayColor) ?? ViewOptions.default.birthdayColor
+  }
+
   var dockIcon: Bool {
     bool(forKey: Key.dockIcon)
   }
@@ -141,7 +153,8 @@ extension UserDefaults {
 
       Key.orderByDueDate: FetchOptions.default.orderByDueDate,
       Key.onlyWithDueDate: FetchOptions.default.onlyWithDueDate,
-      Key.includeBirthdaysThisMonth: FetchOptions.default.includeBirthdaysThisMonth,
+      Key.includeBirthdays: FetchOptions.default.includeBirthdays,
+      Key.birthdayDays: FetchOptions.default.birthdayDays,
 
       // interface builder uses 0-100 for slider, CALayer uses 0-1 for opacity
       Key.opacity: ViewOptions.default.opacity * 100,
@@ -152,7 +165,8 @@ extension UserDefaults {
       Key.highpriColor: ViewOptions.default.highpriColor.rawValue,
       Key.midpriColor: ViewOptions.default.midpriColor.rawValue,
       Key.lowpriColor: ViewOptions.default.lowpriColor.rawValue,
-      Key.defaultColor: ViewOptions.default.defaultColor.rawValue
+      Key.defaultColor: ViewOptions.default.defaultColor.rawValue,
+      Key.birthdayColor: ViewOptions.default.birthdayColor.rawValue
     ]
     #if canImport(AppKit)
       let values2: [String: Any] = [

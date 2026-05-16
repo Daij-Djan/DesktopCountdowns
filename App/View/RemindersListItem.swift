@@ -69,7 +69,13 @@ extension RemindersListItem {
   }
 
   private static func backgroundColorForReminder(_ reminder: Reminder, _ viewOptions: ViewOptions) -> Color {
-    var color = Self.backgroundColorForPriority(reminder.priority, viewOptions)
+    var color: Color
+    switch reminder.reminderType {
+    case .birthday:
+      color = viewOptions.birthdayColor
+    case .regular:
+      color = Self.backgroundColorForPriority(reminder.priority, viewOptions)
+    }
     if reminder.dueDate != nil, viewOptions.darkenColorByDueDate {
       color = Self.adjustBackgroundColorForCountDownDays(color, reminder.countDownDays)
     }

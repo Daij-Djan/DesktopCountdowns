@@ -13,13 +13,15 @@ extension FetchOptions {
   static var `default` = FetchOptions(
     onlyWithDueDate: true,
     orderByDueDate: true,
-    includeBirthdaysThisMonth: false
+    includeBirthdays: false,
+    birthdayDays: 7
   )
 
   init(from defaults: UserDefaults) {
     onlyWithDueDate = defaults.onlyWithDueDate
     orderByDueDate = defaults.orderByDueDate
-    includeBirthdaysThisMonth = defaults.includeBirthdaysThisMonth
+    includeBirthdays = defaults.includeBirthdays
+    birthdayDays = defaults.birthdayDays
   }
 }
 
@@ -32,7 +34,8 @@ extension ViewOptions {
     highpriColor: Color(hex: "e53428"),
     midpriColor: Color(hex: "fed200"),
     lowpriColor: Color(hex: "10aa36"),
-    defaultColor: Color(hex: "929292")
+    defaultColor: Color(hex: "929292"),
+    birthdayColor: Color(hex: "673d70")
   )
 
   init(from defaults: UserDefaults) {
@@ -44,6 +47,7 @@ extension ViewOptions {
     midpriColor = defaults.midpriColor
     lowpriColor = defaults.lowpriColor
     defaultColor = defaults.defaultColor
+    birthdayColor = defaults.birthdayColor
   }
 }
 

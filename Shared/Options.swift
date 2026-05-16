@@ -14,7 +14,8 @@ import SwiftUI
 struct FetchOptions {
   let onlyWithDueDate: Bool
   let orderByDueDate: Bool
-  let includeBirthdaysThisMonth: Bool
+  let includeBirthdays: Bool
+  let birthdayDays: Int
 
   let onlyIncomplete = true
 #if DEBUG
@@ -36,6 +37,7 @@ struct ViewOptions {
   let midpriColor: Color
   let lowpriColor: Color
   let defaultColor: Color
+  let birthdayColor: Color
 
   let screenFrameInset = 6.0
   let cellSize = CGSize(width: 386.0, height: 86.0)
