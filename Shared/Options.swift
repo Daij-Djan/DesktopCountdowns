@@ -14,10 +14,11 @@ import SwiftUI
 struct FetchOptions {
   let onlyWithDueDate: Bool
   let orderByDueDate: Bool
+  let includeBirthdaysThisMonth: Bool
 
   let onlyIncomplete = true
 #if DEBUG
-  let debugUsesSamleData = true
+  let debugUsesSamleData = false
 #endif
 }
 

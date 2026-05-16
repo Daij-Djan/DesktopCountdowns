@@ -14,6 +14,7 @@ let kWindowHeight = 700.0
 struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
   @AppStorage(UserDefaults.Key.orderByDueDate) private var orderByDueDate = FetchOptions.default.orderByDueDate
+  @AppStorage(UserDefaults.Key.includeBirthdaysThisMonth) private var includeBirthdaysThisMonth = FetchOptions.default.includeBirthdaysThisMonth
 
   @AppStorage(UserDefaults.Key.opacity) private var opacity: Double = 90
   @AppStorage(UserDefaults.Key.direction) private var direction = ViewOptions.default.direction.rawValue
@@ -51,6 +52,7 @@ struct PreferencesView: View {
       Section {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
+        Toggle("Include Upcoming Birthdays This Month", isOn: $includeBirthdaysThisMonth)
       }
 
       Section {

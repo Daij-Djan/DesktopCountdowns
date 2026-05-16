@@ -4,6 +4,8 @@
 <dict>
 	<key>NSRemindersFullAccessUsageDescription</key>
 	<string>This app wants to show reminders on your desktop</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>This app wants to show upcoming birthdays on your desktop</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

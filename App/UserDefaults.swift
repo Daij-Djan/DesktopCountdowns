@@ -13,6 +13,7 @@ extension UserDefaults {
 
     static let onlyWithDueDate = "onlyWithDueDate"
     static let orderByDueDate = "orderByDueDate"
+    static let includeBirthdaysThisMonth = "includeBirthdaysThisMonth"
 
     static let opacity = "opacity"
     static let direction = "direction"
@@ -33,6 +34,7 @@ extension UserDefaults {
       firstRun,
       onlyWithDueDate,
       orderByDueDate,
+      includeBirthdaysThisMonth,
       opacity,
       direction,
       darkenColorByDueDate,
@@ -63,6 +65,10 @@ extension UserDefaults {
 
   var orderByDueDate: Bool {
     bool(forKey: Key.orderByDueDate)
+  }
+
+  var includeBirthdaysThisMonth: Bool {
+    bool(forKey: Key.includeBirthdaysThisMonth)
   }
 
   var opacity: CGFloat {
@@ -135,6 +141,7 @@ extension UserDefaults {
 
       Key.orderByDueDate: FetchOptions.default.orderByDueDate,
       Key.onlyWithDueDate: FetchOptions.default.onlyWithDueDate,
+      Key.includeBirthdaysThisMonth: FetchOptions.default.includeBirthdaysThisMonth,
 
       // interface builder uses 0-100 for slider, CALayer uses 0-1 for opacity
       Key.opacity: ViewOptions.default.opacity * 100,

@@ -12,12 +12,14 @@ import SwiftUI
 extension FetchOptions {
   static var `default` = FetchOptions(
     onlyWithDueDate: true,
-    orderByDueDate: true
+    orderByDueDate: true,
+    includeBirthdaysThisMonth: false
   )
 
   init(from defaults: UserDefaults) {
     onlyWithDueDate = defaults.onlyWithDueDate
     orderByDueDate = defaults.orderByDueDate
+    includeBirthdaysThisMonth = defaults.includeBirthdaysThisMonth
   }
 }
 
