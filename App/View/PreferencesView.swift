@@ -96,6 +96,7 @@ struct PreferencesView: View {
         Toggle("App Should Open At Login", isOn: $openAtLogin)
       }
 #endif
+// swiftlint:disable:next indentation_width
     }
     .formStyle(.grouped)
     .frame(width: kWindowWidth, height: kWindowHeight)
