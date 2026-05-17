@@ -50,7 +50,7 @@ struct PreferencesView: View {
         }
       }
 
-      Section {
+      Section("Reminders") {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
         Toggle("Include Upcoming Birthdays", isOn: $includeBirthdays)
@@ -59,6 +59,21 @@ struct PreferencesView: View {
           Text("Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
         }
         .disabled(!includeBirthdays)
+
+#if !os(watchOS)
+// swiftlint:disable:next indentation_width
+        VStack(alignment: .leading) {
+          Text("Background Color By Priority")
+          HStack {
+            colorPickerItem("LowPri", key: UserDefaults.Key.lowpriColor, default: ViewOptions.default.lowpriColor)
+            colorPickerItem("MidPri", key: UserDefaults.Key.midpriColor, default: ViewOptions.default.midpriColor)
+            colorPickerItem("HighPri", key: UserDefaults.Key.highpriColor, default: ViewOptions.default.highpriColor)
+            colorPickerItem("Default", key: UserDefaults.Key.defaultColor, default: ViewOptions.default.defaultColor)
+            colorPickerItem("Birthday", key: UserDefaults.Key.birthdayColor, default: ViewOptions.default.birthdayColor).disabled(!includeBirthdays)
+          }
+        }
+#endif
+// swiftlint:disable:next indentation_width
       }
 
       Section {
@@ -72,25 +87,13 @@ struct PreferencesView: View {
           Text("Vertical").tag(ViewOptions.FlowDirection.flowVertically.rawValue)
         }
         .pickerStyle(.segmented)
-      }
 
-#if !os(watchOS)
-// swiftlint:disable:next indentation_width
-      Section("Reminder Color By Priority") {
-        HStack {
-          colorPickerItem("LowPri", key: UserDefaults.Key.lowpriColor, default: ViewOptions.default.lowpriColor)
-          colorPickerItem("MidPri", key: UserDefaults.Key.midpriColor, default: ViewOptions.default.midpriColor)
-          colorPickerItem("HighPri", key: UserDefaults.Key.highpriColor, default: ViewOptions.default.highpriColor)
-          colorPickerItem("Default", key: UserDefaults.Key.defaultColor, default: ViewOptions.default.defaultColor)
-          colorPickerItem("Birthday", key: UserDefaults.Key.birthdayColor, default: ViewOptions.default.birthdayColor)
-        }
-      }
-#endif
-
-// swiftlint:disable:next indentation_width
-      Section {
         Toggle("Darken reminders' background color the later they are due", isOn: $darkenColorByDueDate)
         Toggle("Reduce reminders' opacity the later they are due", isOn: $fadeColorByDueDate)
+      } header: {
+        Text("Desktop App Display")
+      } footer: {
+        Text("Applies to the desktop window only — widgets are not affected.")
       }
 
 #if canImport(AppKit)
@@ -103,6 +106,10 @@ struct PreferencesView: View {
         ))
         .disabled(!dockIcon)
         Toggle("App Should Open At Login", isOn: $openAtLogin)
+      } header: {
+        Text("Application")
+      } footer: {
+        Text("System integration for the desktop app — widgets are unaffected.")
       }
 #endif
 // swiftlint:disable:next indentation_width
