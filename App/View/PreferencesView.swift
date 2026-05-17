@@ -54,6 +54,7 @@ struct PreferencesView: View {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
         Toggle("Include Upcoming Birthdays", isOn: $includeBirthdays)
+        // swiftlint:disable:next no_magic_numbers
         Stepper(value: $birthdayDays, in: 1...365) {
           Text("Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
         }

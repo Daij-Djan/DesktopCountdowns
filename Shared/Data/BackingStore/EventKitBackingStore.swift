@@ -11,23 +11,17 @@ import EventKit
 final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
   private let ekStore = EKEventStore()
 
-  var isAvailable: Bool {
-    EKEventStore.authorizationStatus(for: .reminder) == .fullAccess
-  }
-
   func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void) {
-    if isAvailable {
-      self.readAllAuthorized(with: fetchOptions, completion: completion)
+    if EKEventStore.authorizationStatus(for: .reminder) == .fullAccess {
+      readAllAuthorized(with: fetchOptions, completion: completion)
     } else {
-      ekStore.requestFullAccessToReminders { granted, error in
-        if granted {
-          self.readAllAuthorized(with: fetchOptions, completion: completion)
-        } else {
-          print("Error requesting access to EKStore: \(String(describing: error))")
-          DispatchQueue.main.async {
-            completion([])
-          }
+      ekStore.requestFullAccessToReminders { [weak self] granted, error in
+        guard let self, granted else {
+          if let error { print("Error requesting event access for birthdays: \(error)") }
+          completion([])
+          return
         }
+        readAllAuthorized(with: fetchOptions, completion: completion)
       }
     }
   }
@@ -44,7 +38,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
         return
       }
 
-      self.readUpcomingBirthdays(within: fetchOptions.birthdayDays, from: date) { birthdays in
+      readUpcomingBirthdays(within: fetchOptions.birthdayDays, from: date) { birthdays in
         mapped.append(contentsOf: birthdays)
         DispatchQueue.main.async { completion(mapped) }
       }
@@ -61,7 +55,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
           completion([])
           return
         }
-        completion(self.fetchBirthdayReminders(within: days, from: date))
+        completion(fetchBirthdayReminders(within: days, from: date))
       }
     }
   }

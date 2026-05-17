@@ -8,6 +8,7 @@
 import WidgetKit
 
 let kIntervalMinutes = 30
+let kBirthdayDays = 10
 
 struct CountdownsTimelineProvider: TimelineProvider {
   struct Entry: TimelineEntry {
@@ -16,7 +17,7 @@ struct CountdownsTimelineProvider: TimelineProvider {
   }
 
   private let store = ReminderStore.shared
-  private let fetchOptions = FetchOptions(onlyWithDueDate: true, orderByDueDate: true, includeBirthdays: false, birthdayDays: 30)
+  private let fetchOptions = FetchOptions(onlyWithDueDate: true, orderByDueDate: true, includeBirthdays: false, birthdayDays: kBirthdayDays)
 
   func placeholder(in _: Context) -> Self.Entry {
     Self.Entry(date: .now, reminders: Reminder.sampleData)

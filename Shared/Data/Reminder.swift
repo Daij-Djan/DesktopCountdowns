@@ -8,8 +8,8 @@ import Foundation
 
 struct Reminder: Equatable, Identifiable, Hashable {
   enum ReminderType: String, Codable {
-    case regular
-    case birthday
+    case regular = "Regular"
+    case birthday = "Birthday"
   }
 
   var id: String = UUID().uuidString

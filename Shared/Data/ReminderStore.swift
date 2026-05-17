@@ -8,8 +8,6 @@ import Foundation
 
 final class ReminderStore {
   protocol BackingStore {
-    var isAvailable: Bool { get }
-
     func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void)
     func addChangeObserver(handler: @escaping  () -> Void) -> NSObjectProtocol?
   }
@@ -20,10 +18,6 @@ final class ReminderStore {
 #else
   private let engine: BackingStore? = nil
 #endif
-
-  var isAvailable: Bool {
-    engine?.isAvailable ?? false
-  }
 
   private static func filterAndSortReminders(_ input: [Reminder], with fetchOptions: FetchOptions) -> [Reminder] {
     var reminders = input
