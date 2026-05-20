@@ -16,12 +16,13 @@ struct RemindersListItem: View {
   var body: some View {
     HStack {
       if reminder.dueDate != nil {
+        let useHours = Self.shouldUseHours(for: reminder, viewOptions: viewOptions)
         VStack {
-          Text(Self.stringForCountdown(reminder.countDownDays))
+          Text(useHours ? "\(reminder.countDownHours)" : "\(reminder.countDownDays)")
             .font(.system(size: 39, weight: .bold))
             .minimumScaleFactor(0.5)
             .lineLimit(1)
-          Text("DAYS")
+          Text(useHours ? "HOURS" : "DAYS")
             .font(.system(size: 10, weight: .medium))
         }
         .frame(width: 93)
@@ -88,6 +89,13 @@ extension RemindersListItem {
 
   private static func stringForDueDate(_ dueDate: Date, _ hasTime: Bool) -> String {
     dueDate.stringForCurrentLocale(includingTime: hasTime)
+  }
+
+  private static func shouldUseHours(for reminder: Reminder, viewOptions: ViewOptions) -> Bool {
+    viewOptions.showHoursIfLessThanADay
+      && reminder.dueDateHasTime
+      && reminder.countDownHours >= 0
+      && reminder.countDownHours < 24
   }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 let kLogoSize = 64.0
 let kWindowWidth = 450.0
-let kWindowHeight = 780.0
+let kWindowHeight = 950.0
 
 struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
@@ -21,6 +21,7 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.direction) private var direction = ViewOptions.default.direction.rawValue
   @AppStorage(UserDefaults.Key.darkenColorByDueDate) private var darkenColorByDueDate = ViewOptions.default.darkenColorByDueDate
   @AppStorage(UserDefaults.Key.fadeColorByDueDate) private var fadeColorByDueDate = ViewOptions.default.fadeColorByDueDate
+  @AppStorage(UserDefaults.Key.showHoursIfLessThanADay) private var showHoursIfLessThanADay = ViewOptions.default.showHoursIfLessThanADay
 
 #if canImport(AppKit)
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
@@ -59,7 +60,9 @@ struct PreferencesView: View {
           Text("Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
         }
         .disabled(!includeBirthdays)
+      }
 
+      Section("Display") {
 #if !os(watchOS)
 // swiftlint:disable:next indentation_width
         VStack(alignment: .leading) {
@@ -74,9 +77,6 @@ struct PreferencesView: View {
         }
 #endif
 // swiftlint:disable:next indentation_width
-      }
-
-      Section {
         VStack(alignment: .leading) {
           Text("Opacity Of Reminders:")
           Slider(value: $opacity, in: 0...100)
@@ -90,10 +90,14 @@ struct PreferencesView: View {
 
         Toggle("Darken reminders' background color the later they are due", isOn: $darkenColorByDueDate)
         Toggle("Reduce reminders' opacity the later they are due", isOn: $fadeColorByDueDate)
-      } header: {
-        Text("Desktop App Display")
-      } footer: {
-        Text("Applies to the desktop window only — widgets are not affected.")
+        Toggle(isOn: $showHoursIfLessThanADay) {
+          VStack(alignment: .leading) {
+            Text("Show hours remaining when less than a day away")
+            Text("Only applies to reminders that have a time of day set.")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+        }
       }
 
 #if canImport(AppKit)

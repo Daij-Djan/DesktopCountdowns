@@ -31,6 +31,7 @@ extension ViewOptions {
     direction: .flowVertically,
     darkenColorByDueDate: true,
     fadeColorByDueDate: true,
+    showHoursIfLessThanADay: false,
     highpriColor: Color(hex: "e53428"),
     midpriColor: Color(hex: "fed200"),
     lowpriColor: Color(hex: "10aa36"),
@@ -43,6 +44,7 @@ extension ViewOptions {
     direction = defaults.direction
     darkenColorByDueDate = defaults.darkenColorByDueDate
     fadeColorByDueDate = defaults.fadeColorByDueDate
+    showHoursIfLessThanADay = defaults.showHoursIfLessThanADay
     highpriColor = defaults.highpriColor
     midpriColor = defaults.midpriColor
     lowpriColor = defaults.lowpriColor

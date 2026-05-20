@@ -33,6 +33,7 @@ struct ViewOptions {
   let direction: FlowDirection
   let darkenColorByDueDate: Bool
   let fadeColorByDueDate: Bool
+  let showHoursIfLessThanADay: Bool
   let highpriColor: Color
   let midpriColor: Color
   let lowpriColor: Color

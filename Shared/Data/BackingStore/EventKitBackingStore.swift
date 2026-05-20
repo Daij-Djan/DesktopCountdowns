@@ -90,6 +90,7 @@ extension Reminder {
     dueDateHasTime = false
     if let dueDate {
       countDownDays = dueDate.daysBetween(date)
+      countDownHours = dueDate.hoursBetween(date)
     }
     isComplete = false
     priority = 0
@@ -109,6 +110,7 @@ extension Reminder {
         dueDateHasTime = hour != 0 || minute != 0
       }
       countDownDays = dueDate.daysBetween(date)
+      countDownHours = dueDate.hoursBetween(date)
     }
     isComplete = ekReminder.isCompleted
     priority = ekReminder.priority

@@ -20,6 +20,16 @@ extension Date {
     let components = calendar.dateComponents([.day], from: date1, to: date2)
     return components.day ?? 0
   }
+
+  func hoursBetween(_ date: Date?) -> Int {
+    guard let date else {
+      return 0
+    }
+
+    let calendar = Calendar.current
+    let components = calendar.dateComponents([.hour], from: date, to: self)
+    return components.hour ?? 0
+  }
 }
 
 // MARK: string formatting
