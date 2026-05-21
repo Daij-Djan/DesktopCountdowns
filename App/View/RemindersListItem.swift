@@ -11,7 +11,6 @@ import SwiftUI
 struct RemindersListItem: View {
   var reminder: Reminder
   var viewOptions: ViewOptions
-  @Environment(\.colorScheme) private var colorScheme
 
   var body: some View {
     HStack {
@@ -28,6 +27,7 @@ struct RemindersListItem: View {
         .frame(width: 93)
         .fixedSize(horizontal: false, vertical: false)
         Divider()
+          .overlay(Color.white)
       }
       VStack(alignment: .leading) {
         Text(reminder.title)
@@ -38,7 +38,7 @@ struct RemindersListItem: View {
         }
       }
     }
-    .foregroundStyle(colorScheme == .dark ? Color.black : Color.white)
+    .foregroundStyle(Color.white)
     .frame(
       maxWidth: .infinity,
       maxHeight: .infinity,
