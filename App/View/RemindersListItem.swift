@@ -29,12 +29,32 @@ struct RemindersListItem: View {
         Divider()
           .overlay(Color.white)
       }
-      VStack(alignment: .leading) {
-        Text(reminder.title)
-          .font(.system(size: 16, weight: .bold))
+      VStack(alignment: .leading, spacing: 1) {
+        HStack(spacing: 4) {
+          Text(reminder.title)
+            .font(.system(size: 16, weight: .bold))
+          if reminder.isFlagged {
+            Image(systemName: "flag.fill")
+              .font(.system(size: 11))
+              .opacity(0.9)
+              .accessibilityLabel("Flagged")
+          }
+        }
         if let dueDate = reminder.dueDate {
           Text(Self.stringForDueDate(dueDate, reminder.dueDateHasTime))
             .font(.system(size: 13))
+        }
+        if !reminder.tags.isEmpty {
+          HStack(spacing: 4) {
+            ForEach(reminder.tags, id: \.self) { tag in
+              Text("#\(tag)")
+                .font(.system(size: 10, weight: .medium))
+                .padding(.horizontal, 5)
+                .padding(.vertical, 2)
+                .background(Color.white.opacity(0.2))
+                .clipShape(Capsule())
+            }
+          }
         }
       }
     }
