@@ -20,16 +20,46 @@ struct CountdownsWidgetItem: View {
         .frame(minWidth: 36)
 
       VStack(alignment: .leading, spacing: 2) {
-        Text(reminder.title)
-          .font(.system(size: 13, weight: .semibold))
-          .lineLimit(1)
+        HStack(spacing: 3) {
+          Text(reminder.title)
+            .font(.system(size: 13, weight: .semibold))
+            .lineLimit(1)
+          if reminder.isFlagged {
+            Image(systemName: "flag.fill")
+              .font(.system(size: 9))
+              .foregroundStyle(.orange)
+              .accessibilityLabel("Flagged")
+          }
+        }
         if let dueDate = reminder.dueDate {
           Text(dueDate, style: .date)
             .font(.system(size: 11))
             .foregroundStyle(.secondary)
         }
+        if !reminder.tags.isEmpty {
+          HStack(spacing: 3) {
+            ForEach(reminder.tags, id: \.self) { tag in
+              Text("#\(tag)")
+                .font(.system(size: 9, weight: .medium))
+                .foregroundStyle(.secondary)
+            }
+          }
+        }
       }
       Spacer()
+      if let url = reminder.attachmentImageURLs.first {
+        AsyncImage(url: url) { phase in
+          if let image = phase.image {
+            image
+              .resizable()
+              .scaledToFill()
+          } else {
+            Color.clear
+          }
+        }
+        .frame(width: 36, height: 36)
+        .clipShape(RoundedRectangle(cornerRadius: 4))
+      }
     }
   }
 

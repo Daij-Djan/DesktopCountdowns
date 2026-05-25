@@ -13,6 +13,9 @@
 //              .name        → NSString
 //          .flaggedContext  → REMReminderFlaggedContext
 //            .flagged       → BOOL
+//          .attachmentContext → REMReminderAttachmentContext
+//            .attachmentsOfClass:(REMImageAttachment) → NSArray<REMImageAttachment>
+//              .fileURL     → URL (local group-container path)
 
 #if canImport(EventKit)
 import EventKit
@@ -20,6 +23,7 @@ import EventKit
 struct REMPrivateFields {
   var tags: [String] = []
   var isFlagged = false
+  var attachmentImageURLs: [URL] = []
 }
 
 extension EKReminder {
@@ -43,6 +47,19 @@ extension EKReminder {
     // Flagged: flaggedContext → flagged (BOOL — use value(forKey:) to box as NSNumber)
     if let ctx = rem.value(forKey: "flaggedContext") as? AnyObject {
       result.isFlagged = ctx.value(forKey: "flagged") as? Bool ?? false
+    }
+
+    // Image attachment: attachmentContext → attachmentsOfClass:(REMImageAttachment) → fileURL
+    if let ctx = rem.value(forKey: "attachmentContext") as? AnyObject {
+      let ofClassSel = NSSelectorFromString("attachmentsOfClass:")
+
+      if
+        let remImageClass = NSClassFromString("REMImageAttachment"),
+        ctx.responds(to: NSSelectorFromString("attachmentsOfClass:")),
+        let attachments = ctx.perform(ofClassSel, with: remImageClass)?.takeUnretainedValue() as? [AnyObject] {
+        let urls = attachments.compactMap { $0.value(forKey: "fileURL") as? URL }
+        result.attachmentImageURLs = urls
+      }
     }
 
     return result

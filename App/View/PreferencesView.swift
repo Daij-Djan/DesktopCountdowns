@@ -22,6 +22,7 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.darkenColorByDueDate) private var darkenColorByDueDate = ViewOptions.default.darkenColorByDueDate
   @AppStorage(UserDefaults.Key.fadeColorByDueDate) private var fadeColorByDueDate = ViewOptions.default.fadeColorByDueDate
   @AppStorage(UserDefaults.Key.showHoursIfLessThanADay) private var showHoursIfLessThanADay = ViewOptions.default.showHoursIfLessThanADay
+  @AppStorage(UserDefaults.Key.showAttachmentImages) private var showAttachmentImages = ViewOptions.default.showAttachmentImages
 
 #if canImport(AppKit)
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
@@ -98,6 +99,27 @@ struct PreferencesView: View {
               .foregroundStyle(.secondary)
           }
         }
+#if canImport(AppKit)
+// swiftlint:disable:next indentation_width
+        Toggle(isOn: $showAttachmentImages) {
+          VStack(alignment: .leading) {
+            Text("Show attachment images")
+            Text("Requires disk access to read the apple reminders photo data.")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+        }
+        .onChange(of: showAttachmentImages) { _, newValue in
+          if newValue {
+            ScopedAccess.shared.requestAccessOrResume { granted in
+              if !granted { showAttachmentImages = false }
+            }
+          } else {
+            ScopedAccess.shared.stopAccessing()
+          }
+        }
+#endif
+// swiftlint:disable:next indentation_width
       }
 
 #if canImport(AppKit)

@@ -10,6 +10,7 @@ import Foundation
 final class Model: ObservableObject {
   @Published var reminders: [Reminder] = []
   @Published var viewOptions: ViewOptions = .default
+  @Published var imageReloadToken = UUID()
 #if canImport(AppKit)
   @Published var statusBarItemEnabled = true
 #endif

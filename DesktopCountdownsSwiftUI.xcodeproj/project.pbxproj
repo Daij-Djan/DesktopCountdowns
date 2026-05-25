@@ -55,6 +55,7 @@
 				Model.swift,
 				"Options+Defaults.swift",
 				Resources/Assets.xcassets,
+				"ScopedAccess+Attachments.swift",
 				UserDefaults.swift,
 			);
 			target = B36254C82D505D4D00EDEC64 /* App-WatchOS */;

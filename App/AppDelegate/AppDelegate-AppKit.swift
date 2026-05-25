@@ -104,6 +104,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     desktopWindow = DesktopWindow(model: model)
     desktopWindow?.show()
 
+    // restore scoped access to Reminders attachments folder if previously granted and feature is on
+    if UserDefaults.standard.showAttachmentImages {
+      ScopedAccess.shared.startAccessingIfNeeded()
+    }
+
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
@@ -138,12 +143,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
 
+    // reload images immediately after attachments folder access is granted
+    let notificationTokenAttachmentsAccess = NotificationCenter.default.addObserver(
+      forName: ScopedAccess.accessGrantedNotification, object: nil, queue: .main
+    ) { [weak self] _ in
+      self?.model.imageReloadToken = UUID()
+    }
+
     // save tokens for app lifetime
     notificationTokens = [
       notificationTokenDefaultsDidChange,
       notificationTokenDayChange,
       notificationTokenScreenSize,
-      notificationTokenRemindes
+      notificationTokenRemindes,
+      notificationTokenAttachmentsAccess
     ]
   }
 }

@@ -34,6 +34,7 @@ struct ViewOptions {
   let darkenColorByDueDate: Bool
   let fadeColorByDueDate: Bool
   let showHoursIfLessThanADay: Bool
+  let showAttachmentImages: Bool
   let highpriColor: Color
   let midpriColor: Color
   let lowpriColor: Color

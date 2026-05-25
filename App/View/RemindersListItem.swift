@@ -11,6 +11,7 @@ import SwiftUI
 struct RemindersListItem: View {
   var reminder: Reminder
   var viewOptions: ViewOptions
+  var imageReloadToken = UUID()
 
   var body: some View {
     HStack {
@@ -56,6 +57,21 @@ struct RemindersListItem: View {
             }
           }
         }
+      }
+      Spacer()
+      if viewOptions.showAttachmentImages, let url = reminder.attachmentImageURLs.first {
+        AsyncImage(url: url) { phase in
+          if let image = phase.image {
+            image
+              .resizable()
+              .scaledToFill()
+          } else {
+            Color.clear
+          }
+        }
+        .frame(width: 52, height: 52)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .id(imageReloadToken)
       }
     }
     .foregroundStyle(Color.white)

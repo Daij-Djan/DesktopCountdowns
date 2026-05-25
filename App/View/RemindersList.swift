@@ -21,7 +21,7 @@ struct RemindersList: View {
 // swiftlint:disable:next indentation_width
     VStack {
       List(model.reminders, id: \.self) { reminder in
-        RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
+        RemindersListItem(reminder: reminder, viewOptions: model.viewOptions, imageReloadToken: model.imageReloadToken)
       }
     }
     .padding()
@@ -68,7 +68,7 @@ extension RemindersList {
           spacing: kGridSpacing
         ) {
           ForEach(model.reminders, id: \.self) { reminder in
-            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
+            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions, imageReloadToken: model.imageReloadToken)
               .frame(width: cellWidth, height: cellHeight)
           }
         }
@@ -82,7 +82,7 @@ extension RemindersList {
           spacing: kGridSpacing
         ) {
           ForEach(model.reminders, id: \.self) { reminder in
-            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions)
+            RemindersListItem(reminder: reminder, viewOptions: model.viewOptions, imageReloadToken: model.imageReloadToken)
               .frame(width: cellWidth, height: cellHeight)
           }
         }

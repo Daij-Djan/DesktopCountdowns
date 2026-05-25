@@ -113,6 +113,7 @@ extension Reminder {
     let fields = ekReminder.remPrivateFields
     tags = fields.tags
     isFlagged = fields.isFlagged
+    attachmentImageURLs = fields.attachmentImageURLs
   }
 }
 #endif

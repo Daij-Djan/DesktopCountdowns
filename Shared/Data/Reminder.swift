@@ -23,6 +23,7 @@ struct Reminder: Equatable, Identifiable, Hashable {
   var isFlagged = false
   var priority: Int = 0 // RFC 5545 allows priority to be specified with an integer in the range of 0-9, with 0 representing an undefined priority, 1 the highest priority, and 9 the lowest priority.
   var tags: [String] = []
+  var attachmentImageURLs: [URL] = []
   var reminderType: ReminderType = .regular
 }
 

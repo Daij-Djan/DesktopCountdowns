@@ -32,6 +32,7 @@ extension ViewOptions {
     darkenColorByDueDate: true,
     fadeColorByDueDate: true,
     showHoursIfLessThanADay: false,
+    showAttachmentImages: false,
     highpriColor: Color(hex: "e53428"),
     midpriColor: Color(hex: "fed200"),
     lowpriColor: Color(hex: "10aa36"),
@@ -45,6 +46,7 @@ extension ViewOptions {
     darkenColorByDueDate = defaults.darkenColorByDueDate
     fadeColorByDueDate = defaults.fadeColorByDueDate
     showHoursIfLessThanADay = defaults.showHoursIfLessThanADay
+    showAttachmentImages = defaults.showAttachmentImages
     highpriColor = defaults.highpriColor
     midpriColor = defaults.midpriColor
     lowpriColor = defaults.lowpriColor
