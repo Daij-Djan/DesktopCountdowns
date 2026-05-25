@@ -100,20 +100,19 @@ extension Reminder {
   init(with ekReminder: EKReminder, for date: Date) {
     id = ekReminder.calendarItemIdentifier
     title = ekReminder.title
-    dueDate = ekReminder.dueDateComponents?.date
-    if dueDate == nil {
-      dueDate = ekReminder.alarms?.first?.absoluteDate
-    }
+    dueDate = ekReminder.dueDateComponents?.date ?? ekReminder.alarms?.first?.absoluteDate
     if let dueDate {
       let comps = Calendar.current.dateComponents([.hour, .minute], from: dueDate)
-      if let hour = comps.hour, let minute = comps.minute {
-        dueDateHasTime = hour != 0 || minute != 0
-      }
+      dueDateHasTime = (comps.hour ?? 0) != 0 || (comps.minute ?? 0) != 0
       countDownDays = dueDate.daysBetween(date)
       countDownHours = dueDate.hoursBetween(date)
     }
     isComplete = ekReminder.isCompleted
     priority = ekReminder.priority
+
+    let fields = ekReminder.remPrivateFields
+    tags = fields.tags
+    isFlagged = fields.isFlagged
   }
 }
 #endif
