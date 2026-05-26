@@ -33,7 +33,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     ekStore.fetchReminders(matching: predicate) { [weak self] ekReminders in
       var mapped = (ekReminders ?? []).map { Reminder(with: $0, for: date) }
 
-      guard let self, fetchOptions.includeBirthdays, fetchOptions.birthdayDays > 0 else {
+      guard let self, fetchOptions.includeBirthdays, fetchOptions.birthdayDays >= 0 else {
         DispatchQueue.main.async { completion(mapped) }
         return
       }
@@ -67,11 +67,12 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     }
 
     let calendar = Calendar.current
-    guard let endDate = calendar.date(byAdding: .day, value: days, to: date) else {
+    let startDate = calendar.startOfDay(for: date)
+    guard let endDate = calendar.date(byAdding: .day, value: days+1, to: startDate) else {
       return []
     }
 
-    let predicate = ekStore.predicateForEvents(withStart: date, end: endDate, calendars: birthdayCalendars)
+    let predicate = ekStore.predicateForEvents(withStart: startDate, end: endDate, calendars: birthdayCalendars)
     return ekStore.events(matching: predicate).map { Reminder(birthday: $0, for: date) }
   }
 

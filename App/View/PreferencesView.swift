@@ -58,11 +58,12 @@ struct PreferencesView: View {
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
         Toggle("Include Upcoming Birthdays", isOn: $includeBirthdays)
         // swiftlint:disable:next no_magic_numbers
-        Stepper(value: $birthdayDays, in: 1...365) {
-          Text("Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
+        Stepper(value: $birthdayDays, in: 0...365) {
+          Text(birthdayDays == 0 ? "Today's Birthdays" : "Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
         }
         .disabled(!includeBirthdays)
         Toggle("Group Birthdays Falling on the Same Day", isOn: $groupByDay)
+          .disabled(!includeBirthdays)
       }
 
       Section("Display") {
@@ -75,7 +76,8 @@ struct PreferencesView: View {
             colorPickerItem("MidPri", key: UserDefaults.Key.midpriColor, default: ViewOptions.default.midpriColor)
             colorPickerItem("HighPri", key: UserDefaults.Key.highpriColor, default: ViewOptions.default.highpriColor)
             colorPickerItem("Default", key: UserDefaults.Key.defaultColor, default: ViewOptions.default.defaultColor)
-            colorPickerItem("Birthday", key: UserDefaults.Key.birthdayColor, default: ViewOptions.default.birthdayColor).disabled(!includeBirthdays)
+            colorPickerItem("Birthday", key: UserDefaults.Key.birthdayColor, default: ViewOptions.default.birthdayColor)
+              .disabled(!includeBirthdays)
           }
         }
 #endif
