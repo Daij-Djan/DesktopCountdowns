@@ -27,6 +27,43 @@ struct Reminder: Equatable, Identifiable, Hashable {
   var reminderType: ReminderType = .regular
 }
 
+extension Reminder {
+  static func groupedByDay(_ reminders: [Reminder]) -> [Reminder] {
+    let calendar = Calendar.current
+    var groups: [[Reminder]] = []
+    var keyToGroupIndex: [String: Int] = [:]
+
+    for reminder in reminders {
+      guard let dueDate = reminder.dueDate, reminder.reminderType == .birthday else {
+        groups.append([reminder])
+        continue
+      }
+      let key = "birthday|\(Int(calendar.startOfDay(for: dueDate).timeIntervalSinceReferenceDate))"
+      if let idx = keyToGroupIndex[key] {
+        groups[idx].append(reminder)
+      } else {
+        keyToGroupIndex[key] = groups.count
+        groups.append([reminder])
+      }
+    }
+
+    return groups.map { $0.count > 1 ? merged(from: $0) : $0[0] }
+  }
+
+  private static func merged(from reminders: [Reminder]) -> Reminder {
+    var base = reminders[0]
+    let titles = reminders.map(\.title)
+    base.title = titles.count == 2
+      ? "\(titles[0]) & \(titles[1])"
+      : "\(titles[0]), \(titles[1]) & \(titles.count - 2) more"
+    base.isFlagged = reminders.contains { $0.isFlagged }
+    base.tags = Array(Set(reminders.flatMap(\.tags)))
+    let nonZero = reminders.compactMap { $0.priority > 0 ? $0.priority : nil }
+    base.priority = nonZero.min() ?? 0
+    return base
+  }
+}
+
 #if DEBUG
 // swiftlint:disable no_magic_numbers
 extension Reminder {

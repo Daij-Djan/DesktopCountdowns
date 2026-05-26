@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // fetch reminders
     reminderStore.readAll(with: fetchOptions) { reminders in
       // update model
-      self.model.reminders = reminders
+      self.model.reminders = viewOptions.groupByDay ? Reminder.groupedByDay(reminders) : reminders
       self.model.viewOptions = viewOptions
       self.model.statusBarItemEnabled = appOptions.statusBarItem
     }

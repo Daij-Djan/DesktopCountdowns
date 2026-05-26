@@ -23,6 +23,7 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.fadeColorByDueDate) private var fadeColorByDueDate = ViewOptions.default.fadeColorByDueDate
   @AppStorage(UserDefaults.Key.showHoursIfLessThanADay) private var showHoursIfLessThanADay = ViewOptions.default.showHoursIfLessThanADay
   @AppStorage(UserDefaults.Key.showAttachmentImages) private var showAttachmentImages = ViewOptions.default.showAttachmentImages
+  @AppStorage(UserDefaults.Key.groupByDay) private var groupByDay = ViewOptions.default.groupByDay
 
 #if canImport(AppKit)
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
@@ -52,7 +53,7 @@ struct PreferencesView: View {
         }
       }
 
-      Section("Reminders") {
+      Section("Data") {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
         Toggle("Include Upcoming Birthdays", isOn: $includeBirthdays)
@@ -61,6 +62,7 @@ struct PreferencesView: View {
           Text("Birthdays Within Next \(birthdayDays) Day\(birthdayDays == 1 ? "" : "s")")
         }
         .disabled(!includeBirthdays)
+        Toggle("Group Birthdays Falling on the Same Day", isOn: $groupByDay)
       }
 
       Section("Display") {

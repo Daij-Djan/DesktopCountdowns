@@ -22,6 +22,7 @@ extension UserDefaults {
     static let fadeColorByDueDate = "fadeColorByDueDate"
     static let showHoursIfLessThanADay = "showHoursIfLessThanADay"
     static let showAttachmentImages = "showAttachmentImages"
+    static let groupByDay = "groupBirthdaysByDay"
     static let highpriColor = "highpriColor"
     static let midpriColor = "midpriColor"
     static let lowpriColor = "lowpriColor"
@@ -46,6 +47,7 @@ extension UserDefaults {
       fadeColorByDueDate,
       showHoursIfLessThanADay,
       showAttachmentImages,
+      groupByDay,
       highpriColor,
       midpriColor,
       lowpriColor,
@@ -109,6 +111,10 @@ extension UserDefaults {
 
   var showAttachmentImages: Bool {
     bool(forKey: Key.showAttachmentImages)
+  }
+
+  var groupByDay: Bool {
+    bool(forKey: Key.groupByDay)
   }
 
   var highpriColor: Color {
@@ -175,6 +181,7 @@ extension UserDefaults {
       Key.fadeColorByDueDate: ViewOptions.default.fadeColorByDueDate,
       Key.showHoursIfLessThanADay: ViewOptions.default.showHoursIfLessThanADay,
       Key.showAttachmentImages: ViewOptions.default.showAttachmentImages,
+      Key.groupByDay: ViewOptions.default.groupByDay,
 
       Key.highpriColor: ViewOptions.default.highpriColor.rawValue,
       Key.midpriColor: ViewOptions.default.midpriColor.rawValue,
