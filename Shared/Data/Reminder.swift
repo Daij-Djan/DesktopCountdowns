@@ -53,10 +53,12 @@ extension Reminder {
   private static func merged(from reminders: [Reminder]) -> Reminder {
     var base = reminders[0]
     let titles = reminders.map(\.title)
+    // swiftlint:disable no_magic_numbers
     base.title = titles.count == 2
       ? "\(titles[0]) & \(titles[1])"
       : "\(titles[0]), \(titles[1]) & \(titles.count - 2) more"
-    base.isFlagged = reminders.contains { $0.isFlagged }
+    // swiftlint:enable no_magic_numbers
+    base.isFlagged = reminders.contains(where: \.isFlagged)
     base.tags = Array(Set(reminders.flatMap(\.tags)))
     let nonZero = reminders.compactMap { $0.priority > 0 ? $0.priority : nil }
     base.priority = nonZero.min() ?? 0

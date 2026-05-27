@@ -74,7 +74,6 @@ extension RemindersList {
         }
       }
       .scrollIndicators(.hidden)
-
     case .flowVertically:
       ScrollView(.horizontal) {
         LazyHGrid(

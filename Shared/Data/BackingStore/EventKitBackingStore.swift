@@ -68,7 +68,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
 
     let calendar = Calendar.current
     let startDate = calendar.startOfDay(for: date)
-    guard let endDate = calendar.date(byAdding: .day, value: days+1, to: startDate) else {
+    guard let endDate = calendar.date(byAdding: .day, value: days + 1, to: startDate) else {
       return []
     }
 

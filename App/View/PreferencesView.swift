@@ -9,9 +9,14 @@ import SwiftUI
 
 let kLogoSize = 64.0
 let kWindowWidth = 450.0
-let kWindowHeight = 950.0
 
 struct PreferencesView: View {
+#if canImport(AppKit)
+  private enum Tab: Hashable { case data, display, app }
+#else
+  private enum Tab: Hashable { case data, display }
+#endif
+
   @AppStorage(UserDefaults.Key.onlyWithDueDate) private var onlyWithDueDate = FetchOptions.default.onlyWithDueDate
   @AppStorage(UserDefaults.Key.orderByDueDate) private var orderByDueDate = FetchOptions.default.orderByDueDate
   @AppStorage(UserDefaults.Key.includeBirthdays) private var includeBirthdays = FetchOptions.default.includeBirthdays
@@ -31,28 +36,50 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.openAtLogin) private var openAtLogin = AppOptions.default.openAtLogin
 #endif
 
-  var body: some View {
-    Form {
-      Section {
-        HStack {
-          Spacer()
-          VStack {
-            Image(.prefsIcon)
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(height: kLogoSize)
-              .accessibilityLabel("logo")
-            Text("Copyright 2025 Dominik Pich")
-              .font(.footnote)
-            if let url = URL(string: "https://www.pich.info") {
-              Link("https://www.pich.info", destination: url)
-                .font(.footnote)
-            }
-          }
-          Spacer()
-        }
-      }
+  @State private var selectedTab: Tab = .data
 
+  // swiftlint:disable no_magic_numbers
+  private var tabHeight: CGFloat {
+    switch selectedTab {
+    case .data:
+      380
+    case .display:
+      570
+    case .app:
+      350
+    }
+  }
+  // swiftlint:enable no_magic_numbers
+
+  var body: some View {
+    TabView(selection: $selectedTab) {
+      dataTab
+        .tabItem { Label("Data", systemImage: "list.bullet") }
+        .tag(Tab.data)
+      displayTab
+        .tabItem { Label("Display", systemImage: "paintbrush") }
+        .tag(Tab.display)
+#if canImport(AppKit)
+// swiftlint:disable:next indentation_width
+      appTab
+        .tabItem { Label("App", systemImage: "gearshape") }
+        .tag(Tab.app)
+#endif
+// swiftlint:disable:next indentation_width
+    }
+    .frame(width: kWindowWidth, height: tabHeight)
+    // swiftlint:disable:next no_magic_numbers
+    .animation(.easeInOut(duration: 0.2), value: selectedTab)
+#if canImport(AppKit)
+// swiftlint:disable:next indentation_width
+    .onDisappear {
+      NSColorPanel.shared.close()
+    }
+#endif
+  }
+
+  private var dataTab: some View {
+    Form {
       Section("Data") {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
@@ -65,7 +92,13 @@ struct PreferencesView: View {
         Toggle("Group Birthdays Falling on the Same Day", isOn: $groupByDay)
           .disabled(!includeBirthdays)
       }
+      logoFooter
+    }
+    .formStyle(.grouped)
+  }
 
+  private var displayTab: some View {
+    Form {
       Section("Display") {
 #if !os(watchOS)
 // swiftlint:disable:next indentation_width
@@ -125,9 +158,14 @@ struct PreferencesView: View {
 #endif
 // swiftlint:disable:next indentation_width
       }
+      logoFooter
+    }
+    .formStyle(.grouped)
+  }
 
 #if canImport(AppKit)
-// swiftlint:disable:next indentation_width
+  private var appTab: some View {
+    Form {
       Section {
         Toggle("App Should Show Dock Icon", isOn: $dockIcon)
         Toggle("App Should Show Menubar Icon", isOn: Binding(
@@ -141,17 +179,32 @@ struct PreferencesView: View {
       } footer: {
         Text("System integration for the desktop app — widgets are unaffected.")
       }
-#endif
-// swiftlint:disable:next indentation_width
+      logoFooter
     }
     .formStyle(.grouped)
-    .frame(width: kWindowWidth, height: kWindowHeight)
-#if canImport(AppKit)
-// swiftlint:disable:next indentation_width
-    .onDisappear {
-      NSColorPanel.shared.close()
-    }
+  }
 #endif
+
+  private var logoFooter: some View {
+    Section {
+      HStack {
+        Spacer()
+        VStack {
+          Image(.prefsIcon)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: kLogoSize)
+            .accessibilityLabel("logo")
+          Text("Copyright 2025 Dominik Pich")
+            .font(.footnote)
+          if let url = URL(string: "https://www.pich.info") {
+            Link("https://www.pich.info", destination: url)
+              .font(.footnote)
+          }
+        }
+        Spacer()
+      }
+    }
   }
 
 #if !os(watchOS)
