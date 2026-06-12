@@ -109,6 +109,7 @@ extension Reminder {
       countDownHours = dueDate.hoursBetween(date)
     }
     isComplete = ekReminder.isCompleted
+    hasAlarms = ekReminder.hasAlarms
     priority = ekReminder.priority
 
     let fields = ekReminder.remPrivateFields

@@ -40,6 +40,12 @@ struct RemindersListItem: View {
               .opacity(0.9)
               .accessibilityLabel("Flagged")
           }
+          if reminder.hasAlarms {
+            Image(systemName: "bell.fill")
+              .font(.system(size: 11))
+              .opacity(0.9)
+              .accessibilityLabel("Has alarm")
+          }
         }
         if let dueDate = reminder.dueDate {
           Text(Self.stringForDueDate(dueDate, reminder.dueDateHasTime))

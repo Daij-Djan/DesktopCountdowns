@@ -21,6 +21,7 @@ struct Reminder: Equatable, Identifiable, Hashable {
   var notes: String?
   var isComplete = false
   var isFlagged = false
+  var hasAlarms = false
   var priority: Int = 0 // RFC 5545 allows priority to be specified with an integer in the range of 0-9, with 0 representing an undefined priority, 1 the highest priority, and 9 the lowest priority.
   var tags: [String] = []
   var attachmentImageURLs: [URL] = []
@@ -59,6 +60,7 @@ extension Reminder {
       : "\(titles[0]), \(titles[1]) & \(titles.count - 2) more"
     // swiftlint:enable no_magic_numbers
     base.isFlagged = reminders.contains(where: \.isFlagged)
+    base.hasAlarms = reminders.contains(where: \.hasAlarms)
     base.tags = Array(Set(reminders.flatMap(\.tags)))
     let nonZero = reminders.compactMap { $0.priority > 0 ? $0.priority : nil }
     base.priority = nonZero.min() ?? 0
