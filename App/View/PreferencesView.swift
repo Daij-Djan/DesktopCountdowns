@@ -45,8 +45,12 @@ struct PreferencesView: View {
       380
     case .display:
       570
+#if canImport(AppKit)
+// swiftlint:disable:next indentation_width
     case .app:
       350
+#endif
+// swiftlint:disable:next indentation_width
     }
   }
   // swiftlint:enable no_magic_numbers
