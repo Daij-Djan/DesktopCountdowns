@@ -96,10 +96,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationDidFinishLaunching(_: Notification) {
+    #if DEBUG
     // for preview mode, we dont want to do anything
     if DeveloperUtils.isInPreviewMode() {
       return
     }
+    #endif
 
     desktopWindow = DesktopWindow(model: model)
     desktopWindow?.show()
