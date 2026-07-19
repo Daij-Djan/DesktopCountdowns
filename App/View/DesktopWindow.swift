@@ -62,7 +62,9 @@ struct DesktopWindow {
     }
     let inset = model.viewOptions.screenFrameInset
     let rect = NSScreen.main?.visibleFrame.insetBy(dx: inset, dy: inset) ?? .zero
-    window.setFrame(rect, display: true)
+    if window.frame != rect {
+      window.setFrame(rect, display: true)
+    }
   }
 }
 #endif

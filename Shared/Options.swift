@@ -23,7 +23,7 @@ struct FetchOptions {
 #endif
 }
 
-struct ViewOptions {
+struct ViewOptions: Equatable {
   enum FlowDirection: Int {
     case flowHorizontally = 0
     case flowVertically = 1
@@ -55,7 +55,7 @@ struct ViewOptions {
 }
 
 #if canImport(AppKit)
-struct AppOptions {
+struct AppOptions: Equatable {
   let dockIcon: Bool
   let statusBarItem: Bool
   let openAtLogin: Bool

@@ -68,8 +68,8 @@ extension Reminder {
   }
 }
 
-/// sample data for DEBUG mode and widget
 // swiftlint:disable no_magic_numbers
+/// sample data for DEBUG mode and widget
 extension Reminder {
   private static var secondsInADay = 86_400.0
 

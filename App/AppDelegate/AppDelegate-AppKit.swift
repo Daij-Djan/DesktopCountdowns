@@ -33,8 +33,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   @objc
   func applySettings() {
     let appOptions = AppOptions(from: UserDefaults.standard)
-    let fetchOptions = FetchOptions(from: UserDefaults.standard)
-    let viewOptions = ViewOptions(from: UserDefaults.standard)
 
     // apply dock icon
     #if DEBUG
@@ -62,15 +60,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     // fetch reminders
-    reminderStore.readAll(with: fetchOptions) { reminders in
-      // update model
-      self.model.reminders = viewOptions.groupByDay ? Reminder.groupedByDay(reminders) : reminders
-      self.model.viewOptions = viewOptions
-      self.model.statusBarItemEnabled = appOptions.statusBarItem
-    }
+    reloadReminders()
 
     wasCalledBefore = true
     desktopWindow?.updateFrame()
+  }
+
+  @objc
+  func reloadReminders() {
+    let appOptions = AppOptions(from: UserDefaults.standard)
+    let fetchOptions = FetchOptions(from: UserDefaults.standard)
+    let viewOptions = ViewOptions(from: UserDefaults.standard)
+
+    reminderStore.readAll(with: fetchOptions) { reminders in
+      // update model, but only publish what actually changed to avoid needless UI rebuilds
+      let newReminders = viewOptions.groupByDay ? Reminder.groupedByDay(reminders) : reminders
+      if self.model.reminders != newReminders {
+        self.model.reminders = newReminders
+      }
+      if self.model.viewOptions != viewOptions {
+        self.model.viewOptions = viewOptions
+      }
+      if self.model.statusBarItemEnabled != appOptions.statusBarItem {
+        self.model.statusBarItemEnabled = appOptions.statusBarItem
+      }
+    }
   }
 
   func application(_: NSApplication, open urls: [URL]) {
@@ -139,10 +153,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
 
-    // act on reminder change
+    // act on reminder change; only refetch reminders, the app settings are unaffected
+    let reloadSel = #selector(reloadReminders)
     let notificationTokenRemindes = reminderStore.addChangeObserver {
-      NSObject.cancelPreviousPerformRequests(withTarget: self)
-      self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
+      NSObject.cancelPreviousPerformRequests(withTarget: self, selector: reloadSel, object: nil)
+      self.perform(reloadSel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
 
     // reload images immediately after attachments folder access is granted
