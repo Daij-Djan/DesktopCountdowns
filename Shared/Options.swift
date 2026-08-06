@@ -16,6 +16,8 @@ struct FetchOptions {
   let orderByDueDate: Bool
   let includeBirthdays: Bool
   let birthdayDays: Int
+  let includeCalendarEvents: Bool
+  let calendarDays: Int
 
   let onlyIncomplete = true
 #if DEBUG
@@ -41,6 +43,7 @@ struct ViewOptions: Equatable {
   let lowpriColor: Color
   let defaultColor: Color
   let birthdayColor: Color
+  let calendarColor: Color
 
   let screenFrameInset = 6.0
   let cellSize = CGSize(width: 386.0, height: 86.0)

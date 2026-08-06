@@ -15,6 +15,8 @@ extension UserDefaults {
     static let orderByDueDate = "orderByDueDate"
     static let includeBirthdays = "includeBirthdays"
     static let birthdayDays = "birthdayDays"
+    static let includeCalendarEvents = "includeCalendarEvents"
+    static let calendarDays = "calendarDays"
 
     static let opacity = "opacity"
     static let direction = "direction"
@@ -28,6 +30,7 @@ extension UserDefaults {
     static let lowpriColor = "lowpriColor"
     static let defaultColor = "defaultColor"
     static let birthdayColor = "birthdayColor"
+    static let calendarColor = "calendarColor"
 
     static let dockIcon = "dockIcon"
     static let statusBarItem = "statusBarItem"
@@ -41,6 +44,8 @@ extension UserDefaults {
       orderByDueDate,
       includeBirthdays,
       birthdayDays,
+      includeCalendarEvents,
+      calendarDays,
       opacity,
       direction,
       darkenColorByDueDate,
@@ -53,6 +58,7 @@ extension UserDefaults {
       lowpriColor,
       defaultColor,
       birthdayColor,
+      calendarColor,
       dockIcon,
       statusBarItem,
       openAtLogin,
@@ -83,6 +89,14 @@ extension UserDefaults {
 
   var birthdayDays: Int {
     integer(forKey: Key.birthdayDays)
+  }
+
+  var includeCalendarEvents: Bool {
+    bool(forKey: Key.includeCalendarEvents)
+  }
+
+  var calendarDays: Int {
+    integer(forKey: Key.calendarDays)
   }
 
   var opacity: CGFloat {
@@ -137,6 +151,10 @@ extension UserDefaults {
     color(forKey: Key.birthdayColor) ?? ViewOptions.default.birthdayColor
   }
 
+  var calendarColor: Color {
+    color(forKey: Key.calendarColor) ?? ViewOptions.default.calendarColor
+  }
+
   var dockIcon: Bool {
     bool(forKey: Key.dockIcon)
   }
@@ -173,6 +191,8 @@ extension UserDefaults {
       Key.onlyWithDueDate: FetchOptions.default.onlyWithDueDate,
       Key.includeBirthdays: FetchOptions.default.includeBirthdays,
       Key.birthdayDays: FetchOptions.default.birthdayDays,
+      Key.includeCalendarEvents: FetchOptions.default.includeCalendarEvents,
+      Key.calendarDays: FetchOptions.default.calendarDays,
 
       // interface builder uses 0-100 for slider, CALayer uses 0-1 for opacity
       Key.opacity: ViewOptions.default.opacity * 100,
@@ -187,7 +207,8 @@ extension UserDefaults {
       Key.midpriColor: ViewOptions.default.midpriColor.rawValue,
       Key.lowpriColor: ViewOptions.default.lowpriColor.rawValue,
       Key.defaultColor: ViewOptions.default.defaultColor.rawValue,
-      Key.birthdayColor: ViewOptions.default.birthdayColor.rawValue
+      Key.birthdayColor: ViewOptions.default.birthdayColor.rawValue,
+      Key.calendarColor: ViewOptions.default.calendarColor.rawValue
     ]
     #if canImport(AppKit)
       let values2: [String: Any] = [

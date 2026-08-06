@@ -63,6 +63,16 @@ struct RemindersListItem: View {
             }
           }
         }
+        if let location = reminder.location, !location.isEmpty {
+          HStack(spacing: 3) {
+            Image(systemName: "mappin.and.ellipse")
+              .font(.system(size: 10))
+            Text(location)
+              .font(.system(size: 11))
+              .lineLimit(1)
+          }
+          .opacity(0.9)
+        }
       }
       Spacer()
       if viewOptions.showAttachmentImages, let url = reminder.attachmentImageURLs.first {
@@ -116,6 +126,8 @@ extension RemindersListItem {
     switch reminder.reminderType {
     case .birthday:
       color = viewOptions.birthdayColor
+    case .calendar:
+      color = viewOptions.calendarColor
     case .regular:
       color = Self.backgroundColorForPriority(reminder.priority, viewOptions)
     }

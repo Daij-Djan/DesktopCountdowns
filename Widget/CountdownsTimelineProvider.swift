@@ -17,7 +17,7 @@ struct CountdownsTimelineProvider: TimelineProvider {
   }
 
   private let store = ReminderStore.shared
-  private let fetchOptions = FetchOptions(onlyWithDueDate: true, orderByDueDate: true, includeBirthdays: false, birthdayDays: kBirthdayDays)
+  private let fetchOptions = FetchOptions(onlyWithDueDate: true, orderByDueDate: true, includeBirthdays: false, birthdayDays: kBirthdayDays, includeCalendarEvents: false, calendarDays: kBirthdayDays)
 
   func placeholder(in _: Context) -> Self.Entry {
     Self.Entry(date: .now, reminders: Reminder.sampleData)

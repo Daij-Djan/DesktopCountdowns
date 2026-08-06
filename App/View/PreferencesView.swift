@@ -21,6 +21,8 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.orderByDueDate) private var orderByDueDate = FetchOptions.default.orderByDueDate
   @AppStorage(UserDefaults.Key.includeBirthdays) private var includeBirthdays = FetchOptions.default.includeBirthdays
   @AppStorage(UserDefaults.Key.birthdayDays) private var birthdayDays = FetchOptions.default.birthdayDays
+  @AppStorage(UserDefaults.Key.includeCalendarEvents) private var includeCalendarEvents = FetchOptions.default.includeCalendarEvents
+  @AppStorage(UserDefaults.Key.calendarDays) private var calendarDays = FetchOptions.default.calendarDays
 
   @AppStorage(UserDefaults.Key.opacity) private var opacity: Double = 90
   @AppStorage(UserDefaults.Key.direction) private var direction = ViewOptions.default.direction.rawValue
@@ -42,13 +44,13 @@ struct PreferencesView: View {
   private var tabHeight: CGFloat {
     switch selectedTab {
     case .data:
-      380
+      625
     case .display:
-      570
+      580
 #if canImport(AppKit)
 // swiftlint:disable:next indentation_width
     case .app:
-      350
+      355
 #endif
 // swiftlint:disable:next indentation_width
     }
@@ -84,9 +86,22 @@ struct PreferencesView: View {
 
   private var dataTab: some View {
     Form {
-      Section("Data") {
+      Section("Reminders") {
         Toggle("Show Only Reminders With Due Date", isOn: $onlyWithDueDate)
         Toggle("Show Reminders Ordered By Due Date", isOn: $orderByDueDate)
+      }
+      Section("Calendar") {
+        Toggle("Include Upcoming Calendar Events", isOn: $includeCalendarEvents)
+        // swiftlint:disable:next no_magic_numbers
+        Stepper(value: $calendarDays, in: 0...365) {
+          Text(calendarDays == 0 ? "Today's Events" : "Events Within Next \(calendarDays) Day\(calendarDays == 1 ? "" : "s")")
+        }
+        .disabled(!includeCalendarEvents)
+        Text("Calendar events are taken from your private/primary calendar. Start time becomes due date, alarms and location are mapped.")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+      }
+      Section("Birthdays") {
         Toggle("Include Upcoming Birthdays", isOn: $includeBirthdays)
         // swiftlint:disable:next no_magic_numbers
         Stepper(value: $birthdayDays, in: 0...365) {
@@ -115,6 +130,8 @@ struct PreferencesView: View {
             colorPickerItem("Default", key: UserDefaults.Key.defaultColor, default: ViewOptions.default.defaultColor)
             colorPickerItem("Birthday", key: UserDefaults.Key.birthdayColor, default: ViewOptions.default.birthdayColor)
               .disabled(!includeBirthdays)
+            colorPickerItem("Calendar", key: UserDefaults.Key.calendarColor, default: ViewOptions.default.calendarColor)
+              .disabled(!includeCalendarEvents)
           }
         }
 #endif
