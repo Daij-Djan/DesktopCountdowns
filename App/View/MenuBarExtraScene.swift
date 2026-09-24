@@ -81,23 +81,7 @@ struct MenuBarExtraScene: Scene {
   @ObservedObject var model: Model
 
   var body: some Scene {
-    MenuBarExtra(
-      isInserted: Binding(
-        get: { model.statusBarItemEnabled },
-        set: { newValue in
-          // MenuBarExtra writes the insertion state back on every scene update;
-          // republishing an unchanged value would retrigger the update in an endless loop
-          guard model.statusBarItemEnabled != newValue else {
-            return
-          }
-          DispatchQueue.main.async {
-            if model.statusBarItemEnabled != newValue {
-              model.statusBarItemEnabled = newValue
-            }
-          }
-        }
-      )
-    ) {
+    MenuBarExtra(isInserted: model.statusBarItemEnabledBinding) {
       StatusBarMenu(model: model)
     } label: {
       MenuBarLabel(model: model)
