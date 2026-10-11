@@ -22,6 +22,7 @@ struct DesktopWindow {
 
     let inset = model.viewOptions.screenFrameInset
     let rect = NSScreen.main?.visibleFrame.insetBy(dx: inset, dy: inset) ?? .zero
+    DebugLog.log("show: \(Self.screenDescription), inset=\(inset) -> frame=\(rect)")
 
     let window = NSWindow(
       contentRect: rect,
@@ -49,9 +50,11 @@ struct DesktopWindow {
 
     self.window = window
     window.orderFrontRegardless()
+    DebugLog.log("show: window level=\(window.level.rawValue), visible=\(window.isVisible), onActiveSpace=\(window.isOnActiveSpace)")
   }
 
   mutating func hide() {
+    DebugLog.log("hide")
     window?.orderOut(nil)
     window = nil
   }
@@ -63,8 +66,20 @@ struct DesktopWindow {
     let inset = model.viewOptions.screenFrameInset
     let rect = NSScreen.main?.visibleFrame.insetBy(dx: inset, dy: inset) ?? .zero
     if window.frame != rect {
+      DebugLog.log("updateFrame: \(window.frame) -> \(rect), \(Self.screenDescription)")
       window.setFrame(rect, display: true)
+    } else {
+      DebugLog.log("updateFrame: unchanged \(rect)")
     }
+  }
+}
+
+extension DesktopWindow {
+  private static var screenDescription: String {
+    let screens = NSScreen.screens.map { screen in
+      "\(screen.localizedName)\(screen == NSScreen.main ? " (main)" : "") frame=\(screen.frame) visible=\(screen.visibleFrame) scale=\(screen.backingScaleFactor)"
+    }
+    return "screens: [\(screens.joined(separator: "; "))]"
   }
 }
 #endif

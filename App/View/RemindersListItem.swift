@@ -82,6 +82,9 @@ struct RemindersListItem: View {
             image
               .resizable()
               .scaledToFill()
+          } else if case .failure(let error) = phase {
+            Color.clear
+              .debugLog("attachment image failed for '\(reminder.title)' \(url.lastPathComponent): \(error)")
           } else {
             Color.clear
           }
@@ -102,6 +105,7 @@ struct RemindersListItem: View {
     .background(Self.backgroundColorForReminder(reminder, viewOptions))
     .clipShape(RoundedRectangle(cornerRadius: viewOptions.cellCornerRadius))
     .opacity(Self.opacityForReminder(reminder, viewOptions))
+    .debugLog("cell body: '\(reminder.title)' type=\(reminder.reminderType) days=\(reminder.countDownDays)")
   }
 }
 

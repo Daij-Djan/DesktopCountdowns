@@ -24,6 +24,7 @@ struct MultiplatformApp: App {
     Settings {
       PreferencesView()
     }
+    .debugLog("app scene body")
     MenuBarExtraScene(model: appDelegate.model)
 #else
 // swiftlint:disable:next indentation_width
@@ -32,6 +33,7 @@ struct MultiplatformApp: App {
         RemindersList(model: appDelegate.model)
       }
     }
+    .debugLog("app scene body")
 #endif
   }
 }

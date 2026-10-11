@@ -80,12 +80,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       // update model, but only publish what actually changed to avoid needless UI rebuilds
       let newReminders = viewOptions.groupByDay ? Reminder.groupedByDay(reminders) : reminders
       if self.model.reminders != newReminders {
+        DebugLog.log("model: reminders changed \(self.model.reminders.count) -> \(newReminders.count)")
         self.model.reminders = newReminders
       }
       if self.model.viewOptions != viewOptions {
+        DebugLog.log("model: viewOptions changed to \(viewOptions)")
         self.model.viewOptions = viewOptions
       }
       if self.model.statusBarItemEnabled != appOptions.statusBarItem {
+        DebugLog.log("model: statusBarItemEnabled changed to \(appOptions.statusBarItem)")
         self.model.statusBarItemEnabled = appOptions.statusBarItem
       }
     }

@@ -14,14 +14,17 @@ struct CountdownsWidgetView: View {
   @Environment(\.widgetFamily) var family
 
   var body: some View {
-    switch family {
-    case .systemSmall:
-      smallView
-    case .systemMedium:
-      mediumView
-    default:
-      largeView
+    Group {
+      switch family {
+      case .systemSmall:
+        smallView
+      case .systemMedium:
+        mediumView
+      default:
+        largeView
+      }
     }
+    .debugLog("widget body: family=\(family), \(entry.reminders.count) reminders, entry date=\(entry.date)")
   }
 
   private var smallView: some View {

@@ -21,6 +21,7 @@ struct MenuBarExtraScene: Scene {
           }
         }
       }
+      .debugLog("menu body: \(model.reminders.count) reminders")
 
       if !model.reminders.isEmpty {
         Divider()
@@ -75,9 +76,11 @@ struct MenuBarExtraScene: Scene {
         urlString = "ical://ekevent/\(encodedId)?method=show&options=more"
       }
       guard let url = URL(string: urlString), NSWorkspace.shared.open(url) else {
+        DebugLog.log("opening \(urlString) failed, falling back to the Reminders app")
         openRemindersApp()
         return
       }
+      DebugLog.log("opened \(urlString)")
     }
 
     private static func openRemindersApp() {
@@ -94,6 +97,7 @@ struct MenuBarExtraScene: Scene {
           .accessibilityLabel("Deskop Countdowns")
         Text("\(model.reminders.count)")
       }
+      .debugLog("menu bar label body: \(model.reminders.count)")
     }
   }
 
@@ -106,6 +110,7 @@ struct MenuBarExtraScene: Scene {
       MenuBarLabel(model: model)
     }
     .menuBarExtraStyle(.menu)
+    .debugLog("MenuBarExtra scene body: inserted=\(model.statusBarItemEnabled)")
   }
 }
 #endif

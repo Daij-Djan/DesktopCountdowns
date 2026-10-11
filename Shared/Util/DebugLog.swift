@@ -7,6 +7,9 @@
 
 import Foundation
 import os
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 
 // MARK: Debug logging that can be switched on/off at runtime, in debug and release builds alike
 enum DebugLog {
@@ -24,7 +27,12 @@ enum DebugLog {
   private static let maxFileSize = 5 * 1_024 * 1_024
   private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "DesktopCountdowns", category: "debug")
   private static let queue = DispatchQueue(label: "DesktopCountdowns.DebugLog")
-  private static let dateFormatter = ISO8601DateFormatter()
+  private static let dateFormatter = {
+    let formatter = ISO8601DateFormatter()
+    // milliseconds make bursts of redraws visible
+    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return formatter
+  }()
 
 #if DEBUG
   // like AppOptions.debugAlwaysShowsDock: debug builds always log, regardless of the setting
@@ -98,3 +106,24 @@ enum DebugLog {
     }
   }
 }
+
+#if canImport(SwiftUI)
+// MARK: SwiftUI helpers to log from inside view / scene builders
+// modifiers are called while the body is evaluated, so these log every body evaluation (unlike onAppear)
+
+extension View {
+  /// Logs `message` whenever the enclosing body is evaluated and returns the view unchanged
+  func debugLog(_ message: @autoclosure () -> String, file: String = #fileID, function: String = #function, line: Int = #line) -> Self {
+    DebugLog.log(message(), file: file, function: function, line: line)
+    return self
+  }
+}
+
+extension Scene {
+  /// Logs `message` whenever the enclosing body is evaluated and returns the scene unchanged
+  func debugLog(_ message: @autoclosure () -> String, file: String = #fileID, function: String = #function, line: Int = #line) -> Self {
+    DebugLog.log(message(), file: file, function: function, line: line)
+    return self
+  }
+}
+#endif
