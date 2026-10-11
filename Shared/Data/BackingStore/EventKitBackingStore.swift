@@ -12,12 +12,14 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
   private let ekStore = EKEventStore()
 
   func readAll(with fetchOptions: FetchOptions, completion: @escaping ([Reminder]) -> Void) {
-    if EKEventStore.authorizationStatus(for: .reminder) == .fullAccess {
+    let status = EKEventStore.authorizationStatus(for: .reminder)
+    DebugLog.log("reminders authorization status: \(status.rawValue)")
+    if status == .fullAccess {
       readAllAuthorized(with: fetchOptions, completion: completion)
     } else {
       ekStore.requestFullAccessToReminders { [weak self] granted, error in
         guard let self, granted else {
-          if let error { print("Error requesting event access for birthdays: \(error)") }
+          DebugLog.log("reminders access not granted: \(String(describing: error))")
           completion([])
           return
         }
@@ -36,6 +38,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
         return
       }
       var mapped = (ekReminders ?? []).map { Reminder(with: $0, for: date) }
+      DebugLog.log("fetched \(mapped.count) reminders")
 
       let finishWithCalendar: ([Reminder]) -> Void = { intermediate in
         guard fetchOptions.includeCalendarEvents, fetchOptions.calendarDays >= 0 else {
@@ -67,7 +70,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     } else {
       ekStore.requestFullAccessToEvents { [weak self] granted, error in
         guard let self, granted else {
-          if let error { print("Error requesting event access for birthdays: \(error)") }
+          DebugLog.log("event access for birthdays not granted: \(String(describing: error))")
           completion([])
           return
         }
@@ -79,6 +82,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
   private func fetchBirthdayReminders(within days: Int, from date: Date) -> [Reminder] {
     let birthdayCalendars = ekStore.calendars(for: .event).filter { $0.type == .birthday }
     guard !birthdayCalendars.isEmpty else {
+      DebugLog.log("no birthday calendar found")
       return []
     }
 
@@ -89,7 +93,9 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     }
 
     let predicate = ekStore.predicateForEvents(withStart: startDate, end: endDate, calendars: birthdayCalendars)
-    return ekStore.events(matching: predicate).map { Reminder(birthday: $0, for: date) }
+    let birthdays = ekStore.events(matching: predicate).map { Reminder(birthday: $0, for: date) }
+    DebugLog.log("fetched \(birthdays.count) birthdays within \(days) days")
+    return birthdays
   }
 
   private func readUpcomingCalendarEvents(within days: Int, from date: Date, completion: @escaping ([Reminder]) -> Void) {
@@ -98,7 +104,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     } else {
       ekStore.requestFullAccessToEvents { [weak self] granted, error in
         guard let self, granted else {
-          if let error { print("Error requesting event access for calendar events: \(error)") }
+          DebugLog.log("event access for calendar events not granted: \(String(describing: error))")
           completion([])
           return
         }
@@ -119,6 +125,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
 
   private func fetchCalendarReminders(within days: Int, from date: Date) -> [Reminder] {
     let calendars = privateEventCalendars()
+    DebugLog.log("using calendars: \(calendars.map(\.title))")
     guard !calendars.isEmpty else {
       return []
     }
@@ -131,6 +138,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
 
     let predicate = ekStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
     let events = ekStore.events(matching: predicate)
+    DebugLog.log("fetched \(events.count) calendar events within \(days) days")
     return events.map { Reminder(calendarEvent: $0, for: date) }
   }
 

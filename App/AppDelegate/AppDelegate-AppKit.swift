@@ -38,13 +38,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     #if DEBUG
     var dockIcon = appOptions.dockIcon
     if appOptions.debugAlwaysShowsDock, DeveloperUtils.isDebuggerAttached() {
-      print("Always showing dockIcon when a debugger is attached.")
+      DebugLog.log("Always showing dockIcon when a debugger is attached.")
       dockIcon = true
     }
     #else
     let dockIcon = appOptions.dockIcon
     #endif
     let newActivationPolicy: NSApplication.ActivationPolicy = dockIcon ? .regular : .accessory
+    DebugLog.log("applySettings: dockIcon=\(dockIcon) statusBarItem=\(appOptions.statusBarItem) openAtLogin=\(appOptions.openAtLogin)")
     if !wasCalledBefore || NSApp.activationPolicy() != newActivationPolicy {
       NSApp.setActivationPolicy(newActivationPolicy)
       if !launchedToOpenReminders {
@@ -56,6 +57,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // manage Start at Login
     let shouldOpenAtLogin = appOptions.openAtLogin
     if LaunchAtLogin.isEnabled != shouldOpenAtLogin {
+      DebugLog.log("changing openAtLogin to \(shouldOpenAtLogin)")
       LaunchAtLogin.isEnabled = shouldOpenAtLogin
     }
 
@@ -72,7 +74,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let fetchOptions = FetchOptions(from: UserDefaults.standard)
     let viewOptions = ViewOptions(from: UserDefaults.standard)
 
+    DebugLog.log("reloadReminders: \(fetchOptions)")
     reminderStore.readAll(with: fetchOptions) { reminders in
+      DebugLog.log("reloadReminders: got \(reminders.count) reminders")
       // update model, but only publish what actually changed to avoid needless UI rebuilds
       let newReminders = viewOptions.groupByDay ? Reminder.groupedByDay(reminders) : reminders
       if self.model.reminders != newReminders {
@@ -88,6 +92,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func application(_: NSApplication, open urls: [URL]) {
+    DebugLog.log("open urls: \(urls)")
     for url in urls where url.host == "open-reminders" {
       openRemindersApp(self)
     }
@@ -106,6 +111,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     guard let urlString = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject))?.stringValue, let url = URL(string: urlString), url.host == "open-reminders" else {
       return
     }
+    DebugLog.log("launched to open reminders via \(url)")
     launchedToOpenReminders = true
   }
 
@@ -117,6 +123,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     #endif
 
+    DebugLog.log("applicationDidFinishLaunching, version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "?") (\(Bundle.main.infoDictionary?["CFBundleVersion"] ?? "?"))")
     desktopWindow = DesktopWindow(model: model)
     desktopWindow?.show()
 
@@ -137,18 +144,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // show prefs if needed
     if UserDefaults.standard.firstRun {
       UserDefaults.standard.firstRun = false
-      print("Show prefs for first run")
+      DebugLog.log("Show prefs for first run")
       showPrefs(self)
     }
 
     // act on day change
     let notificationTokenDayChange = NotificationCenter.default.addObserver(forName: Notification.Name.NSCalendarDayChanged, object: nil, queue: OperationQueue.main) { _ in
+      DebugLog.log("day changed")
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
 
     // act on screen size change
     let notificationTokenScreenSize = NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: OperationQueue.main) { _ in
+      DebugLog.log("screen parameters changed")
       NSObject.cancelPreviousPerformRequests(withTarget: self)
       self.perform(sel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
@@ -156,6 +165,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // act on reminder change; only refetch reminders, the app settings are unaffected
     let reloadSel = #selector(reloadReminders)
     let notificationTokenRemindes = reminderStore.addChangeObserver {
+      DebugLog.log("event store changed")
       NSObject.cancelPreviousPerformRequests(withTarget: self, selector: reloadSel, object: nil)
       self.perform(reloadSel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
@@ -164,6 +174,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let notificationTokenAttachmentsAccess = NotificationCenter.default.addObserver(
       forName: ScopedAccess.accessGrantedNotification, object: nil, queue: .main
     ) { [weak self] _ in
+      DebugLog.log("attachments folder access granted")
       self?.model.imageReloadToken = UUID()
     }
 

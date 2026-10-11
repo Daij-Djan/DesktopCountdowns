@@ -68,13 +68,15 @@ extension AppOptions {
   static var `default` = AppOptions(
     dockIcon: true,
     statusBarItem: true,
-    openAtLogin: false
+    openAtLogin: false,
+    debugLogging: false
   )
 
   init(from defaults: UserDefaults) {
     dockIcon = defaults.dockIcon
     statusBarItem = defaults.statusBarItem
     openAtLogin = defaults.openAtLogin
+    debugLogging = defaults.debugLogging
   }
 }
 #endif

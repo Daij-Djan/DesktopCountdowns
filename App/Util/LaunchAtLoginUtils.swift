@@ -22,7 +22,7 @@ enum LaunchAtLogin {
           try SMAppService.mainApp.unregister()
         }
       } catch {
-        print("failed to change loginItem status")
+        DebugLog.log("failed to change loginItem status")
         SMAppService.openSystemSettingsLoginItems()
       }
     }

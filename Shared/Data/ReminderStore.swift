@@ -50,8 +50,14 @@ final class ReminderStore {
     }
     #endif
 
-    engine?.readAll(with: fetchOptions) { reminders in
+    guard let engine else {
+      DebugLog.log("no backing store available")
+      return
+    }
+    let start = Date()
+    engine.readAll(with: fetchOptions) { reminders in
       let finalReminders = Self.filterAndSortReminders(reminders, with: fetchOptions)
+      DebugLog.log("read \(reminders.count) items, \(finalReminders.count) after filtering, took \(String(format: "%.3f", Date().timeIntervalSince(start)))s")
       DispatchQueue.main.async {
         completion(finalReminders)
       }
@@ -69,7 +75,7 @@ final class ReminderStore {
 extension ReminderStore {
   private static func getSampleData(for fetchOptions: FetchOptions) -> [Reminder] {
     if fetchOptions.debugUsesSamleData, DeveloperUtils.isDebuggerAttached() {
-      print("[DEBUG] useSampleData")
+      DebugLog.log("useSampleData")
       var reminders = Reminder.sampleData
       if fetchOptions.onlyWithDueDate {
         reminders = reminders.filter { $0.dueDate != nil }

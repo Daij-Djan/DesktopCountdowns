@@ -36,6 +36,7 @@ struct PreferencesView: View {
   @AppStorage(UserDefaults.Key.dockIcon) private var dockIcon = AppOptions.default.dockIcon
   @AppStorage(UserDefaults.Key.statusBarItem) private var statusBarItem = AppOptions.default.statusBarItem
   @AppStorage(UserDefaults.Key.openAtLogin) private var openAtLogin = AppOptions.default.openAtLogin
+  @AppStorage(UserDefaults.Key.debugLogging) private var debugLogging = AppOptions.default.debugLogging
 #endif
 
   @State private var selectedTab: Tab = .data
@@ -50,7 +51,7 @@ struct PreferencesView: View {
 #if canImport(AppKit)
 // swiftlint:disable:next indentation_width
     case .app:
-      355
+      470
 #endif
 // swiftlint:disable:next indentation_width
     }
@@ -199,6 +200,22 @@ struct PreferencesView: View {
         Text("Application")
       } footer: {
         Text("System integration for the desktop app — widgets are unaffected.")
+      }
+      Section {
+        HStack {
+          Toggle("Enable Debug Logging", isOn: $debugLogging)
+          Spacer()
+          Button("Show Log") {
+            NSWorkspace.shared.open(DebugLog.ensureFileExists())
+          }
+          Button("Clear") {
+            DebugLog.clear()
+          }
+        }
+      } header: {
+        Text("Troubleshooting")
+      } footer: {
+        Text("Writes diagnostic messages to \(DebugLog.fileURL.lastPathComponent) and the system log (Console.app).")
       }
       logoFooter
     }

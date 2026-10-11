@@ -33,7 +33,8 @@ struct CountdownsTimelineProvider: TimelineProvider {
     }
   }
 
-  func getTimeline(in _: Context, completion: @escaping (Timeline<Self.Entry>) -> Void) {
+  func getTimeline(in context: Context, completion: @escaping (Timeline<Self.Entry>) -> Void) {
+    DebugLog.log("getTimeline for \(context.family)")
     store.readAll(with: fetchOptions) { reminders in
       let entry = Self.Entry(date: .now, reminders: reminders)
       let nextUpdate = Calendar.current.date(byAdding: .minute, value: kIntervalMinutes, to: .now) ?? .now

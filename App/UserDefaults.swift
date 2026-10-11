@@ -37,6 +37,8 @@ extension UserDefaults {
     static let openAtLogin = "openAtLogin"
     static let enabledLauncherId = "enabledLauncher"
 
+    static let debugLogging = DebugLog.enabledKey
+
     // yes enum would be nice
     static let all = [
       firstRun,
@@ -62,7 +64,8 @@ extension UserDefaults {
       dockIcon,
       statusBarItem,
       openAtLogin,
-      enabledLauncherId
+      enabledLauncherId,
+      debugLogging
     ]
   }
 
@@ -170,6 +173,10 @@ extension UserDefaults {
     bool(forKey: Key.openAtLogin)
   }
 
+  var debugLogging: Bool {
+    bool(forKey: Key.debugLogging)
+  }
+
   var enabledLauncherId: String? {
     get {
       string(forKey: Key.enabledLauncherId)
@@ -214,7 +221,8 @@ extension UserDefaults {
       let values2: [String: Any] = [
         Key.dockIcon: AppOptions.default.dockIcon,
         Key.statusBarItem: AppOptions.default.statusBarItem,
-        Key.openAtLogin: AppOptions.default.openAtLogin
+        Key.openAtLogin: AppOptions.default.openAtLogin,
+        Key.debugLogging: AppOptions.default.debugLogging
       ]
     let values = values1.merging(values2) { _, new in new }
 

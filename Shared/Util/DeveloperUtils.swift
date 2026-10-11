@@ -16,7 +16,7 @@ enum DeveloperUtils {
     var size = MemoryLayout<kinfo_proc>.stride
     let junk = sysctl(&mib, UInt32(mib.count), &info, &size, nil, 0)
     guard junk == 0 else {
-      print("sysctl failed, assume no debugger")
+      DebugLog.log("sysctl failed, assume no debugger")
       return false
     }
     return (info.kp_proc.p_flag & P_TRACED) != 0

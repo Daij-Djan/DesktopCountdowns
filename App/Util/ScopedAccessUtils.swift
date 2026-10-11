@@ -108,7 +108,7 @@ final class ScopedAccess {
         UserDefaults.standard.set(fresh, forKey: bookmarkKey)
       }
     } catch {
-      print(error)
+      DebugLog.log("resolving attachments bookmark failed: \(error)")
     }
   }
 }

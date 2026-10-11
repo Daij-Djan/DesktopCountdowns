@@ -62,6 +62,7 @@ struct AppOptions: Equatable {
   let dockIcon: Bool
   let statusBarItem: Bool
   let openAtLogin: Bool
+  let debugLogging: Bool
 
 #if DEBUG
   let debugAlwaysShowsDock = true

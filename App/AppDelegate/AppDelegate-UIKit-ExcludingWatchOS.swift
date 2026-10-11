@@ -59,7 +59,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     // show prefs if needed
     if UserDefaults.standard.firstRun {
       UserDefaults.standard.firstRun = false
-      print("Show prefs for first run")
+      DebugLog.log("Show prefs for first run")
       showPrefs(self)
     }
 
