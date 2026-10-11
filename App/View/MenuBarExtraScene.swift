@@ -14,18 +14,10 @@ struct MenuBarExtraScene: Scene {
     @Environment(\.openSettings) private var openSettings
 
     var body: some View {
-      Button("Settings...") {
-        openSettings()
-        NSApp.activate(ignoringOtherApps: true)
-      }
-      .keyboardShortcut(",")
-
-      Divider()
-
       Section("Reminders") {
         ForEach(model.reminders) { reminder in
           Button(Self.menuItemTitle(for: reminder)) {
-            Self.openRemindersApp()
+            Self.open(reminder)
           }
         }
       }
@@ -38,6 +30,17 @@ struct MenuBarExtraScene: Scene {
         Self.openRemindersApp()
       }
       .keyboardShortcut("r")
+
+      Button("Settings...") {
+        openSettings()
+        NSApp.activate(ignoringOtherApps: true)
+      }
+      .keyboardShortcut(",")
+
+      Button("Quit") {
+        NSApp.terminate(nil)
+      }
+      .keyboardShortcut("q")
     }
 
     private static func menuItemTitle(for reminder: Reminder) -> String {
@@ -59,6 +62,22 @@ struct MenuBarExtraScene: Scene {
         ),
         reminder.title
       )
+    }
+
+    /// opens the reminder (or calendar event) itself via the undocumented Reminders / Calendar URL schemes
+    private static func open(_ reminder: Reminder) {
+      let encodedId = reminder.id.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? reminder.id
+      let urlString: String
+      switch reminder.reminderType {
+      case .regular:
+        urlString = "x-apple-reminderkit://REMCDReminder/\(encodedId)"
+      case .birthday, .calendar:
+        urlString = "ical://ekevent/\(encodedId)?method=show&options=more"
+      }
+      guard let url = URL(string: urlString), NSWorkspace.shared.open(url) else {
+        openRemindersApp()
+        return
+      }
     }
 
     private static func openRemindersApp() {
