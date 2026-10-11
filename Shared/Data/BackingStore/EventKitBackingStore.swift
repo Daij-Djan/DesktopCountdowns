@@ -54,7 +54,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
         return
       }
 
-      self.readUpcomingBirthdays(within: fetchOptions.birthdayDays, from: date) { birthdays in
+      readUpcomingBirthdays(within: fetchOptions.birthdayDays, from: date) { birthdays in
         mapped.append(contentsOf: birthdays)
         finishWithCalendar(mapped)
       }
@@ -111,7 +111,7 @@ final class EventKitReminderStoreBackingStore: ReminderStore.BackingStore {
     let all = ekStore.calendars(for: .event)
     let privateCandidates = all.filter { $0.type != .birthday && $0.type != .subscription && !$0.isSubscribed }
     if let def = ekStore.defaultCalendarForNewEvents,
-       privateCandidates.contains(where: { $0.calendarIdentifier == def.calendarIdentifier }) {
+      privateCandidates.contains(where: { $0.calendarIdentifier == def.calendarIdentifier }) {
       return [def]
     }
     return privateCandidates

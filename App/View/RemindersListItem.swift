@@ -67,6 +67,7 @@ struct RemindersListItem: View {
           HStack(spacing: 3) {
             Image(systemName: "mappin.and.ellipse")
               .font(.system(size: 10))
+              .accessibilityLabel("location")
             Text(location)
               .font(.system(size: 11))
               .lineLimit(1)
