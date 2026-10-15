@@ -17,7 +17,8 @@
 //            .attachmentsOfClass:(REMImageAttachment) → NSArray<REMImageAttachment>
 //              .fileURL     → URL (local group-container path)
 
-#if canImport(EventKit)
+// Not compiled into App Store builds: App Review rejects private API use (guideline 2.5.1).
+#if canImport(EventKit) && !APPSTORE
 import EventKit
 
 struct REMPrivateFields {

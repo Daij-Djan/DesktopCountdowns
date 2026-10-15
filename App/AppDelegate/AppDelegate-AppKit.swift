@@ -130,11 +130,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     desktopWindow = DesktopWindow(model: model)
     desktopWindow?.show()
 
+#if !APPSTORE
+// swiftlint:disable:next indentation_width
     // restore scoped access to Reminders attachments folder if previously granted and feature is on
     if UserDefaults.standard.showAttachmentImages {
       ScopedAccess.shared.startAccessingIfNeeded()
     }
+#endif
 
+// swiftlint:disable:next indentation_width
     // prepare settings
     let sel = #selector(applySettings)
     UserDefaults.standard.applyInitialValues()
@@ -173,6 +177,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       self.perform(reloadSel, with: nil, afterDelay: kSettingsDebounceDelay)
     }
 
+    // save tokens for app lifetime
+    notificationTokens = [
+      notificationTokenDefaultsDidChange,
+      notificationTokenDayChange,
+      notificationTokenScreenSize,
+      notificationTokenRemindes
+    ]
+
+#if !APPSTORE
+// swiftlint:disable:next indentation_width
     // reload images immediately after attachments folder access is granted
     let notificationTokenAttachmentsAccess = NotificationCenter.default.addObserver(
       forName: ScopedAccess.accessGrantedNotification, object: nil, queue: .main
@@ -181,14 +195,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       self?.model.imageReloadToken = UUID()
     }
 
-    // save tokens for app lifetime
-    notificationTokens = [
-      notificationTokenDefaultsDidChange,
-      notificationTokenDayChange,
-      notificationTokenScreenSize,
-      notificationTokenRemindes,
-      notificationTokenAttachmentsAccess
-    ]
+    notificationTokens.append(notificationTokenAttachmentsAccess)
+#endif
   }
 }
 #endif

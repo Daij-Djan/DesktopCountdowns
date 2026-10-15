@@ -5,7 +5,7 @@
 //  Created by Dominik Pich on 25.05.26.
 //
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !APPSTORE
 import AppKit
 
 /// Manages access to the Reminders group-container folder via a user-granted

@@ -5,7 +5,7 @@
 //  Created by Dominik Pich on 25.05.26.
 //
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !APPSTORE
 import AppKit
 
 extension ScopedAccess {

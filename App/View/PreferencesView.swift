@@ -158,7 +158,7 @@ struct PreferencesView: View {
               .foregroundStyle(.secondary)
           }
         }
-#if canImport(AppKit)
+#if canImport(AppKit) && !APPSTORE
 // swiftlint:disable:next indentation_width
         Toggle(isOn: $showAttachmentImages) {
           VStack(alignment: .leading) {

@@ -202,10 +202,13 @@ extension Reminder {
     hasAlarms = ekReminder.hasAlarms
     priority = ekReminder.priority
 
+#if !APPSTORE
+// swiftlint:disable:next indentation_width
     let fields = ekReminder.remPrivateFields
     tags = fields.tags
     isFlagged = fields.isFlagged
     attachmentImageURLs = fields.attachmentImageURLs
+#endif
   }
 }
 #endif
