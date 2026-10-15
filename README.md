@@ -41,3 +41,8 @@ The explanation (and only downside here) is that the two targets might be unable
 
 SwiftUI Previews work fine for all 6 platforms! 
 Widget works on mac, ios (iphone+ipad)
+
+## License
+DesktopCountdowns is licensed under the [GNU General Public License v3.0](LICENSE) with an additional permission that allows distribution through app stores such as Apple's App Store. Anyone distributing the app or a modified version must still publish its full source under the same terms.
+
+Contributions are welcome! Please sign off your commits (Developer Certificate of Origin), see [CONTRIBUTING.md](CONTRIBUTING.md).
